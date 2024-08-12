@@ -141,8 +141,21 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 `;
 const birlButtons = document.querySelectorAll(".birlbutton"); // Select by class
-const birlHeader = document.getElementsByClassName("top")[0];
-birlHeader.appendChild(element)
+const birlHeader = document.querySelectorAll(".birl-header"); // Select by class
+
+birlButtons.forEach(function (birlButton) {
+    const storeId = birlButton.getAttribute("data-store-id");
+    const storeName = birlButton.getAttribute("data-store-name");
+    const newElement = document.createElement("div");
+    newElement.innerHTML = customHTML(storeId, storeName);
+    birlButton.replaceWith(newElement); // Replace directly with newElement
+  });
+
+  birlHeader.forEach(function (birlHeader) {
+    const newElement = document.createElement("div");
+    newElement.innerHTML = birlDropdown;
+    birlHeader.replaceWith(newElement); // Replace directly with newElement
+  });
 var element = document.createElement("link");
 element.setAttribute("rel", "stylesheet");
 element.setAttribute("type", "text/css");
@@ -289,11 +302,5 @@ const root = document.documentElement;
   
 
 
-  birlButtons.forEach(function (birlButton) {
-    const storeId = birlButton.getAttribute("data-store-id");
-    const storeName = birlButton.getAttribute("data-store-name");
-    const newElement = document.createElement("div");
-    newElement.innerHTML = customHTML(storeId, storeName);
-    birlButton.replaceWith(newElement); // Replace directly with newElement
-  });
+  
 });
