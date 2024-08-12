@@ -939,7 +939,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function initiateBirl(customerId) {
     console.log("Initiating Birl trade-in session...");
-    console/log(customerId)
+    console.log(customerId)
     // Get button and spinner elements
     const button = document.getElementById("trade-in-button");
     const buttonText = button.querySelector(".button-text");
