@@ -973,16 +973,15 @@ function initiateBirl(customerId) {
     loadingText.style.display = "inline";
 
 
-    const url = `http://dashboard-dev.wearebirl.com/api/portal/startSession`;
+    const url = `http://dashboard.wearebirl.com/api/portal/startSession`;
 
     // API Request to Management App to create session
     const customerData = { 
         id: customerId,
         first_name: first_name,
         last_name: last_name,
-        email:email
+        email: email
     };
-    console.log(customerData)
 
     fetch(url, {
         method: "POST",
@@ -1006,7 +1005,7 @@ function initiateBirl(customerId) {
         loadingText.style.display = "none";
 
         if (response.status == 200){
-            window.location.replace(`http://portal-dev.wearebirl.com/?sessionId=${body.session_id}`);
+            window.location.replace(`http://portal.wearebirl.com/?sessionId=${body.session_id}`);
         } else {
             // Handle error here (optional)
             alert("Failed to initiate session. Please try again.");
