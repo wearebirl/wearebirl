@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("Page has been loaded");
-  
-    const customHTML = `
+  console.log("Page has been loaded");
+
+  function customHTML(storeName){
+    return `
       <div class="birl-product-cta-container2-peregrine tooltip-btn" onClick="openDropdown()">
   <div class="tooltip-container"><span class="tooltip-text">
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old {{ shop.name | capitalize }} items for immediate credit.
@@ -25,19 +26,20 @@ document.addEventListener("DOMContentLoaded", function () {
         ><br>
         </span>
         <span style="color: gray;">
-        Trade-in your {{ shop.name | capitalize }} garments for instant credit
+        Trade-in your ${storeName} garments for instant credit
       </span>
     </p>
   </div>
 </div>
-    `;
-  
-    const birlButtons = document.querySelectorAll(".birlbutton"); // Select by class
-  
-    birlButtons.forEach(function (birlButton) {
-      const newElement = document.createElement("div");
-      newElement.innerHTML = customHTML;
-      birlButton.replaceWith(newElement); // Replace directly with newElement
-    });
+    `
+  };
+
+  const birlButtons = document.querySelectorAll(".birlbutton"); // Select by class
+
+  birlButtons.forEach(function (birlButton) {
+    const storeName = birlButton.getAttribute("data-store-name");
+    const newElement = document.createElement("div");
+    newElement.innerHTML = customHTML(storeName);
+    birlButton.replaceWith(newElement); // Replace directly with newElement
   });
-  
+});
