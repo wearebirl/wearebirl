@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
 `;
   }
 
-  const birlButtons = document.querySelectorAll(".birlbutton"); // Select by class
+  const birlButtons = document.querySelectorAll(".birl-button"); // Select by class
   const birlHeader = document.querySelectorAll(".birl-header"); // Select by class
 
   birlButtons.forEach(function (birlButton) {
@@ -942,12 +942,22 @@ function initiateBirl(customerId) {
     console.log("Initiating Birl trade-in session...");
     let API_KEY = "";
     let store_id = "";
-    const birlButtons = document.querySelectorAll(".birlbutton"); // Select by class
+    let first_name = "";
+    let last_name = "";
+    let email = "";
+    const birlButtons = document.querySelectorAll(".birl-button"); // Select by class
     
     birlButtons.forEach(function (birlButton) {
         API_KEY = birlButton.getAttribute("data-api-key");
         store_id = birlButton.getAttribute("data-store-id");
     })
+
+    birlHeader.forEach(function (birlHeader) {
+        first_name = birlHeader.getAttribute("data-first-name");
+        last_name = birlHeader.getAttribute("data-last-name");
+        email = birlHeader.getAttribute("data-email");
+    });
+
 
     console.log(customerId)
     // Get button and spinner elements
@@ -967,9 +977,9 @@ function initiateBirl(customerId) {
     // API Request to Management App to create session
     const customerData = { 
         id: customerId,
-        first_name: "{{customer.first_name}}",
-        last_name: "{{customer.last_name}}",
-        email: "{{customer.email}}"
+        first_name: first_name,
+        last_name: last_name,
+        email:email
     };
     console.log(customerData)
 
