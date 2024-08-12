@@ -865,3 +865,13 @@ p {
   cursor: pointer;
   display: block !important;
 }
+
+.dropdown-img-lbl {
+  text-align: center;
+  font-weight: 600;
+  margin: 10px 0 30px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI (Custom)", Roboto,
+    "Helvetica Neue", "Open Sans (Custom)", system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: medium;
+}
