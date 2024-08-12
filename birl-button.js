@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const birlHeader = document.querySelectorAll(".birl-header"); // Select by class
 
   birlButtons.forEach(function (birlButton) {
-    const styleId = birlButton.getAttribute("data-style-id");
+    const styleId = birlButton.getAttribute("data-css-id");
     const storeName = birlButton.getAttribute("data-store-name");
     const newElement = document.createElement("div");
     newElement.innerHTML = addButton(styleId, storeName);
