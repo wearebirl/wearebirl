@@ -140,7 +140,9 @@ document.addEventListener("DOMContentLoaded", function () {
   </div>
 </div>
 `;
-
+const birlButtons = document.querySelectorAll(".birlbutton"); // Select by class
+const birlHeader = document.getElementsByClassName("shopify-section-header")[0];
+birlHeader.appendChild(element)
 var element = document.createElement("link");
 element.setAttribute("rel", "stylesheet");
 element.setAttribute("type", "text/css");
@@ -283,9 +285,8 @@ const root = document.documentElement;
     }
   })(); // End of IIFE
 
-  const birlButtons = document.querySelectorAll(".birlbutton"); // Select by class
-  const birlHeader = document.getElementsByClassName("shopify-section-header")[0];
-  birlHeader.innerHTML += birlDropdown;
+
+  
 
 
   birlButtons.forEach(function (birlButton) {
