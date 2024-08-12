@@ -956,7 +956,7 @@ function initiateBirl(customerId) {
 
     // API Request to Management App to create session
     const customerData = { 
-        id: customerId
+        id: customerId,
         first_name: "{{customer.first_name}}",
         last_name: "{{customer.last_name}}",
         email: "{{customer.email}}"
