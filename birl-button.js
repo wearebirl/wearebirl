@@ -300,12 +300,7 @@ const root = document.documentElement;
 
 
   
-
-
-  
-});
-
-!(function () {
+  !(function () {
     "use strict";
     function e() {}
     function t(e) {
@@ -936,3 +931,7 @@ const root = document.documentElement;
     })();
   })();
   
+
+  
+});
+
