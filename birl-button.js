@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const storeName = birlButton.getAttribute("data-store-name");
     const newElement = document.createElement("div");
     newElement.innerHTML = addButton(styleId, storeName);
-    birlButton.insertAdjacentHTML(newElement); // Replace directly with newElement
+    birlButton.replaceWith(newElement); // Replace directly with newElement
   });
 
   birlHeader.forEach(function (birlHeader) {
