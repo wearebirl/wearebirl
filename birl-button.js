@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const storeId = birlButton.getAttribute("data-store-id");
     const storeName = birlButton.getAttribute("data-store-name");
     const newElement = document.createElement("div");
-    newElement.innerHTML = customHTML(storeName, storeId);
+    newElement.innerHTML = customHTML(storeId, storeName);
     birlButton.replaceWith(newElement); // Replace directly with newElement
   });
 });
