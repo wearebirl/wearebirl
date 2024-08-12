@@ -946,6 +946,7 @@ function initiateBirl(customerId) {
     let last_name = "";
     let email = "";
     const birlButtons = document.querySelectorAll(".birl-button"); // Select by class
+    const birlHeader = document.querySelectorAll(".birl-header"); // Select by class
     
     birlButtons.forEach(function (birlButton) {
         API_KEY = birlButton.getAttribute("data-api-key");
