@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
   console.log("Page has been loaded");
 
-  function customHTML(storeId, storeName){
+  function addButton(storeId, storeName) {
     return `
       <div class="birl-product-cta-container2-${storeId} tooltip-btn" onClick="openDropdown()">
   <div class="tooltip-container"><span class="tooltip-text">
-    <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old {{ shop.name | capitalize }} items for immediate credit.
+    <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} items for immediate credit.
     <br><br>
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">2.</b> Spend your credit as soon as your code is emailed to you.
     <br><br>
@@ -31,11 +31,12 @@ document.addEventListener("DOMContentLoaded", function () {
     </p>
   </div>
 </div>
-    `
-  };
+    `;
+  }
 
-  var birlDropdown = `
-  <div class="birl-announcement-dropdown">
+  function addHeader(offset) {
+    return `
+  <div class="birl-announcement-dropdown" style="height: calc(100svh - ${offset}px);">
 <div class="Trade-In-Banner-Container">
   <button class="Trade-In" onclick=openDropdown()>
     <div class="Trade-In-Back-Container">
@@ -140,32 +141,35 @@ document.addEventListener("DOMContentLoaded", function () {
   </div>
 </div>
 `;
-const birlButtons = document.querySelectorAll(".birlbutton"); // Select by class
-const birlHeader = document.querySelectorAll(".birl-header"); // Select by class
+  }
 
-birlButtons.forEach(function (birlButton) {
+  const birlButtons = document.querySelectorAll(".birlbutton"); // Select by class
+  const birlHeader = document.querySelectorAll(".birl-header"); // Select by class
+
+  birlButtons.forEach(function (birlButton) {
     const storeId = birlButton.getAttribute("data-store-id");
     const storeName = birlButton.getAttribute("data-store-name");
     const newElement = document.createElement("div");
-    newElement.innerHTML = customHTML(storeId, storeName);
+    newElement.innerHTML = addButton(storeId, storeName);
     birlButton.replaceWith(newElement); // Replace directly with newElement
   });
 
   birlHeader.forEach(function (birlHeader) {
+    const offset = birlHeader.getAttribute("data-offset");
     const newElement = document.createElement("div");
-    newElement.innerHTML = birlDropdown;
+    newElement.innerHTML = addHeader(offset);
     birlHeader.replaceWith(newElement); // Replace directly with newElement
   });
-var element = document.createElement("link");
-element.setAttribute("rel", "stylesheet");
-element.setAttribute("type", "text/css");
-element.setAttribute(
-  "href",
-  "https://wearebirl.github.io/wearebirl/birl-button.css"
-);
-document.getElementsByTagName("head")[0].appendChild(element);
+  var element = document.createElement("link");
+  element.setAttribute("rel", "stylesheet");
+  element.setAttribute("type", "text/css");
+  element.setAttribute(
+    "href",
+    "https://wearebirl.github.io/wearebirl/birl-button.css"
+  );
+  document.getElementsByTagName("head")[0].appendChild(element);
 
-const root = document.documentElement;
+  const root = document.documentElement;
 
   (function () {
     // Start of IIFE to create a local scope
@@ -298,8 +302,6 @@ const root = document.documentElement;
     }
   })(); // End of IIFE
 
-
-  
   !(function () {
     "use strict";
     function e() {}
@@ -556,7 +558,8 @@ const root = document.documentElement;
         title: "Credit",
         children: [
           {
-            title: "Can I receive credit for items that are from another brand?",
+            title:
+              "Can I receive credit for items that are from another brand?",
             text: "At the moment you are only able to receive credit for items that are from the brand site that you are on. However, if you want to clean out your wardrobe whilst supporting charities, check out Birl's One Step Further campaign for items from other brands you want to recycle.",
           },
           {
@@ -930,8 +933,4 @@ const root = document.documentElement;
       e && new ne({ target: e });
     })();
   })();
-  
-
-  
 });
-
