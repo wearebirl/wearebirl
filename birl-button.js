@@ -2,9 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
   console.log("Page has been loaded");
 
 
-  function addButton(storeId, storeName) {
+  function addButton(styleId, storeName) {
     return `
-      <div class="birl-product-cta-container2-${storeId} tooltip-btn" onClick="openDropdown()">
+      <div class="birl-product-cta-container2-${styleId} tooltip-btn" onClick="openDropdown()">
   <div class="tooltip-container"><span class="tooltip-text">
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} items for immediate credit.
     <br><br>
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
 
     <div class="drop_content_buttons">
-      ${ customerId != "none" ? `<button class="start-trade-in" id="trade-in-button" onclick="initiateBirl(${customerId})">
+      ${ customerId != null ? `<button class="start-trade-in" id="trade-in-button" onclick="initiateBirl(${customerId})">
           <span class="button-text">Begin Trade-in</span>
           <span class="button-text-loading" style="display: none;">Loading...</span>
         </button>` : `<button class="start-trade-in" onclick="window.location.href = '/account/login'">Begin Trade-in</button>`}
@@ -148,10 +148,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const birlHeader = document.querySelectorAll(".birl-header"); // Select by class
 
   birlButtons.forEach(function (birlButton) {
-    const storeId = birlButton.getAttribute("data-store-id");
+    const styleId = birlButton.getAttribute("data-style-id");
     const storeName = birlButton.getAttribute("data-store-name");
     const newElement = document.createElement("div");
-    newElement.innerHTML = addButton(storeId, storeName);
+    newElement.innerHTML = addButton(styleId, storeName);
     birlButton.replaceWith(newElement); // Replace directly with newElement
   });
 
@@ -939,6 +939,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function initiateBirl(customerId) {
     console.log("Initiating Birl trade-in session...");
+    let API_KEY = "";
+    let store_id = "";
+    const birlButtons = document.querySelectorAll(".birlbutton"); // Select by class
+    
+    birlButtons.forEach(function (birlButton) {
+        API_KEY = birlButton.getAttribute("data-api-key");
+        store_id = birlButton.getAttribute("data-store-id");
+    })
+
     console.log(customerId)
     // Get button and spinner elements
     const button = document.getElementById("trade-in-button");
@@ -961,17 +970,18 @@ function initiateBirl(customerId) {
         last_name: "{{customer.last_name}}",
         email: "{{customer.email}}"
     };
+    console.log(customerData)
 
     fetch(url, {
         method: "POST",
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
-            "x-api-key" : "API KEY"
+            "x-api-key" : API_KEY
         },
         body: JSON.stringify({
             customer_data: customerData,
-            store_id: "store_id",
+            store_id: store_id,
             store_provider: "shopify"
         }),
     }).then(async (response) => {
