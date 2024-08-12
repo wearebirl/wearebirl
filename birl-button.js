@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 `;
 const birlButtons = document.querySelectorAll(".birlbutton"); // Select by class
-const birlHeader = document.getElementsByClassName("shopify-section-header")[0];
+const birlHeader = document.getElementsByClassName("top")[0];
 birlHeader.appendChild(element)
 var element = document.createElement("link");
 element.setAttribute("rel", "stylesheet");
