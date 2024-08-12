@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const storeName = birlButton.getAttribute("data-store-name");
     const newElement = document.createElement("div");
     newElement.innerHTML = addButton(styleId, storeName);
-    birlButton.replaceWith(newElement); // Replace directly with newElement
+    birlButton.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
   });
 
   birlHeader.forEach(function (birlHeader) {
@@ -160,7 +160,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const customerId = birlHeader.getAttribute("data-customerId");
     const newElement = document.createElement("div");
     newElement.innerHTML = addHeader(offset, customerId);
-    birlHeader.replaceWith(newElement); // Replace directly with newElement
+    birlHeader.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
+    //birlHeader.replaceWith(newElement); // Replace directly with newElement
   });
   var element = document.createElement("link");
   element.setAttribute("rel", "stylesheet");
