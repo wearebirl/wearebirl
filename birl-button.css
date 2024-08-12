@@ -1,0 +1,186 @@
+.birl-product-cta-container {
+    padding: 19px;
+    background-color: #2ea141;
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 40px;
+    width: 100%;
+    max-width: 440px;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .birl-product-cta-container2 {
+    position: relative;
+    padding: 12px;
+    background-color: white;
+    color: black;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    border-width: 1px;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 440px;
+    cursor: pointer;
+    border-style: solid;
+    border-color: #CACACA;
+  }
+  
+  .birl-product-cta-container2-peregrine {
+    position: relative;
+    padding: 8px 20px;
+    background-color: white;
+    color: black;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    border-width: 1px;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    border-style: solid;
+    border-color: #eae7e4;
+    margin-top: 12px;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  
+  .birl-product-cta-container3 {
+    position: relative;
+    padding: 12px;
+    background-color: white;
+    color: black;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 440px;
+    cursor: pointer;
+    border-style: solid;
+    border-color: #CACACA;
+  }
+  
+  .birl-product-cta-content {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  
+  [alt="Arrow"] {
+    width: 16px !important;
+    height: 16px !important;
+    margin-left: 8px;
+  }
+  
+  .birl-product-cta-text {
+    line-height: 1.3;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .birl-product-cta-container p {
+      max-width: 330px;
+    }
+    .birl-product-cta-container {
+      width: unset;
+    }
+  }
+  
+  .product-cta-links {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: auto;
+  }
+  
+  .product-cta-links button {
+    outline: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .birl-product-cta-container img {
+    width: 50px;
+    height: 17px;
+    margin-right: 16px;
+  }
+  
+  .birl-logo-2 {
+    width: 50px;
+    height: 17px;
+  }
+  
+  .birl-product-cta-container2 img {
+    width: 50px;
+    height: 17px;
+  }
+  
+  .birl-product-cta-container3 img {
+      width: 50px;
+      height: 17px;
+      margin-right: 16px;
+    }
+  .birl-product-cta-text p {
+    margin: 0;
+  }
+  
+  .birl-product-cta-text button {
+    color: white;
+    text-decoration: underline;
+    font-weight: 600;
+    text-underline-offset: 2px;
+    font-family: "Inter", sans-serif;
+    margin-left: 0;
+    font-size: 12px;
+    padding: 0;
+  }
+  
+  .tooltip-btn .tooltip-text {
+    margin: 0 auto;
+    display: inline-block;
+    text-align: left;
+    color: gray;
+    font-family: "Inter", sans-serif;
+  }
+  
+  .tooltip-btn .tooltip-container{
+    visibility: hidden;
+    background-color: white;
+    color: black;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    border: solid #CACACA;
+    position: absolute;
+    bottom: -100px; /* Position above the button */
+    left: 0;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: collapse;
+    font-size: 12px;
+    width: 100%;
+    line-height: 110%;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 0px 10px;
+  
+  }
+  
+  .tooltip-btn:hover .tooltip-container {
+    visibility: visible;
+    opacity: 1;
+  }
