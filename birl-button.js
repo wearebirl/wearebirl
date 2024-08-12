@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
   console.log("Page has been loaded");
 
-  function initiateBirl() {
+  function initiateBirl(customerId) {
     console.log("Initiating Birl trade-in session...");
+    console/log(customerId)
     // Get button and spinner elements
     const button = document.getElementById("trade-in-button");
     const buttonText = button.querySelector(".button-text");
@@ -97,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
   }
 
-  function addHeader(offset) {
+  function addHeader(offset, customerId) {
     return `
   <div class="birl-announcement-dropdown" style="height: calc(100svh - ${offset}px);">
 <div class="Trade-In-Banner-Container">
@@ -135,14 +136,10 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
 
     <div class="drop_content_buttons">
-      {% if customer %}
-        <button class="start-trade-in" id="trade-in-button" onclick="initiateBirl()">
+      ${ customerId != "none" ? `<button class="start-trade-in" id="trade-in-button" onclick="initiateBirl(${customerId})">
           <span class="button-text">Begin Trade-in</span>
           <span class="button-text-loading" style="display: none;">Loading...</span>
-        </button>
-       {% else %}
-        <button class="start-trade-in" onclick="window.location.href = '/account/login'">Begin Trade-in</button>
-      {% endif %} 
+        </button>` : `<button class="start-trade-in" onclick="window.location.href = '/account/login'">Begin Trade-in</button>`}
       <button class="start-trade-in-later" onclick="openDropdown()">Maybe Later</button>
     </div>
   </div>
@@ -223,8 +220,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   birlHeader.forEach(function (birlHeader) {
     const offset = birlHeader.getAttribute("data-offset");
+    const customerId = birlHeader.getAttribute("data-customerId");
     const newElement = document.createElement("div");
-    newElement.innerHTML = addHeader(offset);
+    newElement.innerHTML = addHeader(offset, customerId);
     birlHeader.replaceWith(newElement); // Replace directly with newElement
   });
   var element = document.createElement("link");
