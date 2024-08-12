@@ -1,70 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   console.log("Page has been loaded");
 
-  function initiateBirl(customerId) {
-    console.log("Initiating Birl trade-in session...");
-    console/log(customerId)
-    // Get button and spinner elements
-    const button = document.getElementById("trade-in-button");
-    const buttonText = button.querySelector(".button-text");
-    const loadingText = button.querySelector(".button-text-loading");
 
-    // Disable the button and show the loading spinner
-    button.classList.add("loading-trade-in");
-    button.setAttribute("disabled", true);
-    buttonText.style.display = "none";
-    loadingText.style.display = "inline";
-
-
-    const url = `http://dashboard-dev.wearebirl.com/api/portal/startSession`;
-
-    // API Request to Management App to create session
-    const customerData = { 
-        id:  "{{customer.id}}",
-        first_name: "{{customer.first_name}}",
-        last_name: "{{customer.last_name}}",
-        email: "{{customer.email}}"
-    };
-
-    fetch(url, {
-        method: "POST",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            "x-api-key" : "API KEY"
-        },
-        body: JSON.stringify({
-            customer_data: customerData,
-            store_id: "store_id",
-            store_provider: "shopify"
-        }),
-    }).then(async (response) => {
-        const body = await response.json();
-
-        // Re-enable the button and hide the loading spinner
-        button.classList.remove("loading-trade-in");
-        button.removeAttribute("disabled");
-        buttonText.style.display = "inline";
-        loadingText.style.display = "none";
-
-        if (response.status == 200){
-            window.location.replace(`http://portal-dev.wearebirl.com/?sessionId=${body.session_id}`);
-        } else {
-            // Handle error here (optional)
-            alert("Failed to initiate session. Please try again.");
-        }
-    }).catch((error) => {
-        // Re-enable the button and hide the loading spinner in case of error
-        button.classList.remove("disabled");
-        button.removeAttribute("disabled");
-        buttonText.style.display = "inline";
-        loadingText.style.display = "none";
-        
-        // Handle error here
-        console.error("Error initiating session:", error);
-        alert("An error occurred. Please try again.");
-    });
-}
   function addButton(storeId, storeName) {
     return `
       <div class="birl-product-cta-container2-${storeId} tooltip-btn" onClick="openDropdown()">
@@ -999,3 +936,68 @@ document.addEventListener("DOMContentLoaded", function () {
     })();
   })();
 });
+
+function initiateBirl(customerId) {
+    console.log("Initiating Birl trade-in session...");
+    console/log(customerId)
+    // Get button and spinner elements
+    const button = document.getElementById("trade-in-button");
+    const buttonText = button.querySelector(".button-text");
+    const loadingText = button.querySelector(".button-text-loading");
+
+    // Disable the button and show the loading spinner
+    button.classList.add("loading-trade-in");
+    button.setAttribute("disabled", true);
+    buttonText.style.display = "none";
+    loadingText.style.display = "inline";
+
+
+    const url = `http://dashboard-dev.wearebirl.com/api/portal/startSession`;
+
+    // API Request to Management App to create session
+    const customerData = { 
+        id: customerId
+        first_name: "{{customer.first_name}}",
+        last_name: "{{customer.last_name}}",
+        email: "{{customer.email}}"
+    };
+
+    fetch(url, {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "x-api-key" : "API KEY"
+        },
+        body: JSON.stringify({
+            customer_data: customerData,
+            store_id: "store_id",
+            store_provider: "shopify"
+        }),
+    }).then(async (response) => {
+        const body = await response.json();
+
+        // Re-enable the button and hide the loading spinner
+        button.classList.remove("loading-trade-in");
+        button.removeAttribute("disabled");
+        buttonText.style.display = "inline";
+        loadingText.style.display = "none";
+
+        if (response.status == 200){
+            window.location.replace(`http://portal-dev.wearebirl.com/?sessionId=${body.session_id}`);
+        } else {
+            // Handle error here (optional)
+            alert("Failed to initiate session. Please try again.");
+        }
+    }).catch((error) => {
+        // Re-enable the button and hide the loading spinner in case of error
+        button.classList.remove("disabled");
+        button.removeAttribute("disabled");
+        buttonText.style.display = "inline";
+        loadingText.style.display = "none";
+        
+        // Handle error here
+        console.error("Error initiating session:", error);
+        alert("An error occurred. Please try again.");
+    });
+}
