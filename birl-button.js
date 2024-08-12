@@ -141,6 +141,148 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 `;
 
+var element = document.createElement("link");
+element.setAttribute("rel", "stylesheet");
+element.setAttribute("type", "text/css");
+element.setAttribute(
+  "href",
+  "https://wearebirl.github.io/wearebirl/birl-button.css"
+);
+document.getElementsByTagName("head")[0].appendChild(element);
+
+const root = document.documentElement;
+
+  (function () {
+    // Start of IIFE to create a local scope
+    // Use 'window' to create a global reference and avoid re-declarations
+    window.isDropdownFunction =
+      window.isDropdownFunction || typeof openDropdown === "function";
+
+    if (!window.isDropdownFunction) {
+      const dropdown = document.querySelector(".birl-announcement-dropdown");
+      const dropRight = document.getElementById("HowItWorksSection");
+      const dropLeft = document.querySelector(".drop_content_item.left");
+
+      // Attach 'openDropdown' to 'window' to make it globally accessible
+      window.openDropdown = () => {
+        let toDisplay =
+          dropdown.style.display === "" || dropdown.style.display === "none"
+            ? "flex"
+            : "none";
+        dropdown.style.display = toDisplay;
+
+        if (window.innerWidth > 768) {
+          const setGridHeight = () => {
+            dropLeft.style.setProperty("height", `${dropRight.offsetHeight}px`);
+          };
+
+          setGridHeight();
+
+          window.addEventListener("resize", setGridHeight);
+        }
+
+        // Use 'window' to store 'ScrollPos' globally
+        if (!window.ScrollPos) {
+          window.ScrollPos = window.scrollY;
+        }
+
+        // Scroll to 0 smoothly
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: "smooth",
+        });
+
+        if (toDisplay == "flex") {
+          document.body.style.overflow = "hidden";
+        } else {
+          console.log("scrolling back to " + window.ScrollPos);
+          document.body.style.overflow = "auto";
+
+          // Scroll back to the original position
+          console.log(window.ScrollPos + " scroll pos");
+          window.scrollTo({
+            top: window.ScrollPos,
+            left: 0,
+            behavior: "smooth",
+          });
+
+          window.ScrollPos = null;
+        }
+      };
+
+      // birl-carousel-control-next and birl-carousel-control-prev event listeners
+
+      const carousel = document.querySelector(".birl-carousel");
+      const carouselItems = document.querySelectorAll(".birl-carousel-item");
+      const carouselControls = document.querySelectorAll(
+        ".birl-carousel-control"
+      );
+      const carouselDots = document.querySelectorAll(".dropdown-page-dot");
+
+      let currentSlide = 0;
+      let carouselInterval = null;
+
+      const resetCarousel = () => {
+        carouselItems.forEach((item, index) => {
+          if (index === currentSlide) {
+            item.classList.add("active");
+          } else {
+            item.classList.remove("active");
+          }
+        });
+
+        carouselDots.forEach((dot, index) => {
+          if (index === currentSlide) {
+            dot.classList.add("active");
+          } else {
+            dot.classList.remove("active");
+          }
+        });
+      };
+
+      const startCarousel = () => {
+        carouselInterval = setInterval(() => {
+          currentSlide++;
+          if (currentSlide > carouselItems.length - 1) {
+            currentSlide = 0;
+          }
+          resetCarousel();
+        }, 5000);
+      };
+
+      const stopCarousel = () => {
+        clearInterval(carouselInterval);
+      };
+
+      let leftControl = document.querySelector(".birl-carousel-control-prev");
+      let rightControl = document.querySelector(".birl-carousel-control-next");
+
+      leftControl.addEventListener("click", () => {
+        currentSlide--;
+        if (currentSlide < 0) {
+          currentSlide = carouselItems.length - 1;
+        }
+        resetCarousel();
+      });
+
+      rightControl.addEventListener("click", () => {
+        currentSlide++;
+
+        if (currentSlide > carouselItems.length - 1) {
+          currentSlide = 0;
+        }
+
+        resetCarousel();
+      });
+
+      //carousel.addEventListener('mouseover', stopCarousel);
+      //carousel.addEventListener('mouseout', startCarousel);
+
+      //startCarousel();
+    }
+  })(); // End of IIFE
+
   const birlButtons = document.querySelectorAll(".birlbutton"); // Select by class
   const birlHeader = document.getElementsByClassName("shopify-section-header")[0];
   birlHeader.innerHTML += birlDropdown;
