@@ -95,25 +95,25 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
 
         <div class="birl-carousel-item">
-          <img src="https://ztp7egf458qdy422.public.blob.vercel-storage.com/Ok-8fGqGk5s5nUyr91F8xzq7uM6jVgpiu.png" width="16" height="16">
+          
           <h3>2. Instant Credit</h3>
           <p>Accept your credit and receive the voucher code instantly in your email inbox</p>
         </div>
 
         <div class="birl-carousel-item">
-          <img src="https://ztp7egf458qdy422.public.blob.vercel-storage.com/Ok-8fGqGk5s5nUyr91F8xzq7uM6jVgpiu.png" width="16" height="16">
+         
           <h3>3. Spend Immediately</h3>
           <p>Your credit can be used as soon as you receive it or you can save it for your next purchase</p>
         </div>
 
         <div class="birl-carousel-item">
-          <img src="https://ztp7egf458qdy422.public.blob.vercel-storage.com/Ok-8fGqGk5s5nUyr91F8xzq7uM6jVgpiu.png" width="16" height="16">
+         
           <h3>4. Free Shipping</h3>
           <p>Select your preferred courier and receive a free digital postage label to your email inbox</p>
         </div>
 
         <div class="birl-carousel-item">
-          <img src="https://ztp7egf458qdy422.public.blob.vercel-storage.com/Ok-8fGqGk5s5nUyr91F8xzq7uM6jVgpiu.png" width="16" height="16">
+       
           <h3>5. Easy to Return</h3>
           <p>Pack your item and take it to a local drop off location that suits you</p>
         </div>
