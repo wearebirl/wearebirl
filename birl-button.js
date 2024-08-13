@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const birlButtons = document.querySelectorAll(".birl-button"); // Select by class
   const birlHeader = document.querySelectorAll(".birl-header"); // Select by class
-  const styleId= ""
+  let styleId= ""
   birlButtons.forEach(function (birlButton) {
     styleId = birlButton.getAttribute("data-css-id");
     const width = birlButton.getAttribute("data-width");
