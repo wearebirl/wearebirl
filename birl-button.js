@@ -1,10 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
   console.log("Page has been loaded");
 
-
-  function addButton(styleId, storeName) {
+  function addButton(styleId, storeName, width) {
     return `
-      <div class="birl-product-cta-container2-${styleId} tooltip-btn" onClick="openDropdown()">
+      <div class="birl-product-cta-container-${styleId} tooltip-btn" style="${width == "full" ? "width: 100%;" : `maxWidth: ${width}px;`}" onClick="openDropdown()">
   <div class="tooltip-container"><span class="tooltip-text">
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} items for immediate credit.
     <br><br>
@@ -73,10 +72,14 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
 
     <div class="drop_content_buttons">
-      ${ customerId != null ? `<button class="start-trade-in" id="trade-in-button" onclick="initiateBirl(${customerId})">
+      ${
+        customerId != null
+          ? `<button class="start-trade-in" id="trade-in-button" onclick="initiateBirl(${customerId})">
           <span class="button-text">Begin Trade-in</span>
           <span class="button-text-loading" style="display: none;">Loading...</span>
-        </button>` : `<button class="start-trade-in" onclick="window.location.href = '/account/login'">Begin Trade-in</button>`}
+        </button>`
+          : `<button class="start-trade-in" onclick="window.location.href = '/account/login'">Begin Trade-in</button>`
+      }
       <button class="start-trade-in-later" onclick="openDropdown()">Maybe Later</button>
     </div>
   </div>
@@ -149,9 +152,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   birlButtons.forEach(function (birlButton) {
     const styleId = birlButton.getAttribute("data-css-id");
+    const width = birlButton.getAttribute("data-width");
     const storeName = birlButton.getAttribute("data-store-name");
     const newElement = document.createElement("div");
-    newElement.innerHTML = addButton(styleId, storeName);
+    newElement.innerHTML = addButton(styleId, storeName, width);
     birlButton.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
   });
 
@@ -939,86 +943,88 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function initiateBirl(customerId) {
-    console.log("Initiating Birl trade-in session...");
-    let API_KEY = "";
-    let store_id = "";
-    let first_name = "";
-    let last_name = "";
-    let email = "";
-    const birlButtons = document.querySelectorAll(".birl-button"); // Select by class
-    const birlHeader = document.querySelectorAll(".birl-header"); // Select by class
-    
-    birlButtons.forEach(function (birlButton) {
-        API_KEY = birlButton.getAttribute("data-api-key");
-        store_id = birlButton.getAttribute("data-store-id");
+  console.log("Initiating Birl trade-in session...");
+  let API_KEY = "";
+  let store_id = "";
+  let first_name = "";
+  let last_name = "";
+  let email = "";
+  const birlButtons = document.querySelectorAll(".birl-button"); // Select by class
+  const birlHeader = document.querySelectorAll(".birl-header"); // Select by class
+
+  birlButtons.forEach(function (birlButton) {
+    API_KEY = birlButton.getAttribute("data-api-key");
+    store_id = birlButton.getAttribute("data-store-id");
+  });
+
+  birlHeader.forEach(function (birlHeader) {
+    first_name = birlHeader.getAttribute("data-first-name");
+    last_name = birlHeader.getAttribute("data-last-name");
+    email = birlHeader.getAttribute("data-email");
+  });
+
+  console.log(customerId);
+  // Get button and spinner elements
+  const button = document.getElementById("trade-in-button");
+  const buttonText = button.querySelector(".button-text");
+  const loadingText = button.querySelector(".button-text-loading");
+
+  // Disable the button and show the loading spinner
+  button.classList.add("loading-trade-in");
+  button.setAttribute("disabled", true);
+  buttonText.style.display = "none";
+  loadingText.style.display = "inline";
+
+  const url = `http://dashboard.wearebirl.com/api/portal/startSession`;
+
+  // API Request to Management App to create session
+  const customerData = {
+    id: customerId,
+    first_name: first_name,
+    last_name: last_name,
+    email: email,
+  };
+
+  fetch(url, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "x-api-key": API_KEY,
+    },
+    body: JSON.stringify({
+      customer_data: customerData,
+      store_id: store_id,
+      store_provider: "shopify",
+    }),
+  })
+    .then(async (response) => {
+      const body = await response.json();
+
+      // Re-enable the button and hide the loading spinner
+      button.classList.remove("loading-trade-in");
+      button.removeAttribute("disabled");
+      buttonText.style.display = "inline";
+      loadingText.style.display = "none";
+
+      if (response.status == 200) {
+        window.location.replace(
+          `http://portal.wearebirl.com/?sessionId=${body.session_id}`
+        );
+      } else {
+        // Handle error here (optional)
+        alert("Failed to initiate session. Please try again.");
+      }
     })
+    .catch((error) => {
+      // Re-enable the button and hide the loading spinner in case of error
+      button.classList.remove("disabled");
+      button.removeAttribute("disabled");
+      buttonText.style.display = "inline";
+      loadingText.style.display = "none";
 
-    birlHeader.forEach(function (birlHeader) {
-        first_name = birlHeader.getAttribute("data-first-name");
-        last_name = birlHeader.getAttribute("data-last-name");
-        email = birlHeader.getAttribute("data-email");
-    });
-
-
-    console.log(customerId)
-    // Get button and spinner elements
-    const button = document.getElementById("trade-in-button");
-    const buttonText = button.querySelector(".button-text");
-    const loadingText = button.querySelector(".button-text-loading");
-
-    // Disable the button and show the loading spinner
-    button.classList.add("loading-trade-in");
-    button.setAttribute("disabled", true);
-    buttonText.style.display = "none";
-    loadingText.style.display = "inline";
-
-
-    const url = `http://dashboard.wearebirl.com/api/portal/startSession`;
-
-    // API Request to Management App to create session
-    const customerData = { 
-        id: customerId,
-        first_name: first_name,
-        last_name: last_name,
-        email: email
-    };
-
-    fetch(url, {
-        method: "POST",
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            "x-api-key" : API_KEY
-        },
-        body: JSON.stringify({
-            customer_data: customerData,
-            store_id: store_id,
-            store_provider: "shopify"
-        }),
-    }).then(async (response) => {
-        const body = await response.json();
-
-        // Re-enable the button and hide the loading spinner
-        button.classList.remove("loading-trade-in");
-        button.removeAttribute("disabled");
-        buttonText.style.display = "inline";
-        loadingText.style.display = "none";
-
-        if (response.status == 200){
-            window.location.replace(`http://portal.wearebirl.com/?sessionId=${body.session_id}`);
-        } else {
-            // Handle error here (optional)
-            alert("Failed to initiate session. Please try again.");
-        }
-    }).catch((error) => {
-        // Re-enable the button and hide the loading spinner in case of error
-        button.classList.remove("disabled");
-        button.removeAttribute("disabled");
-        buttonText.style.display = "inline";
-        loadingText.style.display = "none";
-        
-        // Handle error here
-        console.error("Error initiating session:", error);
-        alert("An error occurred. Please try again.");
+      // Handle error here
+      console.error("Error initiating session:", error);
+      alert("An error occurred. Please try again.");
     });
 }
