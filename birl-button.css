@@ -239,9 +239,7 @@
 }
 
 .dropdown-split__left__content h1 {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI (Custom)", Roboto,
-    "Helvetica Neue", "Open Sans (Custom)", system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji";
+  
   font-size: 42px;
   font-weight: 600;
   color: black;
@@ -260,9 +258,7 @@
 
 .dropdown-split__left__content {
   max-width: 60ch;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI (Custom)", Roboto,
-    "Helvetica Neue", "Open Sans (Custom)", system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji";
+  
   font-size: 16px;
   font-weight: 400;
 }
@@ -275,9 +271,7 @@
   color: var(--White, #fff);
   /* Text md/Semibold */
   display: block;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI (Custom)", Roboto,
-    "Helvetica Neue", "Open Sans (Custom)", system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji";
+  
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -304,9 +298,7 @@
 .start-trade-in-later {
   color: #000000;
   /* Text md/Semibold */
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI (Custom)", Roboto,
-    "Helvetica Neue", "Open Sans (Custom)", system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji";
+  
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
@@ -371,9 +363,7 @@
   display: flex;
   align-items: center;
   color: black;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI (Custom)", Roboto,
-    "Helvetica Neue", "Open Sans (Custom)", system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji";
+  
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -403,9 +393,7 @@
 .icon p {
   color: #000;
   text-align: center;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI (Custom)", Roboto,
-    "Helvetica Neue", "Open Sans (Custom)", system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji";
+  
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -417,9 +405,7 @@
 
 .dropdown-split__right-p {
   color: var(--Text-light-grey, #667085);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI (Custom)", Roboto,
-    "Helvetica Neue", "Open Sans (Custom)", system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji";
+  
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -555,9 +541,7 @@
 .how-it-works {
   font-size: 22px;
   font-weight: 600;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI (Custom)", Roboto,
-    "Helvetica Neue", "Open Sans (Custom)", system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji";
+  
   margin-bottom: 30px;
 }
 
@@ -593,9 +577,7 @@
 .drop_title {
   color: var(--Gray-900, #101828);
   text-align: center;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI (Custom)", Roboto,
-    "Helvetica Neue", "Open Sans (Custom)", system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji";
+  
   font-size: 32px;
   font-style: normal;
   font-weight: 600;
@@ -675,9 +657,7 @@
   color: #000;
   margin-top: 0;
   text-align: center;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI (Custom)", Roboto,
-    "Helvetica Neue", "Open Sans (Custom)", system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji";
+  
   font-size: 22px !important;
   font-style: normal;
   font-weight: 600 !important;
@@ -730,9 +710,7 @@
   color: #585858;
   margin: 7px 0;
   text-align: center;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI (Custom)", Roboto,
-    "Helvetica Neue", "Open Sans (Custom)", system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji";
+  
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -743,9 +721,7 @@
   color: #585858;
 
   text-align: center;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI (Custom)", Roboto,
-    "Helvetica Neue", "Open Sans (Custom)", system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji";
+  
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -843,9 +819,7 @@
   text-align: center;
   font-weight: 600;
   margin: 10px 0 30px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI (Custom)", Roboto,
-    "Helvetica Neue", "Open Sans (Custom)", system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji";
+  
   font-size: medium;
 }
 
