@@ -161,7 +161,6 @@
   display: inline-block;
   text-align: left;
   color: gray;
-  font-family: "Inter", sans-serif;
 }
 
 .tooltip-btn .tooltip-container {
@@ -848,4 +847,8 @@
     "Helvetica Neue", "Open Sans (Custom)", system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji";
   font-size: medium;
+}
+
+.font-peregrine{
+  font-family: NiceMicro, serif !important;
 }

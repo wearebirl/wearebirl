@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function addButton(styleId, storeName, width) {
     return `
-      <div class="birl-product-cta-container-${styleId} tooltip-btn" style="${width == "full" ? "width: 100%;" : `maxWidth: ${width}px;`}" onClick="openDropdown()">
+      <div class="birl-product-cta-container-${styleId} font-${styleId} tooltip-btn" style="${width == "full" ? "width: 100%;" : `maxWidth: ${width}px;`}" onClick="openDropdown()">
   <div class="tooltip-container"><span class="tooltip-text">
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} items for immediate credit.
     <br><br>
@@ -34,9 +34,9 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
   }
 
-  function addHeader(offset, customerId) {
+  function addHeader(offset, customerId, styleId) {
     return `
-  <div class="birl-announcement-dropdown" style="height: calc(100svh - ${offset}px);">
+  <div class="birl-announcement-dropdown font-${styleId}" style="height: calc(100svh - ${offset}px);">
 <div class="Trade-In-Banner-Container">
   <button class="Trade-In" onclick=openDropdown()>
     <div class="Trade-In-Back-Container">
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 
   <div>
-    <h1 class="drop_title">Get Instant Credit with Birl</h1>
+    <h1 class="drop_title font-${styleId}">Get Instant Credit with Birl</h1>
 
     <div class="drop_content_imgs">
       <div>
@@ -149,9 +149,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const birlButtons = document.querySelectorAll(".birl-button"); // Select by class
   const birlHeader = document.querySelectorAll(".birl-header"); // Select by class
-
+  const styleId= ""
   birlButtons.forEach(function (birlButton) {
-    const styleId = birlButton.getAttribute("data-css-id");
+    styleId = birlButton.getAttribute("data-css-id");
     const width = birlButton.getAttribute("data-width");
     const storeName = birlButton.getAttribute("data-store-name");
     const newElement = document.createElement("div");
@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const offset = birlHeader.getAttribute("data-offset");
     const customerId = birlHeader.getAttribute("data-customerId");
     const newElement = document.createElement("div");
-    newElement.innerHTML = addHeader(offset, customerId);
+    newElement.innerHTML = addHeader(offset, customerId, styleId);
     birlHeader.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
     //birlHeader.replaceWith(newElement); // Replace directly with newElement
   });
