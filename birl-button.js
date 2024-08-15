@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
   console.log("Page has been loaded");
 
-  function addButton(styleId, storeName, width) {
+  function addButton(styleId, storeName, width, variant) {
     return `
-      <div class="birl-product-cta-container-${styleId} font-${styleId} tooltip-btn" style="${width == "full" ? "width: 100%;" : `maxWidth: ${width}px;`}" onClick="openDropdown()">
+      <div class="birl-product-cta-container-${styleId} font-${styleId} tooltip-btn" style="${width == "full" ? "width: 100%;" : `max-width: ${width}px;`}" onClick="openDropdown()">
   <div class="tooltip-container"><span class="tooltip-text">
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} items for immediate credit.
     <br><br>
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
   <div class="birl-product-cta-text">
     <p>
       <span><b>
-          Get money off this item today </b
+          ${variant == "product" && "Get money off this item today"}${variant == "account" && "Get money off your next purchase"} </b
         ><br>
         </span>
         <span style="color: gray;">
@@ -155,7 +155,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const width = birlButton.getAttribute("data-width");
     const storeName = birlButton.getAttribute("data-store-name");
     const newElement = document.createElement("div");
-    newElement.innerHTML = addButton(styleId, storeName, width);
+    const variant = birlButton.getAttribute("data-variant");
+    newElement.innerHTML = addButton(styleId, storeName, width, variant);
     birlButton.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
   });
 
