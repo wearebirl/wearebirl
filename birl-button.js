@@ -1000,6 +1000,8 @@ function initiateBirl(customerId, skipToOrders) {
       customer_data: customerData,
       store_id: store_id,
       store_provider: "shopify",
+      redirect_to_orders: skipToOrders,
+      callback: window.location.href,
     }),
   })
     .then(async (response) => {
