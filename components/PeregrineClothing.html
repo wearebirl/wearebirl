@@ -1,0 +1,37 @@
+<div>
+  <birl-button
+    class="birl-button"
+    id="birl-button"
+    data-store-name="{{ shop.name | capitalize }}"
+    data-css-id="peregrine"
+    data-store-id="7794cf61-a55c-4562-a57c-ae290fdce688"
+    data-api-key="6c7bed89-f0ba-4e95-8bac-a760281aeccd"
+    data-width="full"
+    data-variant="product"
+    data-customerId="{{ customer.id | escape }}"
+  ></birl-button>
+</div>
+
+<birl-header
+  class="birl-header"
+  data-offset="44"
+  data-customerId="{{ customer.id | escape }}"
+  data-first-name="{{ customer.first_name | escape }}"
+  data-last-name="{{ customer.last_name | escape }}"
+  data-email="{{ customer.email | escape }}"
+></birl-header>
+
+
+<birl-button
+class="birl-button"
+id="birl-button"
+data-store-name="{{ shop.name | capitalize }}"
+data-css-id="peregrine"
+data-store-id="7794cf61-a55c-4562-a57c-ae290fdce688"
+data-api-key="6c7bed89-f0ba-4e95-8bac-a760281aeccd"
+data-width="450"
+data-variant="account"
+data-customerId="{{ customer.id | escape }}"
+></birl-button>
+
+<script src="https://wearebirl.github.io/wearebirl/birl-button.js"></script>
