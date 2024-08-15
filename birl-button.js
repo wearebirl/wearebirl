@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
   console.log("Page has been loaded");
 
-  function addButton(styleId, storeName, width, variant) {
+  function addButton(styleId, storeName, width, variant, customerId) {
     return `
-      <div class="birl-product-cta-container-${styleId} font-${styleId} tooltip-btn" style="${width == "full" ? "width: 100%;" : `max-width: ${width}px;`}" onClick="openDropdown()">
+      <div class="birl-product-cta-container-${styleId} font-${styleId} tooltip-btn" style="${width == "full" ? "width: 100%;" : `max-width: ${width}px;`}" onClick="${variant=="account" ? `initiateBirl(${customerId}, true)` : "openDropdown()"}">
   <div class="tooltip-container"><span class="tooltip-text">
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} items for immediate credit.
     <br><br>
@@ -22,7 +22,9 @@ document.addEventListener("DOMContentLoaded", function () {
   <div class="birl-product-cta-text">
     <p>
       <span><b>
-          ${variant == "product" ? "Get money off this item today":""}${variant == "account" ? "Get money off your next purchase":""} </b
+          ${
+            variant == "product" ? "Get money off this item today" : ""
+          }${variant == "account" ? "Get money off your next purchase" : ""} </b
         ><br>
         </span>
         <span style="color: gray;">
@@ -73,8 +75,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     <div class="drop_content_buttons">
       ${
-        customerId != null
-          ? `<button class="start-trade-in" id="trade-in-button" onclick="initiateBirl(${customerId})">
+        customerId != (null || "")
+          ? `<button class="start-trade-in" id="trade-in-button" onclick="initiateBirl(${customerId}, false)">
           <span class="button-text">Begin Trade-in</span>
           <span class="button-text-loading" style="display: none;">Loading...</span>
         </button>`
@@ -149,14 +151,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const birlButtons = document.querySelectorAll(".birl-button"); // Select by class
   const birlHeader = document.querySelectorAll(".birl-header"); // Select by class
-  let styleId= ""
+  let styleId = "";
   birlButtons.forEach(function (birlButton) {
     styleId = birlButton.getAttribute("data-css-id");
     const width = birlButton.getAttribute("data-width");
     const storeName = birlButton.getAttribute("data-store-name");
+    const customerId = birlButton.getAttribute("data-customerId");
     const newElement = document.createElement("div");
     const variant = birlButton.getAttribute("data-variant");
-    newElement.innerHTML = addButton(styleId, storeName, width, variant);
+    newElement.innerHTML = addButton(styleId, storeName, width, variant, customerId);
     birlButton.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
   });
 
@@ -691,7 +694,7 @@ document.addEventListener("DOMContentLoaded", function () {
       l(
         e,
         "svelte-t480mb",
-        '@keyframes svelte-t480mb-fadeIn{from{opacity:0}to{opacity:1}}#HowItWorksSection{width:100%}.faq-widget.svelte-t480mb.svelte-t480mb{box-sizing:border-box}.faq-widget.svelte-t480mb *{box-sizing:border-box !important;}.title.svelte-t480mb.svelte-t480mb{font-size:28px;font-weight:600;margin:40px auto 20px;text-align:center}.faq-panel.svelte-t480mb.svelte-t480mb{justify-content:space-between;background:none;display:flex;cursor:pointer;width:100%;border:none;margin:0 auto;font-weight:normal;font-size:14px;color:#54585a;padding:15px 0;align-items:center;border-bottom:1px solid #d8d8d8}.faq-panel.svelte-t480mb.svelte-t480mb:first-child{border-top:1px solid #d8d8d8}.faq-panel-bold.svelte-t480mb.svelte-t480mb{font-size:16px;font-weight:700}.faq-sub-list.svelte-t480mb.svelte-t480mb{animation:svelte-t480mb-fadeIn 1s}.faq-sub-list.svelte-t480mb .faq-panel.svelte-t480mb:first-child{border-top:none}.faq-sub-list.svelte-t480mb .faq-panel.svelte-t480mb:last-child{border-bottom:none}.text.svelte-t480mb.svelte-t480mb{font-size:13px;line-height:23px;color:#54585a;padding:15px 10px;border-bottom:1px solid #d8d8d8;animation:svelte-t480mb-fadeIn 1s}.hide.svelte-t480mb.svelte-t480mb{display:none !important}'
+        "@keyframes svelte-t480mb-fadeIn{from{opacity:0}to{opacity:1}}#HowItWorksSection{width:100%}.faq-widget.svelte-t480mb.svelte-t480mb{box-sizing:border-box}.faq-widget.svelte-t480mb *{box-sizing:border-box !important;}.title.svelte-t480mb.svelte-t480mb{font-size:28px;font-weight:600;margin:40px auto 20px;text-align:center}.faq-panel.svelte-t480mb.svelte-t480mb{justify-content:space-between;background:none;display:flex;cursor:pointer;width:100%;border:none;margin:0 auto;font-weight:normal;font-size:14px;color:#54585a;padding:15px 0;align-items:center;border-bottom:1px solid #d8d8d8}.faq-panel.svelte-t480mb.svelte-t480mb:first-child{border-top:1px solid #d8d8d8}.faq-panel-bold.svelte-t480mb.svelte-t480mb{font-size:16px;font-weight:700}.faq-sub-list.svelte-t480mb.svelte-t480mb{animation:svelte-t480mb-fadeIn 1s}.faq-sub-list.svelte-t480mb .faq-panel.svelte-t480mb:first-child{border-top:none}.faq-sub-list.svelte-t480mb .faq-panel.svelte-t480mb:last-child{border-bottom:none}.text.svelte-t480mb.svelte-t480mb{font-size:13px;line-height:23px;color:#54585a;padding:15px 10px;border-bottom:1px solid #d8d8d8;animation:svelte-t480mb-fadeIn 1s}.hide.svelte-t480mb.svelte-t480mb{display:none !important}"
       );
     }
     function J(e, t, n) {
@@ -943,7 +946,7 @@ document.addEventListener("DOMContentLoaded", function () {
   })();
 });
 
-function initiateBirl(customerId) {
+function initiateBirl(customerId, skipToOrders) {
   console.log("Initiating Birl trade-in session...");
   let API_KEY = "";
   let store_id = "";
