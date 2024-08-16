@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <span><b>
           ${
             variant == "product" ? "Get money off this item today" : ""
-          }${variant == "account" ? "Get money off your next purchase" : ""} </b
+          }${variant.includes == "account" ? "Get money off your next purchase" : ""} </b
         ><br>
         </span>
         <span style="color: gray;">
