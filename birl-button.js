@@ -192,7 +192,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const customerId = birlButton.getAttribute("data-customerId");
     const newElement = document.createElement("div");
     const variant = birlButton.getAttribute("data-variant");
-    newElement.innerHTML = addButton(styleId, storeName, width, variant, customerId);
+    const style = birlButton.getAttribute("data-style") || 1;
+    newElement.innerHTML = addButton(styleId, storeName, width, variant, customerId, style);
     birlButton.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
   });
 
