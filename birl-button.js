@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
   console.log("Page has been loaded");
 
-  function addButton(styleId, storeName, width, variant, customerId) {
-    return `
+  function addButton(styleId, storeName, width, variant, customerId, style=1) {
+
+    if (style == 1) {
+      return `
       <div class="birl-product-cta-container-${styleId} font-${styleId} tooltip-btn" style="${width == "full" ? "width: 100%;" : `max-width: ${width}px;`}" onClick="${variant=="account" ? `initiateBirl(${customerId}, true)` : "openDropdown()"}">
   <div class="tooltip-container"><span class="tooltip-text">
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} items for immediate credit.
@@ -33,7 +35,38 @@ document.addEventListener("DOMContentLoaded", function () {
     </p>
   </div>
 </div>
-    `;
+    `
+        }
+    if (style == 2) {
+      return `
+      <div class="birl-cta-container-2 birl-cta-container-2-${styleId} tooltip-btn" style="${width == "full" ? "width: 100%;" : `max-width: ${width}px;`}" onClick="openDropdown()">
+  <div class="tooltip-container tooltip-container-2"><span class="tooltip-text">
+    <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} items for immediate credit.
+    <br><br>
+    <b style="color: black; width: 12px; text-align:left; display: inline-block;">2.</b> Spend your credit as soon as you receive your unique code.
+    <br><br>
+    <b style="color: black; width: 12px; text-align:left; display: inline-block;">3.</b> Send your trade-in back with the free digital label provided. 
+  </span></div>
+  
+  <div class="birl-product-cta-text">
+    <p>
+      <span>
+          ${
+            variant == "product" ? "Get money off this item today" : ""
+          }${variant.includes("account") ? "Get money off your next purchase" : ""} <img
+    class="birl-logo-2"
+    loading="eager"
+    src="https://ztp7egf458qdy422.public.blob.vercel-storage.com/birl-logo-Qw4mPCm8DxNvkAMLodpbDRii2loIOW.svg"
+    width="56"
+    height="19"
+    alt="Birl Logo"
+  >
+        </span>
+       
+    </p>
+  </div>
+</div>
+    `
   }
 
   function addHeader(offset, customerId, styleId) {

@@ -38,26 +38,34 @@
   border-color: #cacaca;
 }
 
-/* Peregrine Button Styling */
-.birl-product-cta-container-peregrine {
+.birl-cta-container-2 {
   position: relative;
-  padding: 8px 20px;
+  padding: 1rem 2rem;
   background-color: white;
   color: black;
-  font-family: NiceMicro, serif;
   font-size: 12px;
   display: flex;
   flex-direction: row;
   gap: 20px;
   align-items: center;
-  border-width: 1px;
-  border-radius: 5px;
+  border-width: 0.06rem;
+  border-radius: 26px;
   cursor: pointer;
   border-style: solid;
-  border-color: #eae7e4;
+  border-color: black;
+  text-transform: uppercase;
   margin: 12px auto;
   justify-content: center;
   text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  line-height: 1.1;
+}
+
+/* Peregrine Button Styling */
+.birl-cta-container-2-peregrine {
+  font-family: "PitchSans" !important;
+  margin-top: 50px;
 }
 
 .birl-product-cta-container3 {
@@ -183,6 +191,15 @@
   box-shadow: rgba(0, 0, 0, 0.45) 0px 0px 10px;
 }
 
+.tooltip-btn .tooltip-container-2 {
+  padding: 15px;
+  border-radius: 10px;
+  border: grey;
+  border-width: 0.06rem;
+  border-style: solid;
+  bottom: -150px; /* Position above the button */
+}
+
 .tooltip-btn:hover .tooltip-container {
   visibility: visible;
   opacity: 1;
@@ -238,7 +255,6 @@
 }
 
 .dropdown-split__left__content h1 {
-  
   font-size: 42px;
   font-weight: 600;
   color: black;
@@ -257,7 +273,7 @@
 
 .dropdown-split__left__content {
   max-width: 60ch;
-  
+
   font-size: 16px;
   font-weight: 400;
 }
@@ -270,7 +286,7 @@
   color: var(--White, #fff);
   /* Text md/Semibold */
   display: block;
-  
+
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -297,7 +313,7 @@
 .start-trade-in-later {
   color: #000000;
   /* Text md/Semibold */
-  
+
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
@@ -362,7 +378,7 @@
   display: flex;
   align-items: center;
   color: black;
-  
+
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -392,7 +408,7 @@
 .icon p {
   color: #000;
   text-align: center;
-  
+
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -404,7 +420,7 @@
 
 .dropdown-split__right-p {
   color: var(--Text-light-grey, #667085);
-  
+
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -540,10 +556,9 @@
 .how-it-works {
   font-size: 22px;
   font-weight: 600;
-  
+
   margin-bottom: 30px;
 }
-
 
 .buttons-flex {
   display: flex;
@@ -576,7 +591,7 @@
 .drop_title {
   color: var(--Gray-900, #101828);
   text-align: center;
-  
+
   font-size: 32px;
   font-style: normal;
   font-weight: 600;
@@ -653,7 +668,7 @@
   color: #000;
   margin-top: 0;
   text-align: center;
-  
+
   font-size: 22px !important;
   font-style: normal;
   font-weight: 600 !important;
@@ -706,7 +721,7 @@
   color: #585858;
   margin: 7px 0;
   text-align: center;
-  
+
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -717,7 +732,7 @@
   color: #585858;
 
   text-align: center;
-  
+
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -815,10 +830,10 @@
   text-align: center;
   font-weight: 600;
   margin: 10px 0 30px;
-  
+
   font-size: medium;
 }
 
-.font-peregrine{
-  font-family: RadioGrotesk,sans-serif;
+.font-peregrine {
+  font-family: RadioGrotesk, sans-serif;
 }
