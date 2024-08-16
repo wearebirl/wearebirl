@@ -38,6 +38,27 @@
   border-color: #cacaca;
 }
 
+.birl-product-cta-container-peregrine {
+  position: relative;
+  padding: 8px 20px;
+  background-color: white;
+  color: black;
+  font-family: NiceMicro, serif;
+  font-size: 12px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  border-width: 1px;
+  border-radius: 5px;
+  cursor: pointer;
+  border-style: solid;
+  border-color: #eae7e4;
+  margin: 12px auto;
+  justify-content: center;
+  text-align: center;
+}
+
 .birl-cta-container-2 {
   position: relative;
   padding: 1rem 2rem;
