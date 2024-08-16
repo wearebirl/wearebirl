@@ -7,9 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
   <div class="tooltip-container"><span class="tooltip-text">
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} items for immediate credit.
     <br><br>
-    <b style="color: black; width: 12px; text-align:left; display: inline-block;">2.</b> Spend your credit as soon as your code is emailed to you.
+    <b style="color: black; width: 12px; text-align:left; display: inline-block;">2.</b> Spend your credit as soon as you receive your unique code.
     <br><br>
-    <b style="color: black; width: 12px; text-align:left; display: inline-block;">3.</b> Send your item back with the free digital label provided. 
+    <b style="color: black; width: 12px; text-align:left; display: inline-block;">3.</b> Send your trade-in back with the free digital label provided. 
   </span></div>
   <img
     class="birl-logo-2"
