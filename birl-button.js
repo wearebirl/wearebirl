@@ -7,9 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
     width,
     variant,
     customerId,
-    style = 1
+    style = "1"
   ) {
-    if (style == 1) {
+    if (style == "1") {
       return `
       <div class="birl-product-cta-container-${styleId} font-${styleId} tooltip-btn" style="${
         width == "full" ? "width: 100%;" : `max-width: ${width}px;`
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
     `;
     }
-    if (style == 2) {
+    if (style == "2") {
       return `
       <div class="birl-cta-container-2 birl-cta-container-2-${styleId} tooltip-btn" style="${
         width == "full" ? "width: 100%;" : `max-width: ${width}px;`
@@ -207,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const customerId = birlButton.getAttribute("data-customerId");
     const newElement = document.createElement("div");
     const variant = birlButton.getAttribute("data-variant");
-    const style = birlButton.getAttribute("data-style") || 1;
+    const style = birlButton.getAttribute("data-style") || "1";
     newElement.innerHTML = addButton(
       styleId,
       storeName,
