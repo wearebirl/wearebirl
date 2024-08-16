@@ -227,9 +227,11 @@
   bottom: -150px; /* Position above the button */
 }
 
-.tooltip-btn:hover .tooltip-container {
-  visibility: visible;
-  opacity: 1;
+@media (hover:hover){
+  .tooltip-btn:hover .tooltip-container {
+    visibility: visible;
+    opacity: 1;
+  }
 }
 
 /* Dropdown */
