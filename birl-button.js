@@ -1,11 +1,23 @@
 document.addEventListener("DOMContentLoaded", function () {
   console.log("Page has been loaded");
 
-  function addButton(styleId, storeName, width, variant, customerId, style=1) {
-
+  function addButton(
+    styleId,
+    storeName,
+    width,
+    variant,
+    customerId,
+    style = 1
+  ) {
     if (style == 1) {
       return `
-      <div class="birl-product-cta-container-${styleId} font-${styleId} tooltip-btn" style="${width == "full" ? "width: 100%;" : `max-width: ${width}px;`}" onClick="${variant=="account" ? `initiateBirl(${customerId}, true)` : "openDropdown()"}">
+      <div class="birl-product-cta-container-${styleId} font-${styleId} tooltip-btn" style="${
+        width == "full" ? "width: 100%;" : `max-width: ${width}px;`
+      }" onClick="${
+        variant == "account"
+          ? `initiateBirl(${customerId}, true)`
+          : "openDropdown()"
+      }">
   <div class="tooltip-container"><span class="tooltip-text">
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} items for immediate credit.
     <br><br>
@@ -24,9 +36,9 @@ document.addEventListener("DOMContentLoaded", function () {
   <div class="birl-product-cta-text">
     <p>
       <span><b>
-          ${
-            variant == "product" ? "Get money off this item today" : ""
-          }${variant.includes("account") ? "Get money off your next purchase" : ""} </b
+          ${variant == "product" ? "Get money off this item today" : ""}${
+        variant.includes("account") ? "Get money off your next purchase" : ""
+      } </b
         ><br>
         </span>
         <span style="color: gray;">
@@ -35,11 +47,13 @@ document.addEventListener("DOMContentLoaded", function () {
     </p>
   </div>
 </div>
-    `
-        }
+    `;
+    }
     if (style == 2) {
       return `
-      <div class="birl-cta-container-2 birl-cta-container-2-${styleId} tooltip-btn" style="${width == "full" ? "width: 100%;" : `max-width: ${width}px;`}" onClick="openDropdown()">
+      <div class="birl-cta-container-2 birl-cta-container-2-${styleId} tooltip-btn" style="${
+        width == "full" ? "width: 100%;" : `max-width: ${width}px;`
+      }" onClick="openDropdown()">
   <div class="tooltip-container tooltip-container-2"><span class="tooltip-text">
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} items for immediate credit.
     <br><br>
@@ -51,9 +65,9 @@ document.addEventListener("DOMContentLoaded", function () {
   <div class="birl-product-cta-text">
     <p>
       <span>
-          ${
-            variant == "product" ? "Get money off this item today" : ""
-          }${variant.includes("account") ? "Get money off your next purchase" : ""} <img
+          ${variant == "product" ? "Get money off this item today" : ""}${
+        variant.includes("account") ? "Get money off your next purchase" : ""
+      } <img
     class="birl-logo-2"
     loading="eager"
     src="https://ztp7egf458qdy422.public.blob.vercel-storage.com/birl-logo-Qw4mPCm8DxNvkAMLodpbDRii2loIOW.svg"
@@ -66,7 +80,8 @@ document.addEventListener("DOMContentLoaded", function () {
     </p>
   </div>
 </div>
-    `
+    `;
+    }
   }
 
   function addHeader(offset, customerId, styleId) {
@@ -193,7 +208,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const newElement = document.createElement("div");
     const variant = birlButton.getAttribute("data-variant");
     const style = birlButton.getAttribute("data-style") || 1;
-    newElement.innerHTML = addButton(styleId, storeName, width, variant, customerId, style);
+    newElement.innerHTML = addButton(
+      styleId,
+      storeName,
+      width,
+      variant,
+      customerId,
+      style
+    );
     birlButton.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
   });
 
