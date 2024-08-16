@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return `
       <div class="birl-cta-container-2 birl-cta-container-2-${styleId} tooltip-btn" style="${
         width == "full" ? "width: 100%;" : `max-width: ${width}px;`
-      }" onClick="openDropdown()">
+      }" onClick="initiateBirl(${customerId}, false)">
   <div class="tooltip-container tooltip-container-2"><span class="tooltip-text">
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} items for immediate credit.
     <br><br>
