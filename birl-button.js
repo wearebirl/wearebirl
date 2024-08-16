@@ -61,24 +61,19 @@ document.addEventListener("DOMContentLoaded", function () {
     <br><br>
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">3.</b> Send your trade-in back with the free digital label provided. 
   </span></div>
-  
-  <div class="birl-product-cta-text">
-    <p>
-      <span>
-          ${variant == "product" ? "Get money off this item today" : ""}${
-        variant.includes("account") ? "Get money off your next purchase" : ""
-      } <img
+   <p>
+    Trade in with
+    </p>
+ <img
     class="birl-logo-2"
     loading="eager"
     src="https://ztp7egf458qdy422.public.blob.vercel-storage.com/birl-logo-Qw4mPCm8DxNvkAMLodpbDRii2loIOW.svg"
     width="56"
     height="19"
     alt="Birl Logo"
+    style="display:inline;"
   >
-        </span>
-       
-    </p>
-  </div>
+   
 </div>
     `;
     }
