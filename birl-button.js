@@ -25,14 +25,9 @@ document.addEventListener("DOMContentLoaded", function () {
     <br><br>
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">3.</b> Send your trade-in back with the free digital label provided. 
   </span></div>
-  <img
-    class="birl-logo-2"
-    loading="eager"
-    src="https://ztp7egf458qdy422.public.blob.vercel-storage.com/birl-logo-Qw4mPCm8DxNvkAMLodpbDRii2loIOW.svg"
-    width="56"
-    height="19"
-    alt="Birl Logo"
-  >
+  <div class="birl-logo-container">
+      <img class="birl-logo-2" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo">
+    </div>
   <div class="birl-product-cta-text">
     <p>
       <span><b>
@@ -41,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
       } </b
         ><br>
         </span>
-        <span style="color: gray;">
+        <span style="color: #808080;">
         Trade-in your ${storeName} garments for instant credit
       </span>
     </p>
