@@ -79,7 +79,7 @@
   background-color: white;
   color: black;
   font-family: "Gilroy", serif;
-  font-size: 12px;
+  font-size: 14px;
   display: flex;
   flex-direction: row;
   gap: 20px;
@@ -164,7 +164,7 @@
 }
 
 .birl-product-cta-text {
-  line-height: 1.3;
+  line-height: 1.2;
   text-align: left;
 }
 
@@ -198,13 +198,13 @@
 } */
 
 .birl-logo-2 {
-   fill: #3A3258;
+   height: 15px;
 }
 
 .birl-logo-container {
   background-color: #CFD5F7; /* Lilac background */
   padding: 8px 12px; /* 3px padding around the SVG */
-  border-radius: 8px; /* Rounded background */
+  border-radius: 6px; /* Rounded background */
 }
 
 .birl-product-cta-container img {

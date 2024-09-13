@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">3.</b> Send your trade-in back with the free digital label provided. 
   </span></div>
   <div class="birl-logo-container">
-      <img class="birl-logo-2" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo">
+      <img class="birl-logo-2" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo">
     </div>
   <div class="birl-product-cta-text">
     <p>
@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function addHeader(offset, customerId, styleId) {
     return `
-  <div class="birl-announcement-dropdown font-${styleId}" style="height: calc(100svh - ${offset}px);">
+  <div class="birl-announcement-dropdown font-gilroy" style="height: calc(100svh - ${offset}px);">
 <div class="Trade-In-Banner-Container">
   <button class="Trade-In" onclick=openDropdown()>
     <div class="Trade-In-Back-Container">
