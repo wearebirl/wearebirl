@@ -129,7 +129,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   <div>
             <p style="font-size: 14px; font-weight: 500">Powered by</p>
-            <img loading="eager" src="//blankexpression.co/cdn/shop/t/24/assets/birl-logo.svg?v=100289040393269961151718269488" width="72" height="27">
+            <div class="birl-logo-container">
+      <img class="birl-logo-2" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo">
+    </div>
           </div>
 </div>
 
@@ -287,7 +289,9 @@ document.addEventListener("DOMContentLoaded", function () {
       // Attach 'openDropdown' to 'window' to make it globally accessible
       window.openDropdown = (forceOpen = false) => {
         let toDisplay =
-          dropdown.style.display === "" || dropdown.style.display === "none" || forceOpen
+          dropdown.style.display === "" ||
+          dropdown.style.display === "none" ||
+          forceOpen
             ? "flex"
             : "none";
         dropdown.style.display = toDisplay;
@@ -332,8 +336,8 @@ document.addEventListener("DOMContentLoaded", function () {
       };
 
       // Check if the URL contains a parameter to open the dropdown
-      const openDropdownParam = getURLParameter('openDropdown');
-      if (openDropdownParam === 'true') {
+      const openDropdownParam = getURLParameter("openDropdown");
+      if (openDropdownParam === "true") {
         window.openDropdown(true); // Force the dropdown open on page load
       }
 
@@ -408,7 +412,6 @@ document.addEventListener("DOMContentLoaded", function () {
       //startCarousel();
     }
   })(); // End of IIFE
-
 
   !(function () {
     "use strict";
