@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
   ) {
     if (style == "1") {
       return `
-      <div class="birl-product-cta-container-${styleId} font-${styleId} tooltip-btn" style="${
+      <div class="birl-product-cta-container-${styleId} tooltip-btn" style="${
         width == "full" ? "width: 100%;" : `max-width: ${width}px;`
       }" onClick="${
         variant == "account"
@@ -79,29 +79,41 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     if (style == "3") {
       return `
-      <div class="birl-cta-container-2 font-gilroy birl-cta-container-2-${styleId} tooltip-btn" style="${
+      <div class="birl-product-cta-container-${styleId}  tooltip-btn" style="${
         width == "full" ? "width: 100%;" : `max-width: ${width}px;`
-      }" onClick="initiateBirl(${customerId}, false)">
-  <div class="tooltip-container tooltip-container-2"><span class="tooltip-text">
+      }" onClick="${
+        variant == "account"
+          ? `initiateBirl(${customerId}, true)`
+          : "openDropdown()"
+      }">
+  <div class="tooltip-container"><span class="tooltip-text">
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} items for immediate credit.
     <br><br>
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">2.</b> Spend your credit as soon as you receive your unique code.
     <br><br>
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">3.</b> Send your trade-in back with the free digital label provided. 
   </span></div>
-   <p>
-    Trade in with
-    </p>
- <img
+  <img
     class="birl-logo-2"
     loading="eager"
     src="https://ztp7egf458qdy422.public.blob.vercel-storage.com/birl-logo-Qw4mPCm8DxNvkAMLodpbDRii2loIOW.svg"
     width="56"
     height="19"
     alt="Birl Logo"
-    style="display:inline;"
   >
-   
+  <div class="birl-product-cta-text">
+    <p>
+      <span><b>
+          ${variant == "product" ? "Get money off this item today" : ""}${
+        variant.includes("account") ? "Get money off your next purchase" : ""
+      } </b
+        ><br>
+        </span>
+        <span style="color: gray;">
+        Trade-in your ${storeName} garments for instant credit
+      </span>
+    </p>
+  </div>
 </div>
     `;
     }
