@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ><br>
         </span>
         <span style="color: #808080;">
-        Trade-in your ${storeName} garments for instant credit
+        Trade-in your ${storeName} garments you longer use
       </span>
     </p>
   </div>
