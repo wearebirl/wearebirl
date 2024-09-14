@@ -296,6 +296,13 @@ document.addEventListener("DOMContentLoaded", function () {
             : "none";
         dropdown.style.display = toDisplay;
 
+      // Check if the URL contains a parameter to open the dropdown
+      const openDropdownParam = getURLParameter("openDropdown");
+      if (openDropdownParam === "true") {
+        window.openDropdown(true); // Force the dropdown open on page load
+      }
+
+
         if (window.innerWidth > 768) {
           const setGridHeight = () => {
             dropLeft.style.setProperty("height", `${dropRight.offsetHeight}px`);
@@ -334,12 +341,6 @@ document.addEventListener("DOMContentLoaded", function () {
           window.ScrollPos = null;
         }
       };
-
-      // Check if the URL contains a parameter to open the dropdown
-      const openDropdownParam = getURLParameter("openDropdown");
-      if (openDropdownParam === "true") {
-        window.openDropdown(true); // Force the dropdown open on page load
-      }
 
       // birl-carousel-control-next and birl-carousel-control-prev event listeners
 
