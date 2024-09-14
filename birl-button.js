@@ -286,7 +286,13 @@ document.addEventListener("DOMContentLoaded", function () {
         return new URLSearchParams(window.location.search).get(name);
       };
 
-
+      // Attach 'openDropdown' to 'window' to make it globally accessible
+      window.openDropdown = (forceOpen = false) => {
+        let toDisplay =
+          dropdown.style.display === "" || dropdown.style.display === "none" || forceOpen
+            ? "flex"
+            : "none";
+        dropdown.style.display = toDisplay;
 
         if (window.innerWidth > 768) {
           const setGridHeight = () => {
@@ -325,21 +331,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
           window.ScrollPos = null;
         }
-
-
-              // Attach 'openDropdown' to 'window' to make it globally accessible
-      window.openDropdown = (forceOpen = false) => {
-        let toDisplay =
-          dropdown.style.display === "" ||
-          dropdown.style.display === "none" ||
-          forceOpen
-            ? "flex"
-            : "none";
-        dropdown.style.display = toDisplay;
       };
 
-      const openDropdownParam = getURLParameter("openDropdown");
-      if (openDropdownParam === "true") {
+      // Check if the URL contains a parameter to open the dropdown
+      const openDropdownParam = getURLParameter('openDropdown');
+      if (openDropdownParam === 'true') {
         window.openDropdown(true); // Force the dropdown open on page load
       }
 
