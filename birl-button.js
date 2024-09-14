@@ -286,21 +286,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return new URLSearchParams(window.location.search).get(name);
       };
 
-      // Attach 'openDropdown' to 'window' to make it globally accessible
-      window.openDropdown = (forceOpen = false) => {
-        let toDisplay =
-          dropdown.style.display === "" ||
-          dropdown.style.display === "none" ||
-          forceOpen
-            ? "flex"
-            : "none";
-        dropdown.style.display = toDisplay;
-
-      // Check if the URL contains a parameter to open the dropdown
-      const openDropdownParam = getURLParameter("openDropdown");
-      if (openDropdownParam === "true") {
-        window.openDropdown(true); // Force the dropdown open on page load
-      }
 
 
         if (window.innerWidth > 768) {
@@ -340,7 +325,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
           window.ScrollPos = null;
         }
+
+
+              // Attach 'openDropdown' to 'window' to make it globally accessible
+      window.openDropdown = (forceOpen = false) => {
+        let toDisplay =
+          dropdown.style.display === "" ||
+          dropdown.style.display === "none" ||
+          forceOpen
+            ? "flex"
+            : "none";
+        dropdown.style.display = toDisplay;
       };
+
+      const openDropdownParam = getURLParameter("openDropdown");
+      if (openDropdownParam === "true") {
+        window.openDropdown(true); // Force the dropdown open on page load
+      }
 
       // birl-carousel-control-next and birl-carousel-control-prev event listeners
 
