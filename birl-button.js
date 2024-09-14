@@ -334,10 +334,6 @@ document.addEventListener("DOMContentLoaded", function () {
       };
 
       // Check if the URL contains a parameter to open the dropdown
-      const openDropdownParam = getURLParameter('openDropdown');
-      if (openDropdownParam === 'true') {
-        window.openDropdown(true); // Force the dropdown open on page load
-      }
 
       // birl-carousel-control-next and birl-carousel-control-prev event listeners
 
@@ -409,6 +405,11 @@ document.addEventListener("DOMContentLoaded", function () {
       //carousel.addEventListener('mouseout', startCarousel);
       //startCarousel();
     }
+    const openDropdownParam = getURLParameter('openDropdown');
+    if (openDropdownParam === 'true') {
+      window.openDropdown(true); // Force the dropdown open on page load
+    }
+
   })(); // End of IIFE
 
   !(function () {
