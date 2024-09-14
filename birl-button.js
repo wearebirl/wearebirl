@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     <div class="drop_content_imgs">
       <div>
-      <img src="https://ztp7egf458qdy422.public.blob.vercel-storage.com/birl-button/car-WwfdwWL4fE3245rslLvap7REKfnlxU.png" width="170" height="170">
+      <img src="https://wearebirl.github.io/wearebirl/assets/card.svg" width="170" height="170">
       <p class="dropdown-img-lbl" >Instant Credit</p>
       </div>
       <div >
