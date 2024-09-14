@@ -144,12 +144,12 @@ document.addEventListener("DOMContentLoaded", function () {
       <p class="dropdown-img-lbl" >Instant Credit</p>
       </div>
       <div >
-      <img src="https://ztp7egf458qdy422.public.blob.vercel-storage.com/birl-button/leaflet-5xVW8x8TQJXDNtuWmsxjucl8vo8hvi.png" width="170" height="170">
-      <p class="dropdown-img-lbl">Easy to Prepare</p>
+      <img src="https://wearebirl.github.io/wearebirl/assets/wallet.svg" width="170" height="170">
+      <p class="dropdown-img-lbl">Spend Immediately</p>
       </div>
       <div >
-      <img src="https://ztp7egf458qdy422.public.blob.vercel-storage.com/birl-button/truck-3XZNPe9QyJJXMiGFKrv6mWszokln5z.png" width="170" height="170">
-      <p class="dropdown-img-lbl">Free to Return</p>
+      <img src="https://wearebirl.github.io/wearebirl/assets/truck.svg" width="170" height="170">
+      <p class="dropdown-img-lbl">Free Returns</p>
       </div>
     </div>
 
