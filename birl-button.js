@@ -966,8 +966,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       };
 
-      // Check if the URL contains a parameter to open the dropdown
-
+      
       // birl-carousel-control-next and birl-carousel-control-prev event listeners
 
       const carousel = document.querySelector(".birl-carousel");
@@ -1038,6 +1037,14 @@ document.addEventListener("DOMContentLoaded", function () {
       //carousel.addEventListener('mouseout', startCarousel);
       //startCarousel();
     }
+
+    // Check if the URL contains a parameter to open the dropdown
+
+    const openDropdownParam = getURLParameter("openDropdown");
+    if (openDropdownParam === "true") {
+      openDropdown(true);
+    }
+    
   })(); // End of IIFE
 
 
