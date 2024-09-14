@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
   </button>
 
   <div>
-            <p style="font-size: 14px; font-weight: 500">Powered by</p>
+            <p style="font-size: 14px; font-weight: 500" color="#000000">Powered by</p>
             <div class="birl-logo-container">
       <img class="birl-logo-2" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo">
     </div>
@@ -269,150 +269,6 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementsByTagName("head")[0].appendChild(element);
 
   const root = document.documentElement;
-
-  (function () {
-    // Start of IIFE to create a local scope
-    // Use 'window' to create a global reference and avoid re-declarations
-    window.isDropdownFunction =
-      window.isDropdownFunction || typeof openDropdown === "function";
-
-    if (!window.isDropdownFunction) {
-      const dropdown = document.querySelector(".birl-announcement-dropdown");
-      const dropRight = document.getElementById("HowItWorksSection");
-      const dropLeft = document.querySelector(".drop_content_item.left");
-
-      // Helper function to get URL parameters
-      const getURLParameter = (name) => {
-        return new URLSearchParams(window.location.search).get(name);
-      };
-
-      // Attach 'openDropdown' to 'window' to make it globally accessible
-      window.openDropdown = (forceOpen = false) => {
-        let toDisplay =
-          dropdown.style.display === "" ||
-          dropdown.style.display === "none" ||
-          forceOpen
-            ? "flex"
-            : "none";
-        dropdown.style.display = toDisplay;
-
-        if (window.innerWidth > 768) {
-          const setGridHeight = () => {
-            dropLeft.style.setProperty("height", `${dropRight.offsetHeight}px`);
-          };
-
-          setGridHeight();
-
-          window.addEventListener("resize", setGridHeight);
-        }
-
-        // Use 'window' to store 'ScrollPos' globally
-        if (!window.ScrollPos) {
-          window.ScrollPos = window.scrollY;
-        }
-
-        // Scroll to 0 smoothly
-        window.scrollTo({
-          top: 0,
-          left: 0,
-          behavior: "smooth",
-        });
-
-        if (toDisplay == "flex") {
-          document.body.style.overflow = "hidden";
-        } else {
-          console.log("scrolling back to " + window.ScrollPos);
-          document.body.style.overflow = "auto";
-
-          // Scroll back to the original position
-          window.scrollTo({
-            top: window.ScrollPos,
-            left: 0,
-            behavior: "smooth",
-          });
-
-          window.ScrollPos = null;
-        }
-      };
-
-      // Check if the URL contains a parameter to open the dropdown
-      const openDropdownParam = getURLParameter("openDropdown");
-      if (openDropdownParam === "true") {
-        window.openDropdown(true); // Force the dropdown open on page load
-      }
-
-      // birl-carousel-control-next and birl-carousel-control-prev event listeners
-
-      const carousel = document.querySelector(".birl-carousel");
-      const carouselItems = document.querySelectorAll(".birl-carousel-item");
-      const carouselControls = document.querySelectorAll(
-        ".birl-carousel-control"
-      );
-      const carouselDots = document.querySelectorAll(".dropdown-page-dot");
-
-      let currentSlide = 0;
-      let carouselInterval = null;
-
-      const resetCarousel = () => {
-        carouselItems.forEach((item, index) => {
-          if (index === currentSlide) {
-            item.classList.add("active");
-          } else {
-            item.classList.remove("active");
-          }
-        });
-
-        carouselDots.forEach((dot, index) => {
-          if (index === currentSlide) {
-            dot.classList.add("active");
-          } else {
-            dot.classList.remove("active");
-          }
-        });
-      };
-
-      const startCarousel = () => {
-        carouselInterval = setInterval(() => {
-          currentSlide++;
-          if (currentSlide > carouselItems.length - 1) {
-            currentSlide = 0;
-          }
-          resetCarousel();
-        }, 5000);
-      };
-
-      const stopCarousel = () => {
-        clearInterval(carouselInterval);
-      };
-
-      let leftControl = document.querySelector(".birl-carousel-control-prev");
-      let rightControl = document.querySelector(".birl-carousel-control-next");
-
-      leftControl.addEventListener("click", () => {
-        currentSlide--;
-        if (currentSlide < 0) {
-          currentSlide = carouselItems.length - 1;
-        }
-        resetCarousel();
-      });
-
-      rightControl.addEventListener("click", () => {
-        currentSlide++;
-
-        if (currentSlide > carouselItems.length - 1) {
-          currentSlide = 0;
-        }
-
-        resetCarousel();
-      });
-
-      // Optional: Uncomment if you want to start the carousel automatically
-      //carousel.addEventListener('mouseover', stopCarousel);
-      //carousel.addEventListener('mouseout', startCarousel);
-      //startCarousel();
-    }
-  })(); // End of IIFE
-
   !(function () {
     "use strict";
     function e() {}
@@ -1044,6 +900,147 @@ document.addEventListener("DOMContentLoaded", function () {
       e && new ne({ target: e });
     })();
   })();
+
+  (function () {
+    // Start of IIFE to create a local scope
+    // Use 'window' to create a global reference and avoid re-declarations
+    window.isDropdownFunction =
+      window.isDropdownFunction || typeof openDropdown === "function";
+
+    if (!window.isDropdownFunction) {
+      const dropdown = document.querySelector(".birl-announcement-dropdown");
+      const dropRight = document.getElementById("HowItWorksSection");
+      const dropLeft = document.querySelector(".drop_content_item.left");
+
+      // Helper function to get URL parameters
+      const getURLParameter = (name) => {
+        return new URLSearchParams(window.location.search).get(name);
+      };
+
+      // Attach 'openDropdown' to 'window' to make it globally accessible
+      window.openDropdown = (forceOpen = false) => {
+        let toDisplay =
+          dropdown.style.display === "" ||
+          dropdown.style.display === "none" ||
+          forceOpen
+            ? "flex"
+            : "none";
+        dropdown.style.display = toDisplay;
+
+        if (window.innerWidth > 768) {
+          const setGridHeight = () => {
+            dropLeft.style.setProperty("height", `${dropRight.offsetHeight}px`);
+          };
+
+          setGridHeight();
+
+          window.addEventListener("resize", setGridHeight);
+        }
+
+        // Use 'window' to store 'ScrollPos' globally
+        if (!window.ScrollPos) {
+          window.ScrollPos = window.scrollY;
+        }
+
+        // Scroll to 0 smoothly
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: "smooth",
+        });
+
+        if (toDisplay == "flex") {
+          document.body.style.overflow = "hidden";
+        } else {
+          console.log("scrolling back to " + window.ScrollPos);
+          document.body.style.overflow = "auto";
+
+          // Scroll back to the original position
+          window.scrollTo({
+            top: window.ScrollPos,
+            left: 0,
+            behavior: "smooth",
+          });
+
+          window.ScrollPos = null;
+        }
+      };
+
+      // Check if the URL contains a parameter to open the dropdown
+
+      // birl-carousel-control-next and birl-carousel-control-prev event listeners
+
+      const carousel = document.querySelector(".birl-carousel");
+      const carouselItems = document.querySelectorAll(".birl-carousel-item");
+      const carouselControls = document.querySelectorAll(
+        ".birl-carousel-control"
+      );
+      const carouselDots = document.querySelectorAll(".dropdown-page-dot");
+
+      let currentSlide = 0;
+      let carouselInterval = null;
+
+      const resetCarousel = () => {
+        carouselItems.forEach((item, index) => {
+          if (index === currentSlide) {
+            item.classList.add("active");
+          } else {
+            item.classList.remove("active");
+          }
+        });
+
+        carouselDots.forEach((dot, index) => {
+          if (index === currentSlide) {
+            dot.classList.add("active");
+          } else {
+            dot.classList.remove("active");
+          }
+        });
+      };
+
+      const startCarousel = () => {
+        carouselInterval = setInterval(() => {
+          currentSlide++;
+          if (currentSlide > carouselItems.length - 1) {
+            currentSlide = 0;
+          }
+          resetCarousel();
+        }, 5000);
+      };
+
+      const stopCarousel = () => {
+        clearInterval(carouselInterval);
+      };
+
+      let leftControl = document.querySelector(".birl-carousel-control-prev");
+      let rightControl = document.querySelector(".birl-carousel-control-next");
+
+      leftControl.addEventListener("click", () => {
+        currentSlide--;
+        if (currentSlide < 0) {
+          currentSlide = carouselItems.length - 1;
+        }
+        resetCarousel();
+      });
+
+      rightControl.addEventListener("click", () => {
+        currentSlide++;
+
+        if (currentSlide > carouselItems.length - 1) {
+          currentSlide = 0;
+        }
+
+        resetCarousel();
+      });
+
+      // Optional: Uncomment if you want to start the carousel automatically
+      //carousel.addEventListener('mouseover', stopCarousel);
+      //carousel.addEventListener('mouseout', startCarousel);
+      //startCarousel();
+    }
+  })(); // End of IIFE
+
+
 });
 
 function initiateBirl(customerId, skipToOrders) {
