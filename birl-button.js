@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <div class="drop_content_buttons">
       ${
         customerId != (null || "")
-          ? `<button class="start-trade-in" id="trade-in-button" onclick="initiateBirl(${customerId}, false})">
+          ? `<button class="start-trade-in" id="trade-in-button" onclick="initiateBirl(${customerId}, false)">
           <span class="button-text">Begin Trade-in</span>
           <span class="button-text-loading" style="display: none;">Loading...</span>
         </button>`
