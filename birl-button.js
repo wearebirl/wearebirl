@@ -7,7 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
     width,
     variant,
     customerId,
-    style = "1"
+    style = "1",
+
   ) {
     if (style == "1") {
       return `
@@ -34,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ><br>
         </span>
         <span style="color: #808080;">
-        Trade-in Peregrine garments you no longer use
+        Trade-in ${storeName} garments you no longer use
       </span>
     </p>
   </div>
@@ -94,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 
   <div>
-    <h1 class="drop_title font-${styleId}">Get Instant Credit with Birl</h1>
+    <h1 class="drop_title font-gilroy">Get Instant Credit with Birl</h1>
 
     <div class="drop_content_imgs">
       <div>
