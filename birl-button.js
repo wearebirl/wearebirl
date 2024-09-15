@@ -898,7 +898,7 @@ document.addEventListener("DOMContentLoaded", function () {
               setGridHeight();
               window.addEventListener("resize", setGridHeight);
             }
-          }, 100); // Slight delay to ensure correct height calculation
+          }, 1000); // Slight delay to ensure correct height calculation
         }
   
         // Use 'window' to store 'ScrollPos' globally
