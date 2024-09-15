@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
   </button>
 
   <div>
-            <p style="font-size: 14px; font-weight: 500; color=#000000">Powered by</p>
+            <p style="font-size: 14px; font-weight: 500; color: #808080;">Powered by</p>
             <div class="birl-logo-container">
       <img class="birl-logo-2" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo">
     </div>
