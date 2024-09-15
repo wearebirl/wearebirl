@@ -875,6 +875,12 @@ document.addEventListener("DOMContentLoaded", function () {
         return new URLSearchParams(window.location.search).get(name);
       };
   
+      // Function to set height dynamically
+      const setGridHeight = () => {
+        const rightHeight = dropRight.offsetHeight;
+        dropLeft.style.setProperty("height", `${rightHeight}px`);
+      };
+  
       // Attach 'openDropdown' to 'window' to make it globally accessible
       window.openDropdown = (forceOpen = false) => {
         let toDisplay =
@@ -885,15 +891,14 @@ document.addEventListener("DOMContentLoaded", function () {
             : "none";
         dropdown.style.display = toDisplay;
   
-        if (window.innerWidth > 768) {
-          const setGridHeight = () => {
-            const rightHeight = dropRight.offsetHeight;
-            dropLeft.style.setProperty("height", `${rightHeight}px`);
-          };
-  
-          // Set initial height and listen for resize events
-          setGridHeight();
-          window.addEventListener("resize", setGridHeight);
+        if (toDisplay === "flex") {
+          // Ensure height is set after dropdown is displayed
+          setTimeout(() => {
+            if (window.innerWidth > 768) {
+              setGridHeight();
+              window.addEventListener("resize", setGridHeight);
+            }
+          }, 100); // Slight delay to ensure correct height calculation
         }
   
         // Use 'window' to store 'ScrollPos' globally
@@ -928,6 +933,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Check if the URL contains the 'openDropdown' parameter and force open if it exists
       const openDropdownParam = getURLParameter('openDropdown');
       if (openDropdownParam === 'true') {
+        // Force open the dropdown and trigger height adjustment
         window.openDropdown(true);
       }
   
@@ -999,6 +1005,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // startCarousel();
     }
   })();
+  
   
   
 
