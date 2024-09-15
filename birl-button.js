@@ -887,11 +887,12 @@ document.addEventListener("DOMContentLoaded", function () {
   
         if (window.innerWidth > 768) {
           const setGridHeight = () => {
-            dropLeft.style.setProperty("height", `${dropRight.offsetHeight}px`);
+            const rightHeight = dropRight.offsetHeight;
+            dropLeft.style.setProperty("height", `${rightHeight}px`);
           };
   
+          // Set initial height and listen for resize events
           setGridHeight();
-  
           window.addEventListener("resize", setGridHeight);
         }
   
@@ -993,11 +994,12 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   
       // Optional: Uncomment if you want to start the carousel automatically
-      //carousel.addEventListener('mouseover', stopCarousel);
-      //carousel.addEventListener('mouseout', startCarousel);
-      //startCarousel();
+      // carousel.addEventListener('mouseover', stopCarousel);
+      // carousel.addEventListener('mouseout', startCarousel);
+      // startCarousel();
     }
   })();
+  
   
 
 });
