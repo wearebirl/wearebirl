@@ -13,10 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return `
       <div class="birl-product-cta-container-${styleId} tooltip-btn" style="${
         width == "full" ? "width: 100%;" : `max-width: ${width}px;`
-      }" onClick="${
-        variant == "account"
-          ? `initiateBirl(${customerId}, true)`
-          : "openDropdown()"
+      }" onClick="openDropdown()"
       }">
   <div class="tooltip-container"><span class="tooltip-text">
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} items for immediate credit.
@@ -75,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   }
 
-  function addHeader(offset, customerId, styleId) {
+  function addHeader(offset, customerId, styleId, variant) {
     return `
   <div class="birl-announcement-dropdown font-gilroy" style="height: calc(100svh - ${offset}px);">
 <div class="Trade-In-Banner-Container">
@@ -117,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <div class="drop_content_buttons">
       ${
         customerId != (null || "")
-          ? `<button class="start-trade-in" id="trade-in-button" onclick="initiateBirl(${customerId}, false)">
+          ? `<button class="start-trade-in" id="trade-in-button" onclick="initiateBirl(${customerId}, false})">
           <span class="button-text">Begin Trade-in</span>
           <span class="button-text-loading" style="display: none;">Loading...</span>
         </button>`
