@@ -899,7 +899,7 @@ document.addEventListener("DOMContentLoaded", function () {
               setGridHeight();
               window.addEventListener("resize", setGridHeight);
             }
-          }, window.getURLParameter("openDropdown") == "true" ? 1000 : 100); // Slight delay to ensure correct height calculation
+          }, 1000); // Slight delay to ensure correct height calculation
         }
   
         // Use 'window' to store 'ScrollPos' globally
