@@ -1,20 +1,4 @@
-/* .birl-product-cta-container {
-  padding: 19px;
-  background-color: #2ea141;
-  color: white;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI (Custom)", Roboto,
-    "Helvetica Neue", "Open Sans (Custom)", system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji";
-  font-size: 12px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  border-radius: 40px;
-  width: 100%;
-  max-width: 440px;
-  cursor: pointer;
-  position: relative;
-} */
+
 @font-face {
   font-family: 'Gilroy';
   src: url('https://wearebirl.github.io/wearebirl/Gilroy-Light.woff') format('woff');
@@ -116,6 +100,27 @@
   max-width: 44rem;
 }
 
+.birl-product-cta-container-shopifysports {
+  position: relative;
+  padding: 8px 20px;
+  background-color: white;
+  color: black;
+  font-family: "Gilroy", serif;
+  font-size: 14px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  border-width: 1px;
+  border-radius: 5px;
+  cursor: pointer;
+  border-style: solid;
+  border-color: #808080;
+  margin: 12px 0;
+  justify-content: start;
+  text-align: center;
+  max-width: 44rem;
+}
 
 
 
