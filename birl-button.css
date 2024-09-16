@@ -940,6 +940,6 @@
 }
 
 .font-gilroy {
-  font-family: "Gilroy", serif;
+  font-family: "Gilroy", serif !important;
 }
 
