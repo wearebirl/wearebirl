@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   }
 
-  function addHeader(offset, customerId, styleId, variant, storeType="standard") {
+  function addHeader(offset, customerId, styleId, storeType="standard") {
     return `
   <div class="birl-announcement-dropdown font-gilroy" style="height: calc(100svh - ${offset}px);">
 <div class="Trade-In-Banner-Container">
