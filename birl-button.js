@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ><br>
         </span>
         <span style="color: #808080;">
-        Trade-in ${storeName} garments you no longer use
+        Trade-in ${storeName} ${storeType == "standard" ? "garments you no longer use" :"shirts you no longer wear"}
       </span>
     </p>
   </div>
