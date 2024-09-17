@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     variant,
     customerId,
     style = "1",
-
+    storeType="standard"
   ) {
     if (style == "1") {
       return `
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }" onClick="openDropdown()"
       }">
   <div class="tooltip-container"><span class="tooltip-text">
-    <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} items for immediate credit.
+    <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} ${storeType == "standard" ? "items" :"shirts"} for immediate credit.
     <br><br>
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">2.</b> Spend your credit as soon as you receive your unique code.
     <br><br>
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
         width == "full" ? "width: 100%;" : `max-width: ${width}px;`
       }" onClick="initiateBirl(${customerId}, false)">
   <div class="tooltip-container tooltip-container-2"><span class="tooltip-text">
-    <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} items for immediate credit.
+    <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} ${storeType == "standard" ? "items" :"shirts"} for immediate credit.
     <br><br>
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">2.</b> Spend your credit as soon as you receive your unique code.
     <br><br>
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   }
 
-  function addHeader(offset, customerId, styleId, variant) {
+  function addHeader(offset, customerId, styleId, variant, storeType="standard") {
     return `
   <div class="birl-announcement-dropdown font-gilroy" style="height: calc(100svh - ${offset}px);">
 <div class="Trade-In-Banner-Container">
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <div class="birl-carousel">
         <div class="birl-carousel-item active">
           <h3>1. Trade</h3>
-          <p>Choose to trade an item from your brand account or the Birl trade-in portal</p>
+          <p>Choose to trade ${storeType == "standard" ? "an item" :"a shirt"} from your brand account or the Birl trade-in portal</p>
         </div>
 
         <div class="birl-carousel-item">
@@ -199,13 +199,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const newElement = document.createElement("div");
     const variant = birlButton.getAttribute("data-variant");
     const style = birlButton.getAttribute("data-style") || "1";
+    const storeType = birlButton.getAttribute("data-storeType") || "standard";
     newElement.innerHTML = addButton(
       styleId,
       storeName,
       width,
       variant,
       customerId,
-      style
+      style,
+      storeType
     );
     birlButton.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
   });
@@ -213,8 +215,9 @@ document.addEventListener("DOMContentLoaded", function () {
   birlHeader.forEach(function (birlHeader) {
     const offset = birlHeader.getAttribute("data-offset");
     const customerId = birlHeader.getAttribute("data-customerId");
+    const storeType = birlHeader.getAttribute("data-storeType") || "standard";
     const newElement = document.createElement("div");
-    newElement.innerHTML = addHeader(offset, customerId, styleId);
+    newElement.innerHTML = addHeader(offset, customerId, styleId, storeType);
     birlHeader.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
     //birlHeader.replaceWith(newElement); // Replace directly with newElement
   });
