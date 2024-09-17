@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   }
 
-  function addHeader(offset, customerId, styleId, storeType="standard") {
+  function addHeader(offset, customerId, storeType="standard") {
     return `
   <div class="birl-announcement-dropdown font-gilroy" style="height: calc(100svh - ${offset}px);">
 <div class="Trade-In-Banner-Container">
@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const customerId = birlHeader.getAttribute("data-customerId");
     const storeType = birlHeader.getAttribute("data-storeType") || "standard";
     const newElement = document.createElement("div");
-    newElement.innerHTML = addHeader(offset, customerId, styleId, storeType);
+    newElement.innerHTML = addHeader(offset, customerId, storeType);
     birlHeader.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
     //birlHeader.replaceWith(newElement); // Replace directly with newElement
   });
