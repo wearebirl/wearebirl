@@ -1062,6 +1062,26 @@
   width: 80%;
 }
 
+.birlWelcome-img1{
+  position: absolute;
+  top:0;
+  right:0;
+  width: 75%;
+  height:75%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.birlWelcome-img2{
+  position: absolute;
+  bottom:0;
+  left:0;
+  width: 40%;
+  height:40%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
 @media screen and (max-width: 1300px) {
   .birlWelcome-content {
     min-height: 400px;

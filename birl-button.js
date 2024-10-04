@@ -105,9 +105,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div class="birlWelcome-header">
                       <img
                         class="birlWelcome-logo"
-                        src="/assets/birl-logo-black.svg"
+                        src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg"
                       />
-                      <span class="birlWelcome-close">&times;</span>
+                      <span onclick="hideBirlWelcome()" class="birlWelcome-close">&times;</span>
                     </div>
                     <div class="birlWelcome-left">
                       <h1>
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
                       </h1>
                       <p>
                         It’s <b>super easy</b> to trade in the pieces you no
-                        longer need, earn credit, and{" "}
+                        longer need, earn credit, and
                         <b>upgrade your wardrobe</b> with sustainable, stylish
                         picks that you’ll love.
                       </p>
@@ -128,17 +128,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>
                     <div class="birlWelcome-right">
                       <img
-                        class="rounded-2xl absolute top-0 right-0 h-3/4 w-3/4 object-cover"
-                        src="/home-1.png"
+                        class="birlWelcome-img1 rounded-2xl absolute top-0 right-0 h-3/4 w-3/4 object-cover"
+                        src="https://wearebirl.github.io/wearebirl/assets/home-1.png"
                         alt="img-1"
                       />
                       <img
-                        class="object-cover rounded-2xl absolute bottom-0 left-0 h-2/5 w-2/5"
-                        src="/home-2.png"
+                        class="birlWelcome-img2 object-cover rounded-2xl absolute bottom-0 left-0 h-2/5 w-2/5"
+                        src="https://wearebirl.github.io/wearebirl/assets/home-2.png"
                         alt=""
                       />
                     </div>
-                    {/* <span class="birlWelcome-close">&times;</span> */}
                   </div>
                 </div>
     `;
@@ -961,6 +960,11 @@ document.addEventListener("DOMContentLoaded", function () {
       window.showBirlWelcome = () => {
         var birlModal = document.getElementById("birlWelcome");
         birlModal.style.display = "flex";
+      }
+
+      window.hideBirlWelcome = () => {
+        var birlModal = document.getElementById("birlWelcome");
+        birlModal.style.display = "hidden";
       }
   
       // Attach 'openDropdown' to 'window' to make it globally accessible
