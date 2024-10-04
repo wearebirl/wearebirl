@@ -113,13 +113,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>
                     <div class="birlWelcome-left">
                       <h1>
-                        Out with the Old, In with the Fresh!
+                        ${storeType == "standard" ? `Out with the Old, In with the Fresh!` : "Trade-in your old Hammers shirts for instant credit."}
                       </h1>
                       <p>
-                        It’s <b>super easy</b> to trade in the pieces you no
+                      ${storeType == "standard" ? `It’s <b>super easy</b> to trade in the pieces you no
                         longer need, earn credit, and
                         <b>upgrade your wardrobe</b> with sustainable, stylish
-                        picks that you’ll love.
+                        picks that you’ll love.` : "Trade-in your <b>previous seasons shirts</b> in a few simple steps. Earn <b>instant credit</b> towards purchasing our latest shirts."
+                      }
+                        
                       </p>
                       <button
                         class="birlWelcome-button"
