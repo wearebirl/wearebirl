@@ -100,16 +100,16 @@ document.addEventListener("DOMContentLoaded", function () {
     </p>
   </div>
 </div>
-                <div id="birlWelcome" className="birlWelcome">
-                  <div className="birlWelcome-content">
-                    <div className="birlWelcome-header">
+                <div id="birlWelcome" class="birlWelcome">
+                  <div class="birlWelcome-content">
+                    <div class="birlWelcome-header">
                       <img
-                        className="birlWelcome-logo"
+                        class="birlWelcome-logo"
                         src="/assets/birl-logo-black.svg"
                       />
-                      <span className="birlWelcome-close">&times;</span>
+                      <span class="birlWelcome-close">&times;</span>
                     </div>
-                    <div className="birlWelcome-left">
+                    <div class="birlWelcome-left">
                       <h1>
                         Out with the Old, In with the Fresh!
                       </h1>
@@ -120,25 +120,25 @@ document.addEventListener("DOMContentLoaded", function () {
                         picks that you’ll love.
                       </p>
                       <button
-                        className="birlWelcome-button"
+                        class="birlWelcome-button"
                         onClick="initiateBirl(${customerId}, false)"
                       >
                         Get started
                       </button>
                     </div>
-                    <div className="birlWelcome-right">
+                    <div class="birlWelcome-right">
                       <img
-                        className="rounded-2xl absolute top-0 right-0 h-3/4 w-3/4 object-cover"
+                        class="rounded-2xl absolute top-0 right-0 h-3/4 w-3/4 object-cover"
                         src="/home-1.png"
                         alt="img-1"
                       />
                       <img
-                        className="object-cover rounded-2xl absolute bottom-0 left-0 h-2/5 w-2/5"
+                        class="object-cover rounded-2xl absolute bottom-0 left-0 h-2/5 w-2/5"
                         src="/home-2.png"
                         alt=""
                       />
                     </div>
-                    {/* <span className="birlWelcome-close">&times;</span> */}
+                    {/* <span class="birlWelcome-close">&times;</span> */}
                   </div>
                 </div>
     `;
