@@ -123,7 +123,8 @@ document.addEventListener("DOMContentLoaded", function () {
                       </p>
                       <button
                         class="birlWelcome-button"
-                        onClick="initiateBirl(${customerId}, false)"
+                        ${
+                          customerId != (null || "") ? `onClick="initiateBirl(${customerId}, false)"` : `onClick="window.location.href = '/account/login'"`}
                       >
                         Get started
                       </button>
