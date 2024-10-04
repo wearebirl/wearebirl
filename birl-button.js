@@ -964,7 +964,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       window.hideBirlWelcome = () => {
         var birlModal = document.getElementById("birlWelcome");
-        birlModal.style.display = "hidden";
+        birlModal.style.display = "none";
       }
   
       // Attach 'openDropdown' to 'window' to make it globally accessible
