@@ -1,39 +1,42 @@
-
 @font-face {
-  font-family: 'Gilroy';
-  src: url('https://wearebirl.github.io/wearebirl/Gilroy-Light.woff') format('woff');
+  font-family: "Gilroy";
+  src: url("https://wearebirl.github.io/wearebirl/Gilroy-Light.woff")
+    format("woff");
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Gilroy';
-  src: url('https://wearebirl.github.io/wearebirl/Gilroy-Regular.woff') format('woff');
+  font-family: "Gilroy";
+  src: url("https://wearebirl.github.io/wearebirl/Gilroy-Regular.woff")
+    format("woff");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Gilroy';
-  src: url('https://wearebirl.github.io/wearebirl/Gilroy-Medium.woff') format('woff');
+  font-family: "Gilroy";
+  src: url("https://wearebirl.github.io/wearebirl/Gilroy-Medium.woff")
+    format("woff");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Gilroy';
-  src: url('https://wearebirl.github.io/wearebirl/Gilroy-SemiBold.woff') format('woff');
+  font-family: "Gilroy";
+  src: url("https://wearebirl.github.io/wearebirl/Gilroy-SemiBold.woff")
+    format("woff");
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Gilroy';
-  src: url('https://wearebirl.github.io/wearebirl/Gilroy-Extrabold.woff') format('woff');
+  font-family: "Gilroy";
+  src: url("https://wearebirl.github.io/wearebirl/Gilroy-Extrabold.woff")
+    format("woff");
   font-weight: 800;
   font-style: normal;
 }
-
 
 .birl-product-cta-container {
   position: relative;
@@ -122,12 +125,10 @@
   max-width: 44rem;
 }
 
-
-
 .birl-cta-container-2 {
   position: relative;
   padding: 1rem 2rem;
-  gap:8px;
+  gap: 8px;
   background-color: white;
   color: black;
   font-size: 1rem;
@@ -150,7 +151,7 @@
   transition: all;
 }
 
-.birl-cta-container-2:hover{
+.birl-cta-container-2:hover {
   background-color: #f2f2f2;
 }
 
@@ -227,14 +228,14 @@
 } */
 
 .birl-logo-2 {
-   height: 15px;
+  height: 15px;
 }
 
 .birl-logo-container {
-  background-color: #CFD5F7; /* Lilac background */
+  background-color: #cfd5f7; /* Lilac background */
   padding: 8px 12px; /* 3px padding around the SVG */
   border-radius: 6px; /* Rounded background */
-  display: flex;;
+  display: flex;
 }
 
 .birl-product-cta-container img {
@@ -299,7 +300,7 @@
   bottom: -150px; /* Position above the button */
 }
 
-@media (hover:hover){
+@media (hover: hover) {
   .tooltip-btn:hover .tooltip-container {
     visibility: visible;
     opacity: 1;
@@ -718,11 +719,10 @@
   max-width: 60px;
   height: 100%;
   object-fit: contain;
-  margin:auto;
-
+  margin: auto;
 }
 
-.button_text{
+.button_text {
   font-weight: 800;
 }
 
@@ -949,3 +949,162 @@
   font-family: "Gilroy", serif !important;
 }
 
+.birlWelcome {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 50; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100svh; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal Content/Box */
+.birlWelcome-content {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  background-color: #fefefe;
+  margin: auto auto; /* 15% from the top and centered */
+  padding: 110px 60px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  border-radius: 26px;
+  min-height: 500px;
+  max-width: 1100px;
+  gap: 20px;
+  position: relative;
+}
+
+.birlWelcome-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+}
+
+.birlWelcome-logo {
+  width: 100px;
+  height: 28px;
+  object-fit: contain;
+  opacity: 0.5;
+}
+
+.birlWelcome-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  width: 60%;
+  gap: 40px;
+}
+
+.birlWelcome-right {
+  height: 100%;
+  min-height: inherit;
+  width: 40%;
+  position: relative;
+}
+/* The Close Button */
+.birlWelcome-close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.birlWelcome-button {
+  font-family: "Gilroy", serif;
+  display: inline-block;
+  background-color: #3c315b;
+  color: white;
+  padding: 14px 50px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.birlWelcome-button:hover {
+  opacity: 0.8;
+}
+
+.birlWelcome-close:hover,
+.birlWelcome-close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.birlWelcome h1 {
+  font-family: "Gilroy", serif;
+  font-size: 36px;
+  font-weight: 800;
+  margin: 0;
+  color: black;
+}
+
+.birlWelcome p {
+  font-family: "Gilroy", serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #4a4a4a;
+  width: 80%;
+}
+
+@media screen and (max-width: 1300px) {
+  .birlWelcome-content {
+    min-height: 400px;
+    width: 85%;
+    padding: 110px 60px 90px 60px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .birlWelcome-content {
+    min-height: 300px;
+    width: 90%;
+    padding: 90px 50px 50px 50px;
+  }
+
+  .birlWelcome-header {
+    padding: 20px 30px;
+  }
+
+  .birlWelcome-logo {
+    width: 80px;
+    height: 22px;
+  }
+
+  .birlWelcome h1 {
+    font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .birlWelcome-content {
+    width: 90%;
+    padding: 80px 40px 40px 40px;
+    margin: 0;
+    flex-direction: column-reverse;
+  }
+
+  .birlWelcome-left {
+    align-items: center;
+    width: 100%;
+  }
+
+  .birlWelcome-right {
+    width: 100%;
+  }
+}

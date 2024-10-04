@@ -70,6 +70,79 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
     `;
     }
+    if(style == "3") {
+      return `
+      <div class="birl-product-cta-container-${styleId} tooltip-btn" style="${
+        width == "full" ? "width: 100%;" : `max-width: ${width}px;`
+      }" onClick="showBirlWelcome()"
+      }">
+  <div class="tooltip-container"><span class="tooltip-text">
+    <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} ${storeType == "standard" ? "items" :"shirts"} for immediate credit.
+    <br><br>
+    <b style="color: black; width: 12px; text-align:left; display: inline-block;">2.</b> Spend your credit as soon as you receive your unique code.
+    <br><br>
+    <b style="color: black; width: 12px; text-align:left; display: inline-block;">3.</b> Send your trade-in back with the free digital label provided. 
+  </span></div>
+  <div class="birl-logo-container">
+      <img class="birl-logo-2" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo">
+    </div>
+  <div class="birl-product-cta-text">
+    <p>
+      <span><b>
+          ${variant == "product" ? "Get money off this item today" : ""}${
+        variant.includes("account") ? "Get money off your next purchase" : ""
+      } </b
+        ><br>
+        </span>
+        <span style="color: #808080;">
+        Trade-in ${storeName} ${storeType == "standard" ? "garments you no longer use" :"shirts you no longer wear"}
+      </span>
+    </p>
+  </div>
+</div>
+                <div id="birlWelcome" className="birlWelcome">
+                  <div className="birlWelcome-content">
+                    <div className="birlWelcome-header">
+                      <img
+                        className="birlWelcome-logo"
+                        src="/assets/birl-logo-black.svg"
+                      />
+                      <span className="birlWelcome-close">&times;</span>
+                    </div>
+                    <div className="birlWelcome-left">
+                      <h1>
+                        Out with the Old, In with the Fresh!
+                      </h1>
+                      <p>
+                        It’s <b>super easy</b> to trade in the pieces you no
+                        longer need, earn credit, and{" "}
+                        <b>upgrade your wardrobe</b> with sustainable, stylish
+                        picks that you’ll love.
+                      </p>
+                      <button
+                        className="birlWelcome-button"
+                        onClick="initiateBirl(${customerId}, false)"
+                      >
+                        Get started
+                      </button>
+                    </div>
+                    <div className="birlWelcome-right">
+                      <img
+                        className="rounded-2xl absolute top-0 right-0 h-3/4 w-3/4 object-cover"
+                        src="/home-1.png"
+                        alt="img-1"
+                      />
+                      <img
+                        className="object-cover rounded-2xl absolute bottom-0 left-0 h-2/5 w-2/5"
+                        src="/home-2.png"
+                        alt=""
+                      />
+                    </div>
+                    {/* <span className="birlWelcome-close">&times;</span> */}
+                  </div>
+                </div>
+    `;
+    }
 
   }
 
@@ -884,6 +957,11 @@ document.addEventListener("DOMContentLoaded", function () {
         const rightHeight = dropRight.offsetHeight;
         dropLeft.style.setProperty("height", `${rightHeight}px`);
       };
+
+      window.showBirlWelcome = () => {
+        var birlModal = document.getElementById("birlWelcome");
+        birlModal.style.display = "flex";
+      }
   
       // Attach 'openDropdown' to 'window' to make it globally accessible
       window.openDropdown = (forceOpen = false) => {
