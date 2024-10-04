@@ -1033,6 +1033,7 @@
   font-weight: 800;
   cursor: pointer;
   transition: opacity 0.3s;
+  border: none;
 }
 
 .birlWelcome-button:hover {

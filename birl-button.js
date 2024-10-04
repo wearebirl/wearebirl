@@ -8,7 +8,9 @@ document.addEventListener("DOMContentLoaded", function () {
     variant,
     customerId,
     style = "1",
-    storeType="standard"
+    storeType="standard",
+    img1 = "https://wearebirl.github.io/wearebirl/assets/home-1.png",
+    img2 = "https://wearebirl.github.io/wearebirl/assets/home-2.png"
   ) {
     if (style == "1") {
       return `
@@ -128,13 +130,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>
                     <div class="birlWelcome-right">
                       <img
-                        class="birlWelcome-img1 rounded-2xl absolute top-0 right-0 h-3/4 w-3/4 object-cover"
-                        src="https://wearebirl.github.io/wearebirl/assets/home-1.png"
+                        class="birlWelcome-img1"
+                        src="${img1}"
                         alt="img-1"
                       />
                       <img
-                        class="birlWelcome-img2 object-cover rounded-2xl absolute bottom-0 left-0 h-2/5 w-2/5"
-                        src="https://wearebirl.github.io/wearebirl/assets/home-2.png"
+                        class="birlWelcome-img2"
+                        src="${img2}"
                         alt=""
                       />
                     </div>
@@ -279,7 +281,9 @@ document.addEventListener("DOMContentLoaded", function () {
       variant,
       customerId,
       style,
-      storeType
+      storeType,
+      birlButton.getAttribute("data-img1"),
+      birlButton.getAttribute("data-img2"),
     );
     birlButton.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
   });
