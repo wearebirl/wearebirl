@@ -10,7 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
     style = "1",
     storeType="standard",
     img1 = "https://wearebirl.github.io/wearebirl/assets/home-1.png",
-    img2 = "https://wearebirl.github.io/wearebirl/assets/home-2.png"
+    img2 = "https://wearebirl.github.io/wearebirl/assets/home-2.png",
+    heading,
+    bodyText,
   ) {
     if (style == "1") {
       return `
@@ -113,13 +115,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>
                     <div class="birlWelcome-left">
                       <h1>
-                        ${storeType == "standard" ? `Out with the Old, In with the Fresh!` : "Trade-in your old Hammers shirts for instant credit."}
+                        ${heading}
                       </h1>
                       <p>
-                      ${storeType == "standard" ? `It’s <b>super easy</b> to trade in the pieces you no
-                        longer need, earn credit, and
-                        <b>upgrade your wardrobe</b> with sustainable, stylish
-                        picks that you’ll love.` : "Trade-in your <b>previous seasons shirts</b> in a few simple steps. Earn <b>instant credit</b> towards purchasing our latest shirts."
+                      ${bodyText}
                       }
                         
                       </p>
@@ -277,6 +276,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const variant = birlButton.getAttribute("data-variant");
     const style = birlButton.getAttribute("data-style") || "1";
     const storeType = birlButton.getAttribute("data-storeType") || "standard";
+    const heading = birlButton.getAttribute("data-heading") || "Get Instant Credit with Birl!";
+    const bodyText = birlButton.getAttribute("data-bodyText") || `It’s <b>super easy</b> to trade in the pieces you no
+                        longer need, earn credit, and
+                        <b>upgrade your wardrobe</b> with sustainable, stylish
+                        picks that you’ll love.`;
     newElement.innerHTML = addButton(
       styleId,
       storeName,
@@ -287,6 +291,8 @@ document.addEventListener("DOMContentLoaded", function () {
       storeType,
       birlButton.getAttribute("data-img1"),
       birlButton.getAttribute("data-img2"),
+      heading,
+      bodyText,
     );
     birlButton.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
   });
