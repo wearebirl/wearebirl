@@ -8,11 +8,11 @@ document.addEventListener("DOMContentLoaded", function () {
     variant,
     customerId,
     style = "1",
-    storeType="standard",
+    storeType = "standard",
     img1 = "https://wearebirl.github.io/wearebirl/assets/home-1.png",
     img2 = "https://wearebirl.github.io/wearebirl/assets/home-2.png",
     heading,
-    bodyText,
+    bodyText
   ) {
     if (style == "1") {
       return `
@@ -21,7 +21,9 @@ document.addEventListener("DOMContentLoaded", function () {
       }" onClick="openDropdown()"
       }">
   <div class="tooltip-container"><span class="tooltip-text">
-    <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} ${storeType == "standard" ? "items" :"shirts"} for immediate credit.
+    <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} ${
+        storeType == "standard" ? "items" : "shirts"
+      } for immediate credit.
     <br><br>
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">2.</b> Spend your credit as soon as you receive your unique code.
     <br><br>
@@ -39,7 +41,11 @@ document.addEventListener("DOMContentLoaded", function () {
         ><br>
         </span>
         <span style="color: #808080;">
-        Trade-in ${storeName} ${storeType == "standard" ? "garments you no longer use" :"shirts you no longer wear"}
+        Trade-in ${storeName} ${
+        storeType == "standard"
+          ? "garments you no longer use"
+          : "shirts you no longer wear"
+      }
       </span>
     </p>
   </div>
@@ -52,7 +58,9 @@ document.addEventListener("DOMContentLoaded", function () {
         width == "full" ? "width: 100%;" : `max-width: ${width}px;`
       }" onClick="initiateBirl(${customerId}, false)">
   <div class="tooltip-container tooltip-container-2"><span class="tooltip-text">
-    <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} ${storeType == "standard" ? "items" :"shirts"} for immediate credit.
+    <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} ${
+        storeType == "standard" ? "items" : "shirts"
+      } for immediate credit.
     <br><br>
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">2.</b> Spend your credit as soon as you receive your unique code.
     <br><br>
@@ -74,14 +82,16 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
     `;
     }
-    if(style == "3") {
+    if (style == "3") {
       return `
       <div class="birl-product-cta-container-${styleId} tooltip-btn" style="${
         width == "full" ? "width: 100%;" : `max-width: ${width}px;`
       }" onClick="showBirlWelcome()"
       }">
   <div class="tooltip-container"><span class="tooltip-text">
-    <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} ${storeType == "standard" ? "items" :"shirts"} for immediate credit.
+    <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} ${
+        storeType == "standard" ? "items" : "shirts"
+      } for immediate credit.
     <br><br>
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">2.</b> Spend your credit as soon as you receive your unique code.
     <br><br>
@@ -99,7 +109,11 @@ document.addEventListener("DOMContentLoaded", function () {
         ><br>
         </span>
         <span style="color: #808080;">
-        Trade-in ${storeName} ${storeType == "standard" ? "garments you no longer use" :"shirts you no longer wear"}
+        Trade-in ${storeName} ${
+        storeType == "standard"
+          ? "garments you no longer use"
+          : "shirts you no longer wear"
+      }
       </span>
     </p>
   </div>
@@ -118,14 +132,15 @@ document.addEventListener("DOMContentLoaded", function () {
                         ${heading}
                       </h1>
                       <p>
-                      ${bodyText}
-                      }
-                        
+                      ${bodyText}     
                       </p>
                       <button
                         class="birlWelcome-button"
                         ${
-                          customerId != (null || "") ? `onClick="initiateBirl(${customerId}, false)"` : `onClick="window.location.href = '/account/login'"`}
+                          customerId != (null || "")
+                            ? `onClick="initiateBirl(${customerId}, false)"`
+                            : `onClick="window.location.href = '/account/login'"`
+                        }
                       >
                         Get started
                       </button>
@@ -146,10 +161,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
     `;
     }
-
   }
 
-  function addHeader(offset, customerId, storeType="standard") {
+  function addHeader(offset, customerId, storeType = "standard") {
     return `
   <div class="birl-announcement-dropdown font-gilroy" style="height: calc(100svh - ${offset}px);">
 <div class="Trade-In-Banner-Container">
@@ -208,7 +222,9 @@ document.addEventListener("DOMContentLoaded", function () {
       <div class="birl-carousel">
         <div class="birl-carousel-item active">
           <h3>1. Trade</h3>
-          <p>Choose to trade ${storeType == "standard" ? "an item" :"a shirt"} from your brand account or the Birl trade-in portal</p>
+          <p>Choose to trade ${
+            storeType == "standard" ? "an item" : "a shirt"
+          } from your brand account or the Birl trade-in portal</p>
         </div>
 
         <div class="birl-carousel-item">
@@ -276,8 +292,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const variant = birlButton.getAttribute("data-variant");
     const style = birlButton.getAttribute("data-style") || "1";
     const storeType = birlButton.getAttribute("data-storeType") || "standard";
-    const heading = birlButton.getAttribute("data-heading") || "Get Instant Credit with Birl!";
-    const bodyText = birlButton.getAttribute("data-bodyText") || `It’s <b>super easy</b> to trade in the pieces you no
+    const heading =
+      birlButton.getAttribute("data-heading") ||
+      "Get Instant Credit with Birl!";
+    const bodyText =
+      birlButton.getAttribute("data-bodyText") ||
+      `It’s <b>super easy</b> to trade in the pieces you no
                         longer need, earn credit, and
                         <b>upgrade your wardrobe</b> with sustainable, stylish
                         picks that you’ll love.`;
@@ -292,7 +312,7 @@ document.addEventListener("DOMContentLoaded", function () {
       birlButton.getAttribute("data-img1"),
       birlButton.getAttribute("data-img2"),
       heading,
-      bodyText,
+      bodyText
     );
     birlButton.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
   });
@@ -953,17 +973,17 @@ document.addEventListener("DOMContentLoaded", function () {
     // Use 'window' to create a global reference and avoid re-declarations
     window.isDropdownFunction =
       window.isDropdownFunction || typeof openDropdown === "function";
-  
+
     if (!window.isDropdownFunction) {
       const dropdown = document.querySelector(".birl-announcement-dropdown");
       const dropRight = document.getElementById("HowItWorksSection");
       const dropLeft = document.querySelector(".drop_content_item.left");
-  
+
       // Helper function to get URL parameters
       const getURLParameter = (name) => {
         return new URLSearchParams(window.location.search).get(name);
       };
-  
+
       // Function to set height dynamically
       const setGridHeight = () => {
         const rightHeight = dropRight.offsetHeight;
@@ -973,13 +993,13 @@ document.addEventListener("DOMContentLoaded", function () {
       window.showBirlWelcome = () => {
         var birlModal = document.getElementById("birlWelcome");
         birlModal.style.display = "flex";
-      }
+      };
 
       window.hideBirlWelcome = () => {
         var birlModal = document.getElementById("birlWelcome");
         birlModal.style.display = "none";
-      }
-  
+      };
+
       // Attach 'openDropdown' to 'window' to make it globally accessible
       window.openDropdown = (forceOpen = false) => {
         let toDisplay =
@@ -989,7 +1009,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ? "flex"
             : "none";
         dropdown.style.display = toDisplay;
-  
+
         if (toDisplay === "flex") {
           // Ensure height is set after dropdown is displayed
           setTimeout(() => {
@@ -999,52 +1019,54 @@ document.addEventListener("DOMContentLoaded", function () {
             }
           }, 1000); // Slight delay to ensure correct height calculation
         }
-  
+
         // Use 'window' to store 'ScrollPos' globally
         if (!window.ScrollPos) {
           window.ScrollPos = window.scrollY;
         }
-  
+
         // Scroll to 0 smoothly
         window.scrollTo({
           top: 0,
           left: 0,
           behavior: "smooth",
         });
-  
+
         if (toDisplay == "flex") {
           document.body.style.overflow = "hidden";
         } else {
           console.log("scrolling back to " + window.ScrollPos);
           document.body.style.overflow = "auto";
-  
+
           // Scroll back to the original position
           window.scrollTo({
             top: window.ScrollPos,
             left: 0,
             behavior: "smooth",
           });
-  
+
           window.ScrollPos = null;
         }
       };
-  
+
       // Check if the URL contains the 'openDropdown' parameter and force open if it exists
-      const openDropdownParam = getURLParameter('openDropdown');
-      if (openDropdownParam === 'true') {
+      const openDropdownParam = getURLParameter("openDropdown");
+      if (openDropdownParam === "true") {
         // Force open the dropdown and trigger height adjustment
         window.openDropdown(true);
       }
-  
+
       // birl-carousel-control-next and birl-carousel-control-prev event listeners
       const carousel = document.querySelector(".birl-carousel");
       const carouselItems = document.querySelectorAll(".birl-carousel-item");
-      const carouselControls = document.querySelectorAll(".birl-carousel-control");
+      const carouselControls = document.querySelectorAll(
+        ".birl-carousel-control"
+      );
       const carouselDots = document.querySelectorAll(".dropdown-page-dot");
-  
+
       let currentSlide = 0;
       let carouselInterval = null;
-  
+
       const resetCarousel = () => {
         carouselItems.forEach((item, index) => {
           if (index === currentSlide) {
@@ -1053,7 +1075,7 @@ document.addEventListener("DOMContentLoaded", function () {
             item.classList.remove("active");
           }
         });
-  
+
         carouselDots.forEach((dot, index) => {
           if (index === currentSlide) {
             dot.classList.add("active");
@@ -1062,7 +1084,7 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         });
       };
-  
+
       const startCarousel = () => {
         carouselInterval = setInterval(() => {
           currentSlide++;
@@ -1072,14 +1094,14 @@ document.addEventListener("DOMContentLoaded", function () {
           resetCarousel();
         }, 5000);
       };
-  
+
       const stopCarousel = () => {
         clearInterval(carouselInterval);
       };
-  
+
       let leftControl = document.querySelector(".birl-carousel-control-prev");
       let rightControl = document.querySelector(".birl-carousel-control-next");
-  
+
       leftControl.addEventListener("click", () => {
         currentSlide--;
         if (currentSlide < 0) {
@@ -1087,27 +1109,23 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         resetCarousel();
       });
-  
+
       rightControl.addEventListener("click", () => {
         currentSlide++;
-  
+
         if (currentSlide > carouselItems.length - 1) {
           currentSlide = 0;
         }
-  
+
         resetCarousel();
       });
-  
+
       // Optional: Uncomment if you want to start the carousel automatically
       // carousel.addEventListener('mouseover', stopCarousel);
       // carousel.addEventListener('mouseout', startCarousel);
       // startCarousel();
     }
   })();
-  
-  
-  
-
 });
 
 function initiateBirl(customerId, skipToOrders) {
