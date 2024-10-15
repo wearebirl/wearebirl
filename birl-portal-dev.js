@@ -179,7 +179,7 @@ function initiateBirl(customerId) {
 
   console.log(customerId);
 
-  const url = `http://dashboard.wearebirl.com/api/portal/startSession`;
+  const url = `http://localhost:3010/api/external/startSession`;
 
 
   fetch(url, {
@@ -199,7 +199,7 @@ function initiateBirl(customerId) {
 
       if (response.status == 200) {
         window.location.replace(
-          `http://portal.wearebirl.com/${storeId}/trade-in?sessionId=${body.session_id}`
+          `http://portal-dev.wearebirl.com/${storeId}/trade-in?sessionId=${body.session_id}`
         );
       } else {
         // Handle error here (optional)
