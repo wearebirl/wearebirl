@@ -199,7 +199,7 @@ function initiateBirl(customerId) {
 
       if (response.status == 200) {
         window.location.replace(
-          `http://portal-dev.wearebirl.com/${storeId}/trade-in?sessionId=${body.session_id}`
+          `http://portal-dev.wearebirl.com/${body.store_id}/trade-in?sessionId=${body.session_id}`
         );
       } else {
         // Handle error here (optional)
