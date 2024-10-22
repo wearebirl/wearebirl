@@ -76,9 +76,11 @@ document.addEventListener("DOMContentLoaded", function () {
                       <h1>
                         ${heading}
                       </h1>
-                      <p>
-                      ${bodyText}     
-                      </p>
+                      <div class="birlWelcome-bodyText"> 
+                        <p>
+                          ${bodyText}
+                        </p>
+                      </div>
                       <button
                         class="birlWelcome-button"
                         ${`onClick="initiateBirl(${customerId})"`}
@@ -168,47 +170,48 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function initiateBirl(customerId) {
   console.log("Initiating Birl trade-in session...");
-  let store_id = "";
+  let storeId = "";
   let variant = "";
   const birlButtons = document.querySelectorAll(".birl-button"); // Select by class
 
   birlButtons.forEach(function (birlButton) {
-    store_id = birlButton.getAttribute("data-storeId");
+
+    storeId = birlButton.getAttribute("data-storeId");
     variant = birlButton.getAttribute("data-variant");
   });
 
-  console.log(customerId);
+  const url = `https://portal-dev.wearebirl.com/api/external/createSession`;
+  const reqBody = {
+    customer_id: customerId || "",
+    store_id: storeId,
+    callback: window.location.href,
+  };
+  console.log(reqBody);
+  async function initiateSession(url, reqBody) {
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: reqBody,
+      });
+      console.log(response);
 
-  const url = `http://localhost:3010/api/external/createSession`;
-
-
-  fetch(url, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      customer_id: customerId,
-      store_id: store_id,
-      callback: window.location.href,
-    }),
-  })
-    .then(async (response) => {
-      const body = await response.json();
-
-      if (response.status == 200) {
-        window.location.replace(
-          `http://localhost:3010/${body.store_id}/trade-in?session_id=${body.session_id}`
-        );
-      } else {
-        // Handle error here (optional)
+      if (!response.ok) {
         alert("Failed to initiate session. Please try again.");
+        return;
       }
-    })
-    .catch((error) => {
-      // Handle error here
+
+      const body = await response.json();
+      window.location.replace(
+        `https://portal-dev.wearebirl.com/${body.store_id}/trade-in?session_id=${body.session_id}`
+      );
+    } catch (error) {
       console.error("Error initiating session:", error);
       alert("An error occurred. Please try again.");
-    });
+    }
+  }
+  initiateSession(url, reqBody);
 }

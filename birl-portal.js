@@ -76,9 +76,11 @@ document.addEventListener("DOMContentLoaded", function () {
                       <h1>
                         ${heading}
                       </h1>
-                      <p>
-                      ${bodyText}     
-                      </p>
+                      <div class="birlWelcome-bodyText"> 
+                        <p>
+                          ${bodyText}
+                        </p>
+                      </div>
                       <button
                         class="birlWelcome-button"
                         ${`onClick="initiateBirl(${customerId})"`}
@@ -178,7 +180,7 @@ function initiateBirl(customerId) {
     variant = birlButton.getAttribute("data-variant");
   });
 
-  const url = `https://portal-dev.wearebirl.com/api/external/createSession`;
+  const url = `https://portal.wearebirl.com/api/external/createSession`;
   const reqBody = {
     customer_id: customerId || "",
     store_id: storeId,
@@ -204,7 +206,7 @@ function initiateBirl(customerId) {
 
       const body = await response.json();
       window.location.replace(
-        `https://portal-dev.wearebirl.com/${body.store_id}/trade-in?session_id=${body.session_id}`
+        `https://portal.wearebirl.com/${body.store_id}/trade-in?session_id=${body.session_id}`
       );
     } catch (error) {
       console.error("Error initiating session:", error);
