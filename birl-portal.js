@@ -185,29 +185,30 @@ function initiateBirl(customerId) {
     callback: window.location.href,
   };
   console.log(reqBody);
-  fetch(url, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(reqBody),
-  })
-    .then(async (response) => {
-      const body = await response.json();
+  async function initiateSession(url, reqBody) {
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(reqBody),
+      });
 
-      if (response.status == 200) {
-        window.location.replace(
-          `https://portal-dev.wearebirl.com/${body.store_id}/trade-in?session_id=${body.session_id}`
-        );
-      } else {
-        // Handle error here (optional)
+      if (!response.ok) {
         alert("Failed to initiate session. Please try again.");
+        return;
       }
-    })
-    .catch((error) => {
-      // Handle error here
+
+      const body = await response.json();
+      window.location.replace(
+        `https://portal-dev.wearebirl.com/${body.store_id}/trade-in?session_id=${body.session_id}`
+      );
+    } catch (error) {
       console.error("Error initiating session:", error);
       alert("An error occurred. Please try again.");
-    });
+    }
+  }
+  initiateSession(url, reqBody);
 }
