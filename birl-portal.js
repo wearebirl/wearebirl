@@ -195,6 +195,7 @@ function initiateBirl(customerId) {
         },
         body: JSON.stringify(reqBody),
       });
+      console.log(response);
 
       if (!response.ok) {
         alert("Failed to initiate session. Please try again.");
