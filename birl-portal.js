@@ -168,7 +168,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function initiateBirl(customerId) {
   console.log("Initiating Birl trade-in session...");
-  let store_id = "";
+  let storeId = "";
   let variant = "";
   const birlButtons = document.querySelectorAll(".birl-button"); // Select by class
 
@@ -177,22 +177,20 @@ function initiateBirl(customerId) {
     variant = birlButton.getAttribute("data-variant");
   });
 
-  console.log(customerId);
-
   const url = `https://portal-dev.wearebirl.com/api/external/createSession`;
-
-
+  const reqBody = {
+    customer_id: customerId,
+    store_id: storeId,
+    callback: window.location.href,
+  };
+  console.log(reqBody);
   fetch(url, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      customer_id: customerId,
-      store_id: store_id,
-      callback: window.location.href,
-    }),
+    body: JSON.stringify(reqBody),
   })
     .then(async (response) => {
       const body = await response.json();
