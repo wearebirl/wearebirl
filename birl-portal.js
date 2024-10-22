@@ -173,7 +173,8 @@ function initiateBirl(customerId) {
   const birlButtons = document.querySelectorAll(".birl-button"); // Select by class
 
   birlButtons.forEach(function (birlButton) {
-    store_id = birlButton.getAttribute("data-storeId");
+
+    storeId = birlButton.getAttribute("data-storeId");
     variant = birlButton.getAttribute("data-variant");
   });
 
