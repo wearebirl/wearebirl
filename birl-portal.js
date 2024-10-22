@@ -180,7 +180,7 @@ function initiateBirl(customerId) {
 
   const url = `https://portal-dev.wearebirl.com/api/external/createSession`;
   const reqBody = {
-    customer_id: customerId,
+    customer_id: customerId || "",
     store_id: storeId,
     callback: window.location.href,
   };
