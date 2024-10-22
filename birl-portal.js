@@ -193,7 +193,7 @@ function initiateBirl(customerId) {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(reqBody),
+        body: reqBody,
       });
       console.log(response);
 
