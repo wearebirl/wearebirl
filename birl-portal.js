@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
   data-img2='https://wearebirl.github.io/wearebirl/assets/home-2.png'
   data-customerId='123456'
   data-storeType='standard'
-  data-heading='Get Instant Credit with Birl!'
-  data-bodyText='It’s <b>super easy</b> to trade in the pieces you no'
+  data-heading='Get Instant Credit with Birl'
+  data-bodyText="It's <b>super easy</b> to trade-in your Peregrine pieces that you no longer need. <b>Earn instant</b> credit to upgrade your wardrobe with fresh items you'll love to wear."
   data-isHidden='false'
   />`
 
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         ${heading}
                       </h1>
                       <div class="birlWelcome-bodyText"> 
-                        <p>
+                        <p class="birlWelcome-bodyTextContent">
                           ${bodyText}
                         </p>
                       </div>
@@ -119,13 +119,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const storeType = birlButton.getAttribute("data-storeType") || "standard";
     const heading =
     birlButton.getAttribute("data-heading") ||
-    "Get Instant Credit with Birl!";
+    "Get Instant Credit with Birl";
     const bodyText =
     birlButton.getAttribute("data-bodyText") ||
-    `It’s <b>super easy</b> to trade in the pieces you no
-                      longer need, earn credit, and
-                      <b>upgrade your wardrobe</b> with sustainable, stylish
-                      picks that you’ll love.`;
+        `It's <b>super easy</b> to trade-in your Peregrine pieces that you no longer need. <b>Earn instant</b> credit to upgrade your wardrobe with fresh items you'll love to wear.`;
+
     const isHidden = birlButton.getAttribute("data-isHidden") === "true";
 
     const newElement = document.createElement("div");

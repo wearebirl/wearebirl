@@ -292,13 +292,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const storeType = birlButton.getAttribute("data-storeType") || "standard";
     const heading =
       birlButton.getAttribute("data-heading") ||
-      "Get Instant Credit with Birl!";
+      "Get Instant Credit with Birl";
     const bodyText =
       birlButton.getAttribute("data-bodyText") ||
-      `It’s <b>super easy</b> to trade in the pieces you no
-                        longer need, earn credit, and
-                        <b>upgrade your wardrobe</b> with sustainable, stylish
-                        picks that you’ll love.`;
+        `It's <b>super easy</b> to trade-in your Peregrine pieces that you no longer need. <b>Earn instant</b> credit to upgrade your wardrobe with fresh items you'll love to wear.`;
+
     const isHidden = birlButton.getAttribute("data-isHidden") === "true";
 
     newElement.innerHTML = addButton(

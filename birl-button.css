@@ -1018,7 +1018,6 @@
   width: 100px;
   height: 28px;
   object-fit: contain;
-  opacity: 0.5;
 }
 
 .birlWelcome-left {
@@ -1144,7 +1143,12 @@
 
   .birlWelcome-left {
     align-items: center;
+    text-align: center;
     width: 100%;
+  }
+
+  .birlWelcome-bodyTextContent {
+    margin: auto;
   }
 
   .birlWelcome-right {
