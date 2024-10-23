@@ -12,14 +12,12 @@ document.addEventListener("DOMContentLoaded", function () {
     img1 = "https://wearebirl.github.io/wearebirl/assets/home-1.png",
     img2 = "https://wearebirl.github.io/wearebirl/assets/home-2.png",
     heading,
-    bodyText
+    bodyText,
+    isHidden
   ) {
     if (style == "1") {
       return `
-      <div class="birl-product-cta-container-${styleId} tooltip-btn" style="${
-        width == "full" ? "width: 100%;" : `max-width: ${width}px;`
-      }" onClick="openDropdown()"
-      }">
+      <div class="birl-product-cta-container-${styleId} tooltip-btn" style="${width == "full" ? "width: 100%;" : `max-width: ${width}px;`} ${isHidden ? "visibility: hidden;" : "visibility: visible;"}" onClick="openDropdown()"}">
   <div class="tooltip-container"><span class="tooltip-text">
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} ${
         storeType == "standard" ? "items" : "shirts"
@@ -301,6 +299,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         longer need, earn credit, and
                         <b>upgrade your wardrobe</b> with sustainable, stylish
                         picks that you’ll love.`;
+    const isHidden = birlButton.getAttribute("data-isHidden") === "true";
+
     newElement.innerHTML = addButton(
       styleId,
       storeName,
@@ -312,7 +312,8 @@ document.addEventListener("DOMContentLoaded", function () {
       birlButton.getAttribute("data-img1"),
       birlButton.getAttribute("data-img2"),
       heading,
-      bodyText
+      bodyText,
+        isHidden
     );
     birlButton.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
   });
@@ -1195,10 +1196,8 @@ function initiateBirl(customerId, skipToOrders) {
       buttonText.style.display = "inline";
       loadingText.style.display = "none";
 
-      if (response.status == 200) {
-        window.location.replace(
-          `http://portal.wearebirl.com/?sessionId=${body.session_id}`
-        );
+      if (response.status === 200) {
+        window.open(`http://portal.wearebirl.com/?sessionId=${body.session_id}`, '_blank');
       } else {
         // Handle error here (optional)
         alert("Failed to initiate session. Please try again.");

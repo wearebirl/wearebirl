@@ -33,9 +33,10 @@
   data-width="450"
   data-variant="account"
   data-customerId="{{ customer.id | escape }}"
+  data-isHidden="false"
 ></birl-button>
 
-<script src="https://wearebirl.github.io/wearebirl/birl-button.js"></script>
+<script src="../birl-button.js"></script>
 
 {% if localization.country.iso_code == 'GB' %}
 <div>
@@ -50,6 +51,7 @@
     data-variant="account-2"
     data-customerId="{{ customer.id | escape }}"
     data-style="2"
+    data-isHidden="false"
   ></birl-button>
 </div>
 {% endif %}
