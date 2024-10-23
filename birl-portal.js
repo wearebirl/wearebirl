@@ -12,7 +12,9 @@ document.addEventListener("DOMContentLoaded", function () {
   data-customerId='123456'
   data-storeType='standard'
   data-heading='Get Instant Credit with Birl!'
-  data-bodyText='It’s <b>super easy</b> to trade in the pieces you no'/>`
+  data-bodyText='It’s <b>super easy</b> to trade in the pieces you no'
+  data-isHidden='false'
+  />`
 
 
   function addButton(
@@ -25,14 +27,12 @@ document.addEventListener("DOMContentLoaded", function () {
     style,
     storeType,
     heading,
-    bodyText
+    bodyText,
+    isHidden
   ) {
     if (style == "1") {
       return `
-      <div class="birl-cta-container tooltip-btn" style="${
-        width == "full" ? "width: 100%;" : `max-width: ${width}px;`
-      }" onClick="showBirlWelcome()"
-      }">
+      <div class="birl-cta-container tooltip-btn" style="${width == "full" ? "width: 100%;" : `max-width: ${width}px;`} ${isHidden ? "visibility: hidden;" : "visibility: visible;"}" onClick="showBirlWelcome()"}">
   <div class="tooltip-container"><span class="tooltip-text">
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} ${
         storeType == "standard" ? "items" : "shirts"
@@ -126,6 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
                       longer need, earn credit, and
                       <b>upgrade your wardrobe</b> with sustainable, stylish
                       picks that you’ll love.`;
+    const isHidden = birlButton.getAttribute("data-isHidden") === "true";
 
     const newElement = document.createElement("div");
     
@@ -139,7 +140,8 @@ document.addEventListener("DOMContentLoaded", function () {
       style,
       storeType,
       heading,
-      bodyText
+      bodyText,
+        isHidden
     );
     birlButton.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
   });
@@ -205,9 +207,7 @@ function initiateBirl(customerId) {
       }
 
       const body = await response.json();
-      window.location.replace(
-        `https://portal.wearebirl.com/${body.store_id}/trade-in?session_id=${body.session_id}`
-      );
+      window.open(`https://portal.wearebirl.com/${body.store_id}/trade-in?session_id=${body.session_id}`, '_blank');
     } catch (error) {
       console.error("Error initiating session:", error);
       alert("An error occurred. Please try again.");
