@@ -157,6 +157,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   (function () {
+
+    // Helper function to get URL parameters
+    const getURLParameter = (name) => {
+      return new URLSearchParams(window.location.search).get(name);
+    };
+    
     window.showBirlWelcome = () => {
       var birlModal = document.getElementById("birlWelcome");
       birlModal.style.display = "flex";
@@ -166,6 +172,13 @@ document.addEventListener("DOMContentLoaded", function () {
       var birlModal = document.getElementById("birlWelcome");
       birlModal.style.display = "none";
     };
+
+    const openDropdownParam = getURLParameter("openDropdown");
+    if (openDropdownParam === "true") {
+      // Force open the dropdown and trigger height adjustment
+      window.showBirlWelcome();
+    }
+
 
   })();
 });
