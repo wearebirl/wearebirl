@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
   ) {
     if (style == "1") {
       return `
-      <div class="birl-cta-container tooltip-btn" style="${width == "full" ? "width: 100%;" : `max-width: ${width}px;`} ${isHidden ? "visibility: hidden;" : "visibility: visible;"}" onClick="showBirlWelcome()"}">
+      <div class="birl-cta-container tooltip-btn" style="${width == "full" ? "width: 100%;" : `max-width: ${width}px;`} ${isHidden && "display: none;"}" onClick="showBirlWelcome()"}">
   <div class="tooltip-container"><span class="tooltip-text">
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} ${
         storeType == "standard" ? "items" : "shirts"
@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const getURLParameter = (name) => {
       return new URLSearchParams(window.location.search).get(name);
     };
-    
+
     window.showBirlWelcome = () => {
       var birlModal = document.getElementById("birlWelcome");
       birlModal.style.display = "flex";
