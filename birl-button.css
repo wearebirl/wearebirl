@@ -43,7 +43,7 @@
   padding: 8px 20px;
   background-color: white;
   color: black;
-  font-family: "Gilroy", serif;
+  font-family: "Gilroy", serif !important;
   font-size: 12px;
   display: flex;
   flex-direction: row;
@@ -87,7 +87,7 @@
   padding: 8px 20px;
   background-color: white;
   color: black;
-  font-family: "Gilroy", serif;
+  font-family: "Gilroy", serif !important;
   font-size: 14px;
   display: flex;
   flex-direction: row;
@@ -108,7 +108,7 @@
   padding: 8px 20px;
   background-color: white;
   color: black;
-  font-family: "Gilroy", serif;
+  font-family: "Gilroy", serif !important;
   font-size: 12px;
   display: flex;
   flex-direction: row;
@@ -130,7 +130,7 @@
   padding: 8px 20px;
   background-color: white;
   color: black;
-  font-family: "Gilroy", serif;
+  font-family: "Gilroy", serif !important;
   font-size: 12px;
   display: flex;
   flex-direction: row;
@@ -965,7 +965,7 @@
 }
 
 .font-peregrine {
-  font-family: "Gilroy", serif;
+  font-family: "Gilroy", serif !important;
 }
 
 .font-gilroy {
@@ -1045,7 +1045,7 @@
 }
 
 .birlWelcome-button {
-  font-family: "Gilroy", serif;
+  font-family: "Gilroy", serif !important;
   display: inline-block;
   background-color: #3c315b;
   color: white;
@@ -1070,7 +1070,7 @@
 }
 
 .birlWelcome h1 {
-  font-family: "Gilroy", serif;
+  font-family: "Gilroy", serif !important;
   font-size: 36px;
   font-weight: 800;
   margin: 0;
@@ -1078,7 +1078,7 @@
 }
 
 .birlWelcome p {
-  font-family: "Gilroy", serif;
+  font-family: "Gilroy", serif !important;
   font-size: 18px;
   font-weight: 400;
   color: #4a4a4a;
