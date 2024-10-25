@@ -251,6 +251,7 @@
 
 .birl-logo-2 {
   height: 15px;
+  object-fit: contain;
 }
 
 .birl-logo-container {
