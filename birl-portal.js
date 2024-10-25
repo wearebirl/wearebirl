@@ -218,7 +218,10 @@ function initiateBirl(customerId) {
       }
 
       const body = await response.json();
-      window.open(`https://portal.wearebirl.com/${body.store_id}/trade-in?session_id=${body.session_id}`);
+      setTimeout(() => {
+        window.open(`https://portal.wearebirl.com/${body.store_id}/trade-in?session_id=${body.session_id}`, "_blank");
+      })
+      ;
     } catch (error) {
       console.error("Error initiating session:", error);
       alert("An error occurred. Please try again.");
