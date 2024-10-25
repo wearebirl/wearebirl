@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
                       <span onclick="hideBirlWelcome()" class="birlWelcome-close">&times;</span>
                     </div>
                     <div class="birlWelcome-left">
-                      <h1>
+                      <h1 class="birl-heading">
                         ${heading}
                       </h1>
                       <div class="birlWelcome-bodyText"> 

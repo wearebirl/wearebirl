@@ -103,6 +103,10 @@
   text-align: center;
 }
 
+.birl-heading{
+  text-transform: none;
+}
+
 .birl-product-cta-container-lavenham {
   position: relative;
   padding: 8px 20px;
