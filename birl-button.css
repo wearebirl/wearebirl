@@ -989,6 +989,7 @@
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
   justify-content: center;
   align-items: center;
+  padding: 20px 0;
 }
 
 /* Modal Content/Box */
@@ -1118,6 +1119,10 @@
 }
 
 @media screen and (max-width: 900px) {
+  .birlWelcome p {
+    width: 90%;
+  }
+
   .birlWelcome-content {
     min-height: 300px;
     width: 90%;
@@ -1139,10 +1144,13 @@
 }
 
 @media screen and (max-width: 767px) {
+  .birlWelcome p {
+    width: 100%;
+  }
+
   .birlWelcome-content {
     width: 90%;
     padding: 80px 40px 40px 40px;
-    margin: 0;
     flex-direction: column-reverse;
   }
 
