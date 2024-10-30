@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function () {
   })();
 });
 
-function initiateBirl(customerId) {
+async function initiateBirl(customerId) {
   console.log("Initiating Birl trade-in session...");
   let storeId = "";
   let variant = "";
@@ -227,5 +227,5 @@ function initiateBirl(customerId) {
       alert("An error occurred. Please try again.");
     }
   }
-  initiateSession(url, reqBody);
+  await initiateSession(url, reqBody);
 }
