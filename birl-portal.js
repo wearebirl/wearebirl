@@ -213,6 +213,7 @@ async function initiateBirl(customerId) {
       console.log(response);
 
       if (!response.ok) {
+        console.error("Failed to initiate session:", response);
         alert("Failed to initiate session. Please try again.");
         return;
       }
