@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   console.log("Page has been loaded");
 
-  let example = `
+  let example=`
   <birl-button class='birl-button'
   data-storeName='Birl Garments'
   data-storeId='birl-garments'
@@ -14,7 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
   data-heading='Get Instant Credit with Birl'
   data-bodyText="It's <b>super easy</b> to trade-in your Peregrine pieces that you no longer need. <b>Earn instant</b> credit to upgrade your wardrobe with fresh items you'll love to wear."
   data-isHidden='false'
-  />`;
+  />`
+
 
   function addButton(
     storeName,
@@ -31,9 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
   ) {
     if (style == "1") {
       return `
-      <div class="birl-cta-container tooltip-btn" style="${
-        width == "full" ? "width: 100%;" : `max-width: ${width}px;`
-      } ${isHidden && "display: none;"}" onClick="showBirlWelcome()"}">
+      <div class="birl-cta-container tooltip-btn" style="${width == "full" ? "width: 100%;" : `max-width: ${width}px;`} ${isHidden && "display: none;"}" onClick="showBirlWelcome()"}">
   <div class="tooltip-container"><span class="tooltip-text">
     <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} ${
         storeType == "standard" ? "items" : "shirts"
@@ -84,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
                       </div>
                       <button
                         class="birlWelcome-button"
-                       
+                        ${`onClick="initiateBirl(${customerId})"`}
                       >
                         Get started
                       </button>
@@ -107,30 +106,28 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+
   const birlButtons = document.querySelectorAll(".birl-button"); // Select by class
   birlButtons.forEach(function (birlButton) {
     const storeName = birlButton.getAttribute("data-storeName");
     const variant = birlButton.getAttribute("data-variant");
     const width = birlButton.getAttribute("data-width");
-    const img1 =
-      birlButton.getAttribute("data-img1") ||
-      "https://wearebirl.github.io/wearebirl/assets/home-1.png";
-    const img2 =
-      birlButton.getAttribute("data-img2") ||
-      "https://wearebirl.github.io/wearebirl/assets/home-2.png";
+    const img1 = birlButton.getAttribute("data-img1") || "https://wearebirl.github.io/wearebirl/assets/home-1.png";
+    const img2 = birlButton.getAttribute("data-img2") || "https://wearebirl.github.io/wearebirl/assets/home-2.png";
     const customerId = birlButton.getAttribute("data-customerId") || "";
     const style = birlButton.getAttribute("data-style") || "1";
     const storeType = birlButton.getAttribute("data-storeType") || "standard";
     const heading =
-      birlButton.getAttribute("data-heading") || "Get Instant Credit with Birl";
+    birlButton.getAttribute("data-heading") ||
+    "Get Instant Credit with Birl";
     const bodyText =
-      birlButton.getAttribute("data-bodyText") ||
-      `It's <b>super easy</b> to trade-in your Peregrine pieces that you no longer need. <b>Earn instant</b> credit to upgrade your wardrobe with fresh items you'll love to wear.`;
+    birlButton.getAttribute("data-bodyText") ||
+        `It's <b>super easy</b> to trade-in your Peregrine pieces that you no longer need. <b>Earn instant</b> credit to upgrade your wardrobe with fresh items you'll love to wear.`;
 
     const isHidden = birlButton.getAttribute("data-isHidden") === "true";
 
     const newElement = document.createElement("div");
-
+    
     newElement.innerHTML = addButton(
       storeName,
       variant,
@@ -142,19 +139,10 @@ document.addEventListener("DOMContentLoaded", function () {
       storeType,
       heading,
       bodyText,
-      isHidden
+        isHidden
     );
     birlButton.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
-
-    const getStarted = document.querySelectorAll(".birlWelcome-button");
-    getStarted.forEach(function (inputElement) {
-      inputElement.addEventListener("click", function () {
-        initiateBirl(customerId);
-      });
-    });
   });
-
-
 
   var element = document.createElement("link");
   element.setAttribute("rel", "stylesheet");
@@ -165,7 +153,9 @@ document.addEventListener("DOMContentLoaded", function () {
   );
   document.getElementsByTagName("head")[0].appendChild(element);
 
+
   (function () {
+
     // Helper function to get URL parameters
     const getURLParameter = (name) => {
       return new URLSearchParams(window.location.search).get(name);
@@ -186,16 +176,19 @@ document.addEventListener("DOMContentLoaded", function () {
       // Force open the dropdown and trigger height adjustment
       window.showBirlWelcome();
     }
+
+
   })();
 });
 
-async function initiateBirl(customerId) {
+function initiateBirl(customerId) {
   console.log("Initiating Birl trade-in session...");
   let storeId = "";
   let variant = "";
   const birlButtons = document.querySelectorAll(".birl-button"); // Select by class
 
   birlButtons.forEach(function (birlButton) {
+
     storeId = birlButton.getAttribute("data-storeId");
     variant = birlButton.getAttribute("data-variant");
   });
@@ -220,22 +213,19 @@ async function initiateBirl(customerId) {
       console.log(response);
 
       if (!response.ok) {
-        console.error("Failed to initiate session:", response);
         alert("Failed to initiate session. Please try again.");
         return;
       }
 
       const body = await response.json();
       setTimeout(() => {
-        window.open(
-          `https://portal.wearebirl.com/${body.store_id}/trade-in?session_id=${body.session_id}`,
-          "_blank"
-        );
-      });
+        window.open(`https://portal.wearebirl.com/${body.store_id}/trade-in?session_id=${body.session_id}`, "_blank");
+      })
+      ;
     } catch (error) {
       console.error("Error initiating session:", error);
       alert("An error occurred. Please try again.");
     }
   }
-  await initiateSession(url, reqBody);
+  initiateSession(url, reqBody);
 }
