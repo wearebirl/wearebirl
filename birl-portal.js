@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
                       </div>
                       <button
                         class="birlWelcome-button"
-                        ${`onClick="initiateBirl(${customerId})"`}
+                        ${`onClick="event.preventDefault(); initiateBirl(${customerId});"`}
                       >
                         Get started
                       </button>
