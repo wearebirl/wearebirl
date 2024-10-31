@@ -133,6 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
                       ${bodyText}     
                       </p>
                       <button
+                        id="primaryGetStarted-button"
                         class="birlWelcome-button"
                         ${
                           customerId != (null || "")
@@ -1149,6 +1150,7 @@ function initiateBirl(customerId, skipToOrders) {
   });
 
   console.log(customerId);
+  document.getElementById("primaryGetStarted-button").innerHTML = '<div class="loader"></div>';
   // Get button and spinner elements
   const button = document.getElementById("trade-in-button");
   const buttonText = button.querySelector(".button-text");
@@ -1200,6 +1202,7 @@ function initiateBirl(customerId, skipToOrders) {
         // Handle error here (optional)
         alert("Failed to initiate session. Please try again.");
       }
+      document.getElementById("primaryGetStarted-button").innerHTML = 'Get started';
     })
     .catch((error) => {
       // Re-enable the button and hide the loading spinner in case of error

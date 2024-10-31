@@ -82,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         </p>
                       </div>
                       <button
+                        id="primaryGetStarted-button"
                         class="birlWelcome-button"
                         ${`onClick="event.preventDefault(); initiateBirl(${customerId});"`}
                       >
@@ -193,6 +194,7 @@ function initiateBirl(customerId) {
     variant = birlButton.getAttribute("data-variant");
   });
 
+  document.getElementById("primaryGetStarted-button").innerHTML = '<div class="loader"></div>';
   const url = `https://portal.wearebirl.com/api/external/createSession`;
   const reqBody = {
     customer_id: customerId || "",
@@ -217,6 +219,7 @@ function initiateBirl(customerId) {
         return;
       }
 
+      document.getElementById("primaryGetStarted-button").innerHTML = 'Get started';
       const body = await response.json();
       setTimeout(() => {
         window.open(`https://portal.wearebirl.com/${body.store_id}/trade-in?session_id=${body.session_id}`, "_blank");
