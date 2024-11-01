@@ -978,6 +978,7 @@
 
 .birlWelcome {
   display: none; /* Hidden by default */
+  place-items: center;
   position: fixed; /* Stay in place */
   z-index: 50; /* Sit on top */
   left: 0;

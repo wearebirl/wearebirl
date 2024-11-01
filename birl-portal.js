@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.showBirlWelcome = () => {
       var birlModal = document.getElementById("birlWelcome");
-      birlModal.style.display = "flex";
+      birlModal.style.display = "grid";
     };
 
     window.hideBirlWelcome = () => {

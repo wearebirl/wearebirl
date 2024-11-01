@@ -992,7 +992,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       window.showBirlWelcome = () => {
         var birlModal = document.getElementById("birlWelcome");
-        birlModal.style.display = "flex";
+        birlModal.style.display = "grid";
       };
 
       window.hideBirlWelcome = () => {
@@ -1006,11 +1006,11 @@ document.addEventListener("DOMContentLoaded", function () {
           dropdown.style.display === "" ||
           dropdown.style.display === "none" ||
           forceOpen
-            ? "flex"
+            ? "grid"
             : "none";
         dropdown.style.display = toDisplay;
 
-        if (toDisplay === "flex") {
+        if (toDisplay === "grid") {
           // Ensure height is set after dropdown is displayed
           setTimeout(() => {
             if (window.innerWidth > 768) {
@@ -1032,7 +1032,7 @@ document.addEventListener("DOMContentLoaded", function () {
           behavior: "smooth",
         });
 
-        if (toDisplay == "flex") {
+        if (toDisplay == "grid") {
           document.body.style.overflow = "hidden";
         } else {
           console.log("scrolling back to " + window.ScrollPos);
