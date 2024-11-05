@@ -106,10 +106,11 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
     }
   }
-
+  const SUPABASE_URL = 'https://rclxweaaffupqiqdklhg.supabase.co';
+  const SUPABASE_API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjbHh3ZWFhZmZ1cHFpcWRrbGhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTEwOTU5OTgsImV4cCI6MjAyNjY3MTk5OH0.h-KRME-ajXT2J_YNAEavTm77A3MjUj-j8otnj0VzTfI';
 
   const birlButtons = document.querySelectorAll(".birl-button"); // Select by class
-  birlButtons.forEach(function (birlButton) {
+  birlButtons.forEach(async function (birlButton) {
     const storeName = birlButton.getAttribute("data-storeName");
     const variant = birlButton.getAttribute("data-variant");
     const width = birlButton.getAttribute("data-width");
@@ -126,6 +127,29 @@ document.addEventListener("DOMContentLoaded", function () {
         `It's <b>super easy</b> to trade-in your Peregrine pieces that you no longer need. <b>Earn instant</b> credit to upgrade your wardrobe with fresh items you'll love to wear.`;
 
     const isHidden = birlButton.getAttribute("data-isHidden") === "true";
+
+    try {
+      const response = await fetch(`${SUPABASE_URL}/rest/v1/accounts?store_name=eq.${storeName}`, {
+          method: 'GET',
+          headers: {
+              'apikey': SUPABASE_API_KEY,
+              'Authorization': `Bearer ${SUPABASE_API_KEY}`,
+              'Content-Type': 'application/json'
+          }
+      });
+
+      if (response.ok) {
+          const data = await response.json();
+          if (data.length > 0) {
+              heading = data[0].heading || heading;
+              bodyText = data[0].bodyText || bodyText;
+          }
+      } else {
+          console.error("Error fetching store data:", response.statusText);
+      }
+  } catch (error) {
+      console.error("Fetch error:", error);
+  }
 
     const newElement = document.createElement("div");
     
