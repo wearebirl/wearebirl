@@ -119,6 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const customerId = birlButton.getAttribute("data-customerId") || "";
     const style = birlButton.getAttribute("data-style") || "1";
     const storeType = birlButton.getAttribute("data-storeType") || "standard";
+    const storeId = birlButton.getAttribute("data-storeId");
     const heading =
     birlButton.getAttribute("data-heading") ||
     "Get Instant Credit with Birl";
@@ -129,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const isHidden = birlButton.getAttribute("data-isHidden") === "true";
 
     try {
-      const response = await fetch(`${SUPABASE_URL}/rest/v1/accounts?store_name=eq.${storeName}`, {
+      const response = await fetch(`${SUPABASE_URL}/rest/v1/accounts?store_name=eq.${storeId}`, {
           method: 'GET',
           headers: {
               'apikey': SUPABASE_API_KEY,
