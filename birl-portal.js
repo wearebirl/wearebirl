@@ -120,10 +120,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const style = birlButton.getAttribute("data-style") || "1";
     const storeType = birlButton.getAttribute("data-storeType") || "standard";
     const storeId = birlButton.getAttribute("data-storeId");
-    const heading =
+    let heading =
     birlButton.getAttribute("data-heading") ||
     "Get Instant Credit with Birl";
-    const bodyText =
+    let bodyText =
     birlButton.getAttribute("data-bodyText") ||
         `It's <b>super easy</b> to trade-in your Peregrine pieces that you no longer need. <b>Earn instant</b> credit to upgrade your wardrobe with fresh items you'll love to wear.`;
 
