@@ -20,12 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     storeName,
     variant,
     width,
-    img1,
-    img2,
-    customerId,
     storeTheme,
-    heading,
-    bodyText,
     isHidden
   ) {
     return `
@@ -153,12 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
       storeName,
       variant,
       width,
-      img1,
-      img2,
-      customerId,
       storeTheme,
-      heading,
-      bodyText,
       isHidden
     );
     birlButton.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
