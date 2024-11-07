@@ -174,20 +174,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       
       birlModal.style.display = "grid";
 
-      let hideElements = true; // A flag to know when we reached our element
-    
-      // Loop through all elements in the DOM
-      document.querySelectorAll('*').forEach(element => {
-        // Check if we reached our element; stop hiding further elements
-        if (element === birlModal) {
-          hideElements = false;
-        }
-    
-        // Only hide elements above our element in the DOM and with `position: fixed`
-        if (hideElements && window.getComputedStyle(element).position === 'fixed') {
-          element.style.display = 'none';
-        }
-      });
+      
     };
 
     window.hideBirlWelcome = () => {
