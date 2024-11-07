@@ -1,20 +1,17 @@
 document.addEventListener("DOMContentLoaded", async function () {
-  console.log("Page has been loaded");
 
   let example = `
   <birl-button class='birl-button'
-  data-storeName='Birl Garments'
   data-storeId='birl-garments'
   data-variant='product'
   data-width='full'
-  data-img1='https://wearebirl.github.io/wearebirl/assets/home-1.png'
-  data-img2='https://wearebirl.github.io/wearebirl/assets/home-2.png'
   data-customerId='123456'
-  data-storeType='standard'
-  data-heading='Get Instant Credit with Birl'
-  data-bodyText="It's <b>super easy</b> to trade-in your Peregrine pieces that you no longer need. <b>Earn instant</b> credit to upgrade your wardrobe with fresh items you'll love to wear."
-  data-isHidden='false'
+ data-isHidden='false'
   />`;
+
+  const getURLParameter = (name) => {
+    return new URLSearchParams(window.location.search).get(name);
+  };
 
   function addButton(
     storeName,
@@ -170,9 +167,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   (function () {
     console.log("URL parameters:", window.location.search);
     // Helper function to get URL parameters
-    const getURLParameter = (name) => {
-      return new URLSearchParams(window.location.search).get(name);
-    };
 
     window.showBirlWelcome = () => {
       var birlModal = document.getElementById("birlWelcome");
