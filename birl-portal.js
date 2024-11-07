@@ -153,6 +153,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     );
     birlButton.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
     addModal(heading, bodyText, img1, img2, customerId);
+    console.log("Birl added to page");
   });
 
   var element = document.createElement("link");
@@ -165,6 +166,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   document.getElementsByTagName("head")[0].appendChild(element);
 
   (function () {
+    console.log("URL parameters:", window.location.search);
     // Helper function to get URL parameters
     const getURLParameter = (name) => {
       return new URLSearchParams(window.location.search).get(name);
