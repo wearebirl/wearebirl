@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   console.log("Page has been loaded");
 
   let example = `
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjbHh3ZWFhZmZ1cHFpcWRrbGhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTEwOTU5OTgsImV4cCI6MjAyNjY3MTk5OH0.h-KRME-ajXT2J_YNAEavTm77A3MjUj-j8otnj0VzTfI";
 
   const birlButtons = document.querySelectorAll(".birl-button"); // Select by class
-  birlButtons.forEach(async function (birlButton) {
+  await birlButtons.forEach(async function (birlButton) {
     let storeName = "";
     const variant = birlButton.getAttribute("data-variant");
     const width = birlButton.getAttribute("data-width");
