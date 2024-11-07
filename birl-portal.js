@@ -63,43 +63,49 @@ document.addEventListener("DOMContentLoaded", function () {
     </p>
   </div>
 </div>
-                
+                <div id="birlWelcome" class="birlWelcome">
+                  <div class="birlWelcome-content">
+                    <div class="birlWelcome-header">
+                      <img
+                        class="birlWelcome-logo"
+                        src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg"
+                      />
+                      <span onclick="hideBirlWelcome()" class="birlWelcome-close">&times;</span>
+                    </div>
+                    <div class="birlWelcome-left">
+                      <h1 class="birl-heading">
+                        ${heading}
+                      </h1>
+                      <div class="birlWelcome-bodyText"> 
+                        <p class="birlWelcome-bodyTextContent">
+                          ${bodyText}
+                        </p>
+                      </div>
+                      <button
+                        id="primaryGetStarted-button"
+                        class="birlWelcome-button"
+                        ${`onClick="event.preventDefault(); initiateBirl(${customerId});"`}
+                      >
+                        Get started
+                      </button>
+                    </div>
+                    <div class="birlWelcome-right">
+                      <img
+                        class="birlWelcome-img1"
+                        src="${img1}"
+                        alt="img-1"
+                      />
+                      <img
+                        class="birlWelcome-img2"
+                        src="${img2}"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
     `;
     }
   }
-
-  function addModal(heading, bodyText, img1, img2, customerId) {
-    const modalHTML = `
-      <div id="birlWelcome" class="birlWelcome" style="display: none;">
-        <div class="birlWelcome-content">
-          <div class="birlWelcome-header">
-            <img class="birlWelcome-logo" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" />
-            <span onclick="hideBirlWelcome()" class="birlWelcome-close">&times;</span>
-          </div>
-          <div class="birlWelcome-left">
-            <h1 class="birl-heading">
-              ${heading}
-            </h1>
-            <div class="birlWelcome-bodyText"> 
-              <p class="birlWelcome-bodyTextContent">
-                ${bodyText}              
-              </p>
-            </div>
-            <button id="primaryGetStarted-button" class="birlWelcome-button" onClick="event.preventDefault(); initiateBirl(${customerId});">
-              Get started
-            </button>
-          </div>
-          <div class="birlWelcome-right">
-            <img class="birlWelcome-img1" src="${img1}" alt="img-1" />
-            <img class="birlWelcome-img2" src="${img2}" alt="img-2" />
-          </div>
-        </div>
-      </div>`;
-
-    document.body.insertAdjacentHTML("afterbegin", modalHTML);
-  }
-
-
   const SUPABASE_URL = 'https://rclxweaaffupqiqdklhg.supabase.co';
   const SUPABASE_API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjbHh3ZWFhZmZ1cHFpcWRrbGhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTEwOTU5OTgsImV4cCI6MjAyNjY3MTk5OH0.h-KRME-ajXT2J_YNAEavTm77A3MjUj-j8otnj0VzTfI';
 
@@ -163,7 +169,6 @@ document.addEventListener("DOMContentLoaded", function () {
     );
     birlButton.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
   });
-  addModal(heading, bodyText, img1, img2, customerId);
 
   var element = document.createElement("link");
   element.setAttribute("rel", "stylesheet");
