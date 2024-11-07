@@ -152,7 +152,9 @@ document.addEventListener("DOMContentLoaded", async function () {
       isHidden
     );
     birlButton.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
+    
     addModal(heading, bodyText, img1, img2, customerId);
+    getURLParameter("openDropdown") === "true" && showBirlWelcome();
     console.log("Birl added to page");
   });
 
@@ -182,11 +184,6 @@ document.addEventListener("DOMContentLoaded", async function () {
       birlModal.style.display = "none";
     };
 
-    const openDropdownParam = getURLParameter("openDropdown");
-    if (openDropdownParam === "true") {
-      // Force open the dropdown and trigger height adjustment
-      window.showBirlWelcome();
-    }
   })();
 });
 
