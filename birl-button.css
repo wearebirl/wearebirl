@@ -789,7 +789,7 @@
     width: 90%;
     padding: 80px 40px 40px 40px;
     flex-direction: column-reverse;
-    min-width: none;
+    min-width: revert;
   }
 
   .birlWelcome-left {
