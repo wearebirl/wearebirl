@@ -686,6 +686,7 @@
 }
 
 .birlWelcome-button {
+  box-shadow: none;
   font-family: "Gilroy", serif !important;
   display: inline-block;
   background-color: #3c315b;
@@ -788,6 +789,7 @@
     width: 90%;
     padding: 80px 40px 40px 40px;
     flex-direction: column-reverse;
+    min-width: none;
   }
 
   .birlWelcome-left {
