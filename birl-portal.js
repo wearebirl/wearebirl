@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function addModal(heading, bodyText, img1, img2, customerId) {
     const modalHTML = `
-      <div id="birlWelcome" class="birlWelcome" style="display: none;">
+      <div id="birlWelcome" class="birlWelcome">
         <div class="birlWelcome-content">
           <div class="birlWelcome-header">
             <img class="birlWelcome-logo" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" />
