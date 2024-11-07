@@ -73,14 +73,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const birlButtons = document.querySelectorAll(".birl-button"); // Select by class
   birlButtons.forEach(async function (birlButton) {
-    const storeName = birlButton.getAttribute("data-storeName");
+    let storeName = ""
     const variant = birlButton.getAttribute("data-variant");
     const width = birlButton.getAttribute("data-width");
     const img1 = birlButton.getAttribute("data-img1") || "https://wearebirl.github.io/wearebirl/assets/home-1.png";
     const img2 = birlButton.getAttribute("data-img2") || "https://wearebirl.github.io/wearebirl/assets/home-2.png";
     const customerId = birlButton.getAttribute("data-customerId") || "";
     const style = birlButton.getAttribute("data-style") || "1";
-    const storeType = birlButton.getAttribute("data-storeType") || "standard";
+    let storeTheme = "default";
     const storeId = birlButton.getAttribute("data-storeId");
     let heading =
     birlButton.getAttribute("data-heading") ||
@@ -106,6 +106,8 @@ document.addEventListener("DOMContentLoaded", function () {
           if (data.length > 0) {
               heading = data[0].heading || heading;
               bodyText = data[0].bodyText || bodyText;
+              storeName = data[0].store_name || storeName;
+              storeTheme = data[0].theme || storeTheme;
           }
       } else {
           console.error("Error fetching store data:", response.statusText);
