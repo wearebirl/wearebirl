@@ -12,7 +12,10 @@ document.addEventListener("DOMContentLoaded", function () {
   data-customerId='123456'
   data-storeType='standard'
   data-heading='Get Instant Credit with Birl'
-  data-bodyText="It's <b>super easy</b> to trade-in your Peregrine pieces that you no longer need. <b>Earn instant</b> credit to upgrade your wardrobe with fresh items you'll love to wear." />`
+  data-bodyText="It's <b>super easy</b> to trade-in your Peregrine pieces that you no longer need. <b>Earn instant</b> credit to upgrade your wardrobe with fresh items you'll love to wear."
+  data-isHidden='false'
+  />`
+
 
   function addButton(
     storeName,
@@ -24,91 +27,52 @@ document.addEventListener("DOMContentLoaded", function () {
     style,
     storeType,
     heading,
-    bodyText
+    bodyText,
+    isHidden
   ) {
     if (style == "1") {
       return `
-      <div class="birl-cta-container tooltip-btn" style="${
-        width == "full" ? "width: 100%;" : `max-width: ${width}px;`
-      }" onClick="showBirlWelcome()"
-      }">
-  <div class="tooltip-container"><span class="tooltip-text">
-    <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} ${
-        storeType == "standard" ? "items" : "shirts"
-      } for immediate credit.
-    <br><br>
-    <b style="color: black; width: 12px; text-align:left; display: inline-block;">2.</b> Spend your credit as soon as you receive your unique code.
-    <br><br>
-    <b style="color: black; width: 12px; text-align:left; display: inline-block;">3.</b> Send your trade-in back with the free digital label provided. 
-  </span></div>
-  <div class="birl-logo-container">
-      <img class="birl-logo-2" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo">
-    </div>
-  <div class="birl-product-cta-text">
-    <p>
-      <span><b>
-          ${variant == "product" ? "Get money off this item today" : ""}${
-        variant.includes("account") ? "Get money off your next purchase" : ""
-      } </b
-        ><br>
-        </span>
-        <span style="color: #808080;">
-        Trade-in ${storeName} ${
-        storeType == "standard"
-          ? "garments you no longer use"
-          : "shirts you no longer wear"
-      }
-      </span>
-    </p>
-  </div>
-</div>
-                <div id="birlWelcome" class="birlWelcome">
-                  <div class="birlWelcome-content">
-                    <div class="birlWelcome-header">
-                      <img
-                        class="birlWelcome-logo"
-                        src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg"
-                      />
-                      <span onclick="hideBirlWelcome()" class="birlWelcome-close">&times;</span>
-                    </div>
-                    <div class="birlWelcome-left">
-                      <h1>
-                        ${heading}
-                      </h1>
-                      <div class="birlWelcome-bodyText"> 
-                        <p class="birlWelcome-bodyTextContent">
-                          ${bodyText}
-                        </p>
-                      </div>
-                      <button
-                        id="primaryGetStarted-button"
-                        class="birlWelcome-button"
-                        ${`onClick="initiateBirl(${customerId})"`}
-                      >
-                        Get started
-                      </button>
-                    </div>
-                    <div class="birlWelcome-right">
-                      <img
-                        class="birlWelcome-img1"
-                        src="${img1}"
-                        alt="img-1"
-                      />
-                      <img
-                        class="birlWelcome-img2"
-                        src="${img2}"
-                        alt=""
-                      />
-                    </div>
-                  </div>
-                </div>
+      <div class="birl-cta-container tooltip-btn" style="${width == "full" ? "width: 100%;" : `max-width: ${width}px;`} ${isHidden && "display: none;"}" onClick="showBirlWelcome()"}">
+        <div class="tooltip-container">
+          <span class="tooltip-text">
+            <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} ${
+                storeType == "standard" ? "items" : "shirts"
+              } for immediate credit.
+            <br><br>
+            <b style="color: black; width: 12px; text-align:left; display: inline-block;">2.</b> Spend your credit as soon as you receive your unique code.
+            <br><br>
+            <b style="color: black; width: 12px; text-align:left; display: inline-block;">3.</b> Send your trade-in back with the free digital label provided. 
+          </span>
+        </div>
+        <div class="birl-logo-container">
+          <img class="birl-logo-2" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo">
+         </div>
+        <div class="birl-product-cta-text">
+          <p>
+            <span><b>
+                ${variant == "product" ? "Get money off this item today" : ""}${
+              variant.includes("account") ? "Get money off your next purchase" : ""
+            } </b
+              ><br>
+              </span>
+              <span style="color: #808080;">
+              Trade-in ${storeName} ${
+              storeType == "standard"
+                ? "garments you no longer use"
+                : "shirts you no longer wear"
+            }
+            </span>
+          </p>
+        </div>
+      </div>
     `;
     }
   }
-
+  const SUPABASE_URL = 'https://rclxweaaffupqiqdklhg.supabase.co';
+  const SUPABASE_API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjbHh3ZWFhZmZ1cHFpcWRrbGhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTEwOTU5OTgsImV4cCI6MjAyNjY3MTk5OH0.h-KRME-ajXT2J_YNAEavTm77A3MjUj-j8otnj0VzTfI';
 
   const birlButtons = document.querySelectorAll(".birl-button"); // Select by class
-  birlButtons.forEach(function (birlButton) {
+  birlButtons.forEach(async function (birlButton) {
     const storeName = birlButton.getAttribute("data-storeName");
     const variant = birlButton.getAttribute("data-variant");
     const width = birlButton.getAttribute("data-width");
@@ -117,12 +81,38 @@ document.addEventListener("DOMContentLoaded", function () {
     const customerId = birlButton.getAttribute("data-customerId") || "";
     const style = birlButton.getAttribute("data-style") || "1";
     const storeType = birlButton.getAttribute("data-storeType") || "standard";
-    const heading =
+    const storeId = birlButton.getAttribute("data-storeId");
+    let heading =
     birlButton.getAttribute("data-heading") ||
     "Get Instant Credit with Birl";
-    const bodyText =
+    let bodyText =
     birlButton.getAttribute("data-bodyText") ||
         `It's <b>super easy</b> to trade-in your Peregrine pieces that you no longer need. <b>Earn instant</b> credit to upgrade your wardrobe with fresh items you'll love to wear.`;
+
+    const isHidden = birlButton.getAttribute("data-isHidden") === "true";
+
+    try {
+      const response = await fetch(`${SUPABASE_URL}/rest/v1/accounts?store_name=eq.${storeId}`, {
+          method: 'GET',
+          headers: {
+              'apikey': SUPABASE_API_KEY,
+              'Authorization': `Bearer ${SUPABASE_API_KEY}`,
+              'Content-Type': 'application/json'
+          }
+      });
+
+      if (response.ok) {
+          const data = await response.json();
+          if (data.length > 0) {
+              heading = data[0].heading || heading;
+              bodyText = data[0].bodyText || bodyText;
+          }
+      } else {
+          console.error("Error fetching store data:", response.statusText);
+      }
+  } catch (error) {
+      console.error("Fetch error:", error);
+  }
 
     const newElement = document.createElement("div");
     
@@ -136,7 +126,8 @@ document.addEventListener("DOMContentLoaded", function () {
       style,
       storeType,
       heading,
-      bodyText
+      bodyText,
+        isHidden
     );
     birlButton.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
   });
@@ -152,6 +143,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   (function () {
+
+    // Helper function to get URL parameters
+    const getURLParameter = (name) => {
+      return new URLSearchParams(window.location.search).get(name);
+    };
+
     window.showBirlWelcome = () => {
       var birlModal = document.getElementById("birlWelcome");
       birlModal.style.display = "grid";
@@ -161,6 +158,13 @@ document.addEventListener("DOMContentLoaded", function () {
       var birlModal = document.getElementById("birlWelcome");
       birlModal.style.display = "none";
     };
+
+    const openDropdownParam = getURLParameter("openDropdown");
+    if (openDropdownParam === "true") {
+      // Force open the dropdown and trigger height adjustment
+      window.showBirlWelcome();
+    }
+
 
   })();
 });
@@ -178,7 +182,7 @@ function initiateBirl(customerId) {
   });
 
   document.getElementById("primaryGetStarted-button").innerHTML = '<div class="loader"></div>';
-  const url = `https://portal-dev.wearebirl.com/api/external/createSession`;
+  const url = `https://portal.wearebirl.com/api/external/createSession`;
   const reqBody = {
     customer_id: customerId || "",
     store_id: storeId,
@@ -204,9 +208,10 @@ function initiateBirl(customerId) {
 
       document.getElementById("primaryGetStarted-button").innerHTML = 'Get started';
       const body = await response.json();
-      window.location.replace(
-        `https://portal-dev.wearebirl.com/${body.store_id}/trade-in?session_id=${body.session_id}`
-      );
+      setTimeout(() => {
+        window.open(`https://portal.wearebirl.com/${body.store_id}/trade-in?session_id=${body.session_id}`, "_blank");
+      })
+      ;
     } catch (error) {
       console.error("Error initiating session:", error);
       alert("An error occurred. Please try again.");
