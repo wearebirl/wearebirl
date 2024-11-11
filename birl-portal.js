@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       birlButton.getAttribute("data-heading") || "Get Instant Credit with Birl";
     let bodyText =
       birlButton.getAttribute("data-bodyText") ||
-      `It's <b>super easy</b> to trade-in your Peregrine pieces that you no longer need. <b>Earn instant</b> credit to upgrade your wardrobe with fresh items you'll love to wear.`;
+      `It's <b>super easy</b> to trade-in your old pieces that you no longer need. <b>Earn instant</b> credit to upgrade your wardrobe with fresh items you'll love to wear.`;
 
     const isHidden = birlButton.getAttribute("data-isHidden") === "true";
 
@@ -127,8 +127,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       if (response.ok) {
         const data = await response.json();
         if (data.length > 0) {
-          heading = data[0].heading || heading;
-          bodyText = data[0].bodyText || bodyText;
+          heading = data[0].modal_heading || heading;
+          bodyText = data[0].modal_body || bodyText;
           storeName = data[0].name || storeName;
           storeTheme = data[0].theme || storeTheme;
         }
