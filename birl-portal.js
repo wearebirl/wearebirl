@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           storeName = data[0].name || storeName;
           storeTheme = data[0].theme || storeTheme;
           const storeStatus = data[0].status;
-          if (storeStatus && storeStatus !== "active" || "demo") {
+          if (storeStatus && storeStatus != "active" || "demo") {
             isHidden = true;
           }
           if (data[0].use_modal_images === true) {
