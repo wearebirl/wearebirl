@@ -94,10 +94,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     let storeName = "";
     const variant = birlButton.getAttribute("data-variant");
     const width = birlButton.getAttribute("data-width");
-    const img1 =
+    let img1 =
       birlButton.getAttribute("data-img1") ||
       "https://wearebirl.github.io/wearebirl/assets/home-1.png";
-    const img2 =
+    let img2 =
       birlButton.getAttribute("data-img2") ||
       "https://wearebirl.github.io/wearebirl/assets/home-2.png";
     const customerId = birlButton.getAttribute("data-customerId") || "";
@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       birlButton.getAttribute("data-bodyText") ||
       `It's <b>super easy</b> to trade-in your old pieces that you no longer need. <b>Earn instant</b> credit to upgrade your wardrobe with fresh items you'll love to wear.`;
 
-    const isHidden = birlButton.getAttribute("data-isHidden") === "true";
+    let isHidden = birlButton.getAttribute("data-isHidden") === "true";
 
     try {
       const response = await fetch(
@@ -131,6 +131,14 @@ document.addEventListener("DOMContentLoaded", async function () {
           bodyText = data[0].modal_body || bodyText;
           storeName = data[0].name || storeName;
           storeTheme = data[0].theme || storeTheme;
+          const storeStatus = data[0].status;
+          if (storeStatus && storeStatus !== "active" || "demo") {
+            isHidden = true;
+          }
+          if (data[0].use_modal_images === true) {
+            img1 = data[0].cover_image || img1;
+            img2 = data[0].cover_image_2 || img2;
+          }
         }
       } else {
         console.error("Error fetching store data:", response.statusText);
