@@ -13,6 +13,18 @@ document.addEventListener("DOMContentLoaded", async function () {
     return new URLSearchParams(window.location.search).get(name);
   };
 
+  function getButtonText(storeName, storeTheme){
+    if(storeTheme === 'football'){
+      return `Trade-in ${storeName} shirts you no longer wear`
+    }
+
+    if(storeTheme === 'jacket'){
+      return `Trade-in ${storeName} jackets you no longer use`
+    }
+
+    return `Trade-in ${storeName} garments you ${storeName.length >=15 ? "don't" : "no longer"} use`
+  }
+
   function addButton(
     storeName,
     variant,
@@ -45,7 +57,7 @@ document.addEventListener("DOMContentLoaded", async function () {
               ><br>
               </span>
               <span style="color: #808080;">
-              Trade-in ${storeName} ${storeTheme == "default" ? `garments you ${storeName.length >=15 ? "don't" : "no longer"} use` : "shirts you no longer wear"}
+              ${getButtonText(storeName, storeTheme)}
             </span>
           </p>
         </div>
