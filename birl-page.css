@@ -1,0 +1,207 @@
+@font-face {
+    font-family: "Gilroy";
+    src: url("https://wearebirl.github.io/wearebirl/Gilroy-Light.woff")
+    format("woff");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Gilroy";
+    src: url("https://wearebirl.github.io/wearebirl/Gilroy-Regular.woff")
+    format("woff");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Gilroy";
+    src: url("https://wearebirl.github.io/wearebirl/Gilroy-Medium.woff")
+    format("woff");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Gilroy";
+    src: url("https://wearebirl.github.io/wearebirl/Gilroy-SemiBold.woff")
+    format("woff");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Gilroy";
+    src: url("https://wearebirl.github.io/wearebirl/Gilroy-Extrabold.woff")
+    format("woff");
+    font-weight: 800;
+    font-style: normal;
+}
+
+.birl-page-body {
+    width: 100%;
+    margin: 100px auto;
+    max-width: 1600px;
+}
+
+.birl-page-body h1 {
+    font-family: "Gilroy", serif !important;
+    font-size: 36px;
+    font-weight: 800;
+    color: black;
+}
+
+.birl-page-body h2 {
+    font-family: "Gilroy", serif !important;
+    font-size: 28px;
+    font-weight: 700;
+    color: black;
+}
+
+p {
+    font-family: "Gilroy", serif !important;
+    font-size: 18px;
+    font-weight: 400;
+    color: #4a4a4a;
+}
+
+.birl-page-body li {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+
+p {
+    margin-top: 24px;
+}
+
+li h2 {
+    margin: 0 24px 0 0;
+}
+
+li p {
+    margin: 0;
+}
+
+li {
+    margin: 25px 0;
+    max-width: 75%;
+}
+
+ol {
+    list-style-type: none;
+    margin: 16px 0 0 0;
+    padding: 0;
+}
+
+.birl-description {
+    max-width: 85%;
+}
+
+.birl-how-it-works {
+    margin: 48px 0 0 0;
+}
+
+.faqs {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.split-view {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.left-view {
+    width: 45%;
+}
+
+.right-view {
+    width: 45%;
+    position: relative;
+}
+
+.hero-img {
+    position: absolute;
+    top:0;
+    right:0;
+    width: 75%;
+    height:75%;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.secondary-img {
+    position: absolute;
+    bottom:0;
+    left:0;
+    width: 40%;
+    height:40%;
+    object-fit: cover;
+    border-radius: 16px;
+}
+.faqs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*text-align: center;*/
+}
+
+.accordion {
+    max-width: 1400px;
+
+}
+
+.accordion-item {
+    margin-bottom: 10px;
+    min-width: 800px;
+}
+
+.accordion-header {
+    padding: 15px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    text-align: left;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: "Gilroy", serif !important;
+    color: black;
+
+}
+
+.accordion-content {
+    margin-top: 8px;
+    padding: 0;
+    display: block;
+    overflow: hidden;
+    height: 0;
+    border-radius: 10px;
+    transition: height 0.3s ease;
+    background-color: #f9f9f9;
+}
+
+/* Style for when the accordion is expanded */
+.accordion-item.active .accordion-content {
+    height: auto; /* This will automatically adjust the height based on content */
+}
+
+.question   {
+    padding: 14px;
+}
+
+.question-title {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 2px;
+    font-weight: bold;
+}
+.question-answer{
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+
+}
+
