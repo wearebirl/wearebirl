@@ -4,22 +4,32 @@ document.addEventListener("DOMContentLoaded", function() {
     accordionItems.forEach(item => {
         const header = item.querySelector('.accordion-header');
         const content = item.querySelector('.accordion-content');
+        const svg = header.querySelector('svg');
 
         header.addEventListener('click', () => {
             accordionItems.forEach(innerItem => {
                 if (innerItem !== item) {
                     innerItem.classList.remove('active');
-                    innerItem.querySelector('.accordion-content').style.height = '0';
+                    const innerContent = innerItem.querySelector('.accordion-content');
+                    const innerSvg = innerItem.querySelector('.accordion-header svg');
+
+                    innerContent.style.height = '0';
+                    innerContent.style.padding = '0';
+
+                    innerSvg.classList.remove('rotated');
                 }
             });
 
             const isActive = item.classList.contains('active');
+
             if (!isActive) {
                 content.style.height = content.scrollHeight + 'px';
-                content.style.padding = '15px'
+                content.style.padding = '15px';
+                svg.classList.add('rotated');
             } else {
-                content.style.height = '0';
                 content.style.padding = '0';
+                content.style.height = '0';
+                svg.classList.remove('rotated');
             }
 
             item.classList.toggle('active');

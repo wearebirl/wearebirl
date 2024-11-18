@@ -1,46 +1,41 @@
 @font-face {
     font-family: "Gilroy";
-    src: url("https://wearebirl.github.io/wearebirl/Gilroy-Light.woff")
-    format("woff");
+    src: url("https://wearebirl.github.io/wearebirl/Gilroy-Light.woff") format("woff");
     font-weight: 300;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Gilroy";
-    src: url("https://wearebirl.github.io/wearebirl/Gilroy-Regular.woff")
-    format("woff");
+    src: url("https://wearebirl.github.io/wearebirl/Gilroy-Regular.woff") format("woff");
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Gilroy";
-    src: url("https://wearebirl.github.io/wearebirl/Gilroy-Medium.woff")
-    format("woff");
+    src: url("https://wearebirl.github.io/wearebirl/Gilroy-Medium.woff") format("woff");
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Gilroy";
-    src: url("https://wearebirl.github.io/wearebirl/Gilroy-SemiBold.woff")
-    format("woff");
+    src: url("https://wearebirl.github.io/wearebirl/Gilroy-SemiBold.woff") format("woff");
     font-weight: 600;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Gilroy";
-    src: url("https://wearebirl.github.io/wearebirl/Gilroy-Extrabold.woff")
-    format("woff");
+    src: url("https://wearebirl.github.io/wearebirl/Gilroy-Extrabold.woff") format("woff");
     font-weight: 800;
     font-style: normal;
 }
 
 .birl-page-body {
     width: 100%;
-    margin: auto;
+    margin: 32px auto;
     max-width: 1600px;
 }
 
@@ -123,7 +118,6 @@ ol {
     width: 100%;
 }
 
-
 .right-view {
     width: 45%;
     display: flex;
@@ -146,17 +140,14 @@ ol {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /*text-align: center;*/
 }
 
 .accordion {
-    max-width: 1400px;
-
+    max-width: 800px;
 }
 
 .accordion-item {
     margin-bottom: 10px;
-    min-width: 800px;
 }
 
 .accordion-header {
@@ -169,26 +160,42 @@ ol {
     font-weight: bold;
     font-family: "Gilroy", serif !important;
     color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+.accordion-header svg {
+    transition: transform 0.3s ease; /* Smooth transition for rotation */
+}
+
+.accordion-header svg.rotated {
+    transform: rotate(180deg); /* Rotate the SVG by 180 degrees */
 }
 
 .accordion-content {
     margin-top: 8px;
+    max-height: 450px !important;
     padding: 0;
     display: block;
-    overflow: hidden;
+    overflow: scroll;
     height: 0;
     border-radius: 10px;
     transition: height 0.3s ease;
     background-color: #f9f9f9;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;
 }
 
-/* Style for when the accordion is expanded */
+.accordion-content::-webkit-scrollbar {
+    display: none;
+}
+
 .accordion-item.active .accordion-content {
-    height: auto; /* This will automatically adjust the height based on content */
+    height: auto;
 }
 
-.question   {
+.question {
     padding: 14px;
 }
 
@@ -198,10 +205,243 @@ ol {
     margin-bottom: 2px;
     font-weight: bold;
 }
-.question-answer{
+
+.question-answer {
     padding: 0;
     margin: 0;
     font-size: 16px;
-
+    white-space: normal;
 }
 
+.birl-get-started {
+    margin: auto;
+    font-family: "Gilroy", serif !important;
+    display: inline-block;
+    background-color: #3c315b;
+    color: white;
+    padding: 14px 50px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    border: none;
+    margin-top: 16px;
+}
+
+@media (max-width: 1440px) {
+    .birl-page-body h1 {
+        font-size: 48px;
+    }
+
+    .birl-page-body h2 {
+        font-size: 26px;
+    }
+
+    p {
+        font-size: 17px;
+    }
+
+    .split-view {
+        flex-direction: row;
+    }
+
+    .left-view, .right-view {
+        width: 48%;
+    }
+
+    .accordion-item {
+        min-width: 90%;
+    }
+
+    .hero-img {
+        width: 85%;
+        height: auto;
+    }
+}
+
+@media (max-width: 1200px) {
+    .birl-page-body h1 {
+        font-size: 44px;
+    }
+
+    .birl-page-body h2 {
+        font-size: 24px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    .split-view {
+        flex-direction: row;
+    }
+
+    .left-view, .right-view {
+        width: 45%;
+    }
+
+    .accordion-item {
+        min-width: 85%;
+    }
+
+    .hero-img {
+        width: 90%;
+        height: auto;
+    }
+}
+
+@media (max-width: 1024px) {
+    .birl-page-body h1 {
+        font-size: 40px;
+    }
+
+    .birl-page-body h2 {
+        font-size: 22px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    .split-view {
+        flex-direction: column;
+    }
+
+    .left-view, .right-view {
+        width: 100%;
+    }
+
+    .accordion-item {
+        min-width: 100%;
+    }
+
+    .hero-img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 900px) {
+    .birl-page-body h1 {
+        font-size: 36px;
+    }
+
+    .birl-page-body h2 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 15px;
+    }
+
+    .split-view {
+        flex-direction: column;
+    }
+
+    .left-view, .right-view {
+        width: 100%;
+    }
+
+    .accordion-item {
+        min-width: 100%;
+    }
+
+    .hero-img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .birl-page-body h1 {
+        font-size: 32px;
+    }
+
+    .birl-page-body h2 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    .split-view {
+        flex-direction: column;
+    }
+
+    .left-view, .right-view {
+        width: 100%;
+    }
+
+    .accordion-item {
+        min-width: 100%;
+    }
+
+    .hero-img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .birl-page-body h1 {
+        font-size: 30px;
+    }
+
+    .birl-page-body h2 {
+        font-size: 18px;
+    }
+
+    p {
+        font-size: 13px;
+    }
+
+    .split-view {
+        flex-direction: column;
+    }
+
+    .left-view, .right-view {
+        width: 100%;
+    }
+
+    .accordion-item {
+        min-width: 100%;
+    }
+
+    .hero-img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .birl-page-body h1 {
+        font-size: 28px;
+    }
+
+    .birl-page-body h2 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    .split-view {
+        flex-direction: column;
+    }
+
+    .left-view, .right-view {
+        width: 100%;
+    }
+
+    .accordion-item {
+        min-width: 100%;
+    }
+
+    .hero-img {
+        width: 100%;
+        height: auto;
+    }
+}
