@@ -214,7 +214,6 @@ ol {
 }
 
 .birl-get-started {
-    margin: auto;
     font-family: "Gilroy", serif !important;
     display: inline-block;
     background-color: #3c315b;
@@ -226,7 +225,7 @@ ol {
     cursor: pointer;
     transition: opacity 0.3s;
     border: none;
-    margin-top: 16px;
+    margin: 16px 0;
 }
 
 @media (max-width: 1440px) {
