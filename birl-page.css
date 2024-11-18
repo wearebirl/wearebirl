@@ -110,8 +110,14 @@ ol {
     flex-direction: column;
 }
 
+.faq-title {
+    margin-bottom: 16px;
+}
+
 .left-view {
     width: 45%;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .left-view.column {
@@ -123,6 +129,8 @@ ol {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .right-view.column {
