@@ -40,14 +40,13 @@
 
 .birl-page-body {
     width: 100%;
-    min-width: 1600px;
-    margin: 100px auto;
+    margin: auto;
     max-width: 1600px;
 }
 
 .birl-page-body h1 {
     font-family: "Gilroy", serif !important;
-    font-size: 36px;
+    font-size: 52px;
     font-weight: 800;
     color: black;
 }
@@ -96,10 +95,6 @@ ol {
     padding: 0;
 }
 
-.birl-description {
-    max-width: 85%;
-}
-
 .birl-how-it-works {
     margin: 48px 0 0 0;
 }
@@ -116,34 +111,37 @@ ol {
     justify-content: space-between;
 }
 
+.split-view.column {
+    flex-direction: column;
+}
+
 .left-view {
     width: 45%;
 }
 
+.left-view.column {
+    width: 100%;
+}
+
+
 .right-view {
     width: 45%;
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-view.column {
+    width: 100%;
 }
 
 .hero-img {
-    position: absolute;
-    top:0;
-    right:0;
-    width: 75%;
-    height:75%;
+    width: 80%;
+    height: 80%;
     object-fit: cover;
     border-radius: 16px;
 }
 
-.secondary-img {
-    position: absolute;
-    bottom:0;
-    left:0;
-    width: 40%;
-    height:40%;
-    object-fit: cover;
-    border-radius: 16px;
-}
 .faqs {
     display: flex;
     flex-direction: column;

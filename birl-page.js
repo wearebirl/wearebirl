@@ -26,3 +26,32 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    const container = document.querySelector('.split-view');
+    const left = document.querySelector('.left-view');
+    const right = document.querySelector('.right-view');// Target the element with class 'birl-page-body'
+
+    function checkContainerWidth() {
+        const containerWidth = container.offsetWidth;
+        console.log("Container width: ", containerWidth);
+
+        // If the container's width is smaller than 600px, switch to column layout
+        if (containerWidth < 1000) {
+            // container.classList.add('flex')
+            container.classList.add('column');
+            left.classList.add('column');
+            right.classList.add('column');  // Add 'column' class to make it flex-column
+        } else {
+            container.classList.remove('column');
+            left.classList.remove('column');
+            right.classList.remove('column'); // Remove the 'column' class to revert to flex-row
+        }
+    }
+
+    // Initial check for container width on page load
+    checkContainerWidth();
+
+    // Optional: Listen for window resizing and re-check the container's width
+    window.addEventListener('resize', checkContainerWidth);
+});
