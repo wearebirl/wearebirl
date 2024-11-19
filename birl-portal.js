@@ -25,6 +25,18 @@ document.addEventListener("DOMContentLoaded", async function () {
     return `Trade-in ${storeName} garments you ${storeName.length >=15 ? "don't" : "no longer"} use`
   }
 
+  function getDropdown1Text(storeName, storeTheme){
+    if(storeTheme === 'football'){
+      return `Trade-in your old shirts for immediate credit.`
+    }
+
+    if(storeTheme === 'jacket'){
+      return `Trade-in your old jackets for immediate credit.`
+    }
+
+    return `Trade-in your old items for immediate credit.`
+  }
+
   function addButton(
     storeName,
     variant,
@@ -38,7 +50,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       } ${isHidden && "display: none;"}" onClick="showBirlWelcome()"}">
         <div class="tooltip-container">
           <span class="tooltip-text">
-            <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} ${storeTheme == "default" ? "items" : "shirts"} for immediate credit.
+            <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> ${getDropdown1Text(storeName, storeTheme)}
             <br><br>
             <b style="color: black; width: 12px; text-align:left; display: inline-block;">2.</b> Spend your credit as soon as you receive your unique code.
             <br><br>
