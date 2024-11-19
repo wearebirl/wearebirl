@@ -27,14 +27,14 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   function getDropdown1Text(storeName, storeTheme){
     if(storeTheme === 'football'){
-      return `Trade-in your old shirts for immediate credit.`
+      return `Trade-in your old ${storeName} shirts for immediate credit.`
     }
 
     if(storeTheme === 'jacket'){
-      return `Trade-in your old jackets for immediate credit.`
+      return `Trade-in your old ${storeName} jackets for immediate credit.`
     }
 
-    return `Trade-in your old items for immediate credit.`
+    return `Trade-in your old ${storeName} items for immediate credit.`
   }
 
   function addButton(
