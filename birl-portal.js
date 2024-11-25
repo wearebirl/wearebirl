@@ -13,7 +13,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     return new URLSearchParams(window.location.search).get(name);
   };
 
-  function getButtonText(storeName, storeTheme){
+  function getButtonText(storeName, storeTheme, isMinimal){
+    if(isMinimal){
+      return `Trade-in garments you no longer use`
+    }
+
     if(storeTheme === 'football'){
       return `Trade-in ${storeName} shirts you no longer wear`
     }
@@ -70,7 +74,7 @@ document.addEventListener("DOMContentLoaded", async function () {
               variant === "product" ? "Get money off this item today" : ""
           }${variant.includes("account") ? "Get money off your next purchase" : ""} </b><br>
                   </span>
-                  <span style="color: #808080;">${getButtonText(storeName, storeTheme)}</span>
+                  <span style="color: #808080;">${getButtonText(storeName, storeTheme, isMinimal)}</span>
               </p>
           </div>
       </div>
