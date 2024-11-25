@@ -17,116 +17,147 @@ document.addEventListener("DOMContentLoaded", function () {
   ) {
     if (style == "1") {
       return `
-        <div class="birl-product-cta-container-${styleId} tooltip-btn" style="${width == " full" ? "width: 100%;" : `max-width: ${width}px;`} ${isHidden ? "visibility: hidden;" : "visibility: visible;" }" onClick="openDropdown()" }">
-            <div class="tooltip-container"><span class="tooltip-text">
-                    <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} ${
-                  storeType == "standard" ? "items" : "shirts"
-              } for immediate credit.
-                    <br><br>
-                    <b style="color: black; width: 12px; text-align:left; display: inline-block;">2.</b> Spend your credit as soon as you receive your unique code.
-                    <br><br>
-                    <b style="color: black; width: 12px; text-align:left; display: inline-block;">3.</b> Send your trade-in back with the free digital label provided.
-                </span>
-            </div>
-            <div class="birl-logo-container">
-                <img class="birl-logo-2" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo">
-            </div>
-            <div class="birl-product-cta-text">
-                <p>
-                    <span><b>
-                            ${variant == "product" ? "Get money off this item today" : ""}${
-                  variant.includes("account") ? "Get money off your next purchase" : ""
-              } </b><br>
-                    </span>
-                    <span style="color: #808080;">
-                        Trade-in ${storeName} ${
-                  storeType == "standard"
-                      ? "garments you no longer use"
-                      : "shirts you no longer wear"
-              }
-                    </span>
-                </p>
-            </div>
-        </div>
+      <div class="birl-product-cta-container-${styleId} tooltip-btn" style="${width == "full" ? "width: 100%;" : `max-width: ${width}px;`} ${isHidden ? "visibility: hidden;" : "visibility: visible;"}" onClick="openDropdown()"}">
+  <div class="tooltip-container"><span class="tooltip-text">
+    <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} ${
+        storeType == "standard" ? "items" : "shirts"
+      } for immediate credit.
+    <br><br>
+    <b style="color: black; width: 12px; text-align:left; display: inline-block;">2.</b> Spend your credit as soon as you receive your unique code.
+    <br><br>
+    <b style="color: black; width: 12px; text-align:left; display: inline-block;">3.</b> Send your trade-in back with the free digital label provided. 
+  </span></div>
+  <div class="birl-logo-container">
+      <img class="birl-logo-2" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo">
+    </div>
+  <div class="birl-product-cta-text">
+    <p>
+      <span><b>
+          ${variant == "product" ? "Get money off this item today" : ""}${
+        variant.includes("account") ? "Get money off your next purchase" : ""
+      } </b
+        ><br>
+        </span>
+        <span style="color: #808080;">
+        Trade-in ${storeName} ${
+        storeType == "standard"
+          ? "garments you no longer use"
+          : "shirts you no longer wear"
+      }
+      </span>
+    </p>
+  </div>
+</div>
     `;
     }
-
     if (style == "2") {
       return `
-        <div class="birl-cta-container-2 birl-cta-container-2-${styleId} tooltip-btn" style="${
-            width == " full" ? "width: 100%;" : `max-width: ${width}px;` }" onClick="initiateBirl(${customerId}, false)">
-          <div class="tooltip-container tooltip-container-2"><span class="tooltip-text">
-                  <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} ${
-            storeType == "standard" ? "items" : "shirts"
-        } for immediate credit.
-                  <br><br>
-                  <b style="color: black; width: 12px; text-align:left; display: inline-block;">2.</b> Spend your credit as soon as you receive your unique code.
-                  <br><br>
-                  <b style="color: black; width: 12px; text-align:left; display: inline-block;">3.</b> Send your trade-in back with the free digital label provided.
-              </span></div>
-          <p>
-              Trade in with
-          </p>
-          <img class="birl-logo-2" loading="eager" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo" style="display:inline;">
-      </div>
+      <div class="birl-cta-container-2 birl-cta-container-2-${styleId} tooltip-btn" style="${
+        width == "full" ? "width: 100%;" : `max-width: ${width}px;`
+      }" onClick="initiateBirl(${customerId}, false)">
+  <div class="tooltip-container tooltip-container-2"><span class="tooltip-text">
+    <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} ${
+        storeType == "standard" ? "items" : "shirts"
+      } for immediate credit.
+    <br><br>
+    <b style="color: black; width: 12px; text-align:left; display: inline-block;">2.</b> Spend your credit as soon as you receive your unique code.
+    <br><br>
+    <b style="color: black; width: 12px; text-align:left; display: inline-block;">3.</b> Send your trade-in back with the free digital label provided. 
+  </span></div>
+   <p>
+    Trade in with
+    </p>
+ <img
+    class="birl-logo-2"
+    loading="eager"
+    src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg"
+    width="56"
+    height="19"
+    alt="Birl Logo"
+    style="display:inline;"
+  >
+   
+</div>
     `;
     }
     if (style == "3") {
       return `
       <div class="birl-product-cta-container-${styleId} tooltip-btn" style="${
-          width == " full" ? "width: 100%;" : `max-width: ${width}px;` }" onClick="showBirlWelcome()" }">
-       <div class="tooltip-container"><span class="tooltip-text">
-               <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} ${
-          storeType == "standard" ? "items" : "shirts"
+        width == "full" ? "width: 100%;" : `max-width: ${width}px;`
+      }" onClick="showBirlWelcome()"
+      }">
+  <div class="tooltip-container"><span class="tooltip-text">
+    <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> Trade-in your old ${storeName} ${
+        storeType == "standard" ? "items" : "shirts"
       } for immediate credit.
-               <br><br>
-               <b style="color: black; width: 12px; text-align:left; display: inline-block;">2.</b> Spend your credit as soon as you receive your unique code.
-               <br><br>
-               <b style="color: black; width: 12px; text-align:left; display: inline-block;">3.</b> Send your trade-in back with the free digital label provided.
-           </span></div>
-       <div class="birl-logo-container">
-           <img class="birl-logo-2" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo">
-       </div>
-       <div class="birl-product-cta-text">
-           <p>
-               <span><b>
-                       ${variant == "product" ? "Get money off this item today" : ""}${
-          variant.includes("account") ? "Get money off your next purchase" : ""
-      } </b><br>
-               </span>
-               <span style="color: #808080;">
-                   Trade-in ${storeName} ${
-          storeType == "standard"
-              ? "garments you no longer use"
-              : "shirts you no longer wear"
+    <br><br>
+    <b style="color: black; width: 12px; text-align:left; display: inline-block;">2.</b> Spend your credit as soon as you receive your unique code.
+    <br><br>
+    <b style="color: black; width: 12px; text-align:left; display: inline-block;">3.</b> Send your trade-in back with the free digital label provided. 
+  </span></div>
+  <div class="birl-logo-container">
+      <img class="birl-logo-2" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo">
+    </div>
+  <div class="birl-product-cta-text">
+    <p>
+      <span><b>
+          ${variant == "product" ? "Get money off this item today" : ""}${
+        variant.includes("account") ? "Get money off your next purchase" : ""
+      } </b
+        ><br>
+        </span>
+        <span style="color: #808080;">
+        Trade-in ${storeName} ${
+        storeType == "standard"
+          ? "garments you no longer use"
+          : "shirts you no longer wear"
       }
-               </span>
-           </p>
-       </div>
-   </div>
-   <div id="birlWelcome" class="birlWelcome">
-       <div class="birlWelcome-content">
-           <div class="birlWelcome-header">
-               <img class="birlWelcome-logo" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" />
-               <span onclick="hideBirlWelcome()" class="birlWelcome-close">&times;</span>
-           </div>
-           <div class="birlWelcome-left">
-               <h1>
-                   ${heading}
-               </h1>
-               <p>
-                   ${bodyText}
-               </p>
-               <button id="primaryGetStarted-button" class="birlWelcome-button" ${ customerId !=(null || "" ) ? `onClick="initiateBirl(${customerId}, false)" ` : `onClick="window.location.href = '/account/login'" ` }>
-                   Get started
-               </button>
-           </div>
-           <div class="birlWelcome-right">
-               <img class="birlWelcome-img1" src="${img1}" alt="img-1" />
-               <img class="birlWelcome-img2" src="${img2}" alt="" />
-           </div>
-       </div>
-   </div>
+      </span>
+    </p>
+  </div>
+</div>
+                <div id="birlWelcome" class="birlWelcome">
+                  <div class="birlWelcome-content">
+                    <div class="birlWelcome-header">
+                      <img
+                        class="birlWelcome-logo"
+                        src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg"
+                      />
+                      <span onclick="hideBirlWelcome()" class="birlWelcome-close">&times;</span>
+                    </div>
+                    <div class="birlWelcome-left">
+                      <h1>
+                        ${heading}
+                      </h1>
+                      <p>
+                      ${bodyText}     
+                      </p>
+                      <button
+                        id="primaryGetStarted-button"
+                        class="birlWelcome-button"
+                        ${
+                          customerId != (null || "")
+                            ? `onClick="initiateBirl(${customerId}, false)"`
+                            : `onClick="window.location.href = '/account/login'"`
+                        }
+                      >
+                        Get started
+                      </button>
+                    </div>
+                    <div class="birlWelcome-right">
+                      <img
+                        class="birlWelcome-img1"
+                        src="${img1}"
+                        alt="img-1"
+                      />
+                      <img
+                        class="birlWelcome-img2"
+                        src="${img2}"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
     `;
     }
   }
@@ -134,117 +165,117 @@ document.addEventListener("DOMContentLoaded", function () {
   function addHeader(offset, customerId, storeType = "standard") {
     return `
   <div class="birl-announcement-dropdown font-gilroy" style="height: calc(100svh - ${offset}px);">
-      <div class="Trade-In-Banner-Container">
-          <button class="Trade-In" onclick=openDropdown()>
-              <div class="Trade-In-Back-Container">
-                  <svg width="15" height="13" viewBox="0 0 15 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M0.646446 4.16728C0.451184 4.36254 0.451184 4.67913 0.646446 4.87439L3.82843 8.05637C4.02369 8.25163 4.34027 8.25163 4.53553 8.05637C4.7308 7.86111 4.7308 7.54453 4.53553 7.34926L1.70711 4.52084L4.53553 1.69241C4.7308 1.49715 4.7308 1.18056 4.53553 0.985302C4.34027 0.79004 4.02369 0.79004 3.82843 0.985302L0.646446 4.16728ZM11 4.02084L1 4.02084V5.02084L11 5.02084V4.02084Z" fill="black" />
-                  </svg>
-                  <p>Back</p>
-              </div>
-          </button>
+<div class="Trade-In-Banner-Container">
+  <button class="Trade-In" onclick=openDropdown()>
+    <div class="Trade-In-Back-Container">
+      <svg width="15" height="13" viewBox="0 0 15 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0.646446 4.16728C0.451184 4.36254 0.451184 4.67913 0.646446 4.87439L3.82843 8.05637C4.02369 8.25163 4.34027 8.25163 4.53553 8.05637C4.7308 7.86111 4.7308 7.54453 4.53553 7.34926L1.70711 4.52084L4.53553 1.69241C4.7308 1.49715 4.7308 1.18056 4.53553 0.985302C4.34027 0.79004 4.02369 0.79004 3.82843 0.985302L0.646446 4.16728ZM11 4.02084L1 4.02084V5.02084L11 5.02084V4.02084Z" fill="black"/>
+      </svg>
+      <p>Back</p>
+    </div>
+  </button>
 
-          <div>
-              <p style="font-size: 14px; font-weight: 500; color: #808080;">Powered by</p>
-              <div class="birl-logo-container">
-                  <img class="birl-logo-2" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo">
-              </div>
+  <div>
+            <p style="font-size: 14px; font-weight: 500; color: #808080;">Powered by</p>
+            <div class="birl-logo-container">
+      <img class="birl-logo-2" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo">
+    </div>
           </div>
-      </div>
+</div>
 
+  <div>
+    <h1 class="drop_title font-gilroy">Get Instant Credit with Birl</h1>
+
+    <div class="drop_content_imgs">
       <div>
-          <h1 class="drop_title font-gilroy">Get Instant Credit with Birl</h1>
+      <img src="https://wearebirl.github.io/wearebirl/assets/card.svg" width="170" height="170">
+      <p class="dropdown-img-lbl" >Instant Credit</p>
+      </div>
+      <div >
+      <img src="https://wearebirl.github.io/wearebirl/assets/wallet.svg" width="170" height="170">
+      <p class="dropdown-img-lbl">Spend Immediately</p>
+      </div>
+      <div >
+      <img src="https://wearebirl.github.io/wearebirl/assets/truck.svg" width="170" height="170">
+      <p class="dropdown-img-lbl">Free Returns</p>
+      </div>
+    </div>
 
-          <div class="drop_content_imgs">
-              <div>
-                  <img src="https://wearebirl.github.io/wearebirl/assets/card.svg" width="170" height="170">
-                  <p class="dropdown-img-lbl">Instant Credit</p>
-              </div>
-              <div>
-                  <img src="https://wearebirl.github.io/wearebirl/assets/wallet.svg" width="170" height="170">
-                  <p class="dropdown-img-lbl">Spend Immediately</p>
-              </div>
-              <div>
-                  <img src="https://wearebirl.github.io/wearebirl/assets/truck.svg" width="170" height="170">
-                  <p class="dropdown-img-lbl">Free Returns</p>
-              </div>
-          </div>
-
-          <div class="drop_content_buttons">
-              ${
+    <div class="drop_content_buttons">
+      ${
         customerId != (null || "")
-            ? `<button class="start-trade-in" id="trade-in-button" onclick="initiateBirl(${customerId}, false)">
-                  <span class="button-text">Begin Trade-in</span>
-                  <span class="button-text-loading" style="display: none;">Loading...</span>
-              </button>`
-            : `<button class="start-trade-in" onclick="window.location.href = '/account/login'">Begin Trade-in</button>`
-    }
-              <button class="start-trade-in-later" onclick="openDropdown()">Maybe Later</button>
-          </div>
-      </div>
-
-      <div class="drop_content_flex">
-          <div class="drop_content_item left">
-              <h2>How it Works</h2>
-
-              <div class="birl-carousel">
-                  <div class="birl-carousel-item active">
-                      <h3>1. Trade</h3>
-                      <p>Choose to trade ${
-        storeType == "standard" ? "an item" : "a shirt"
-    } from your brand account or the Birl trade-in portal</p>
-                  </div>
-
-                  <div class="birl-carousel-item">
-
-                      <h3>2. Instant Credit</h3>
-                      <p>Accept your credit and receive the voucher code instantly in your email inbox</p>
-                  </div>
-
-                  <div class="birl-carousel-item">
-
-                      <h3>3. Spend Immediately</h3>
-                      <p>Your credit can be used as soon as you receive it or you can save it for your next purchase</p>
-                  </div>
-
-                  <div class="birl-carousel-item">
-
-                      <h3>4. Free Shipping</h3>
-                      <p>Select your preferred courier and receive a free digital postage label to your email inbox</p>
-                  </div>
-
-                  <div class="birl-carousel-item">
-
-                      <h3>5. Easy to Return</h3>
-                      <p>Pack your item and take it to a local drop off location that suits you</p>
-                  </div>
-              </div>
-
-              <div class="birl-carousel-controls">
-                  <button class="birl-carousel-control birl-carousel-control-prev" aria-label="Previous slide">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="8" viewBox="0 0 11 8" fill="none">
-                          <path d="M0.146935 3.4454C-0.0483274 3.64066 -0.0483274 3.95724 0.146935 4.1525L3.32892 7.33448C3.52418 7.52975 3.84076 7.52975 4.03602 7.33448C4.23128 7.13922 4.23128 6.82264 4.03602 6.62738L1.20759 3.79895L4.03602 0.970523C4.23128 0.775261 4.23128 0.458678 4.03602 0.263416C3.84076 0.0681541 3.52418 0.0681541 3.32892 0.263416L0.146935 3.4454ZM10.5005 3.29895L0.500488 3.29895V4.29895L10.5005 4.29895V3.29895Z" fill="black" />
-                      </svg>
-                  </button>
-                  <button class="birl-carousel-control birl-carousel-control-next" aria-label="Next slide">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="11" height="8" viewBox="0 0 11 8" fill="none">
-                          <path d="M10.3536 4.15238C10.5488 3.95712 10.5488 3.64054 10.3536 3.44527L7.17157 0.263294C6.97631 0.068032 6.65973 0.068032 6.46447 0.263294C6.2692 0.458556 6.2692 0.775139 6.46447 0.970401L9.29289 3.79883L6.46447 6.62726C6.2692 6.82252 6.2692 7.1391 6.46447 7.33436C6.65973 7.52962 6.97631 7.52962 7.17157 7.33436L10.3536 4.15238ZM0 4.29883H10V3.29883H0L0 4.29883Z" fill="black" />
-                      </svg>
-                  </button>
-              </div>
-
-              <div class="dropdown-page-dots">
-                  <div class="dropdown-page-dot active"></div>
-                  <div class="dropdown-page-dot"></div>
-                  <div class="dropdown-page-dot"></div>
-                  <div class="dropdown-page-dot"></div>
-                  <div class="dropdown-page-dot"></div>
-              </div>
-          </div>
-
-          <div class="drop_content_item" id="HowItWorksSection"></div>
-      </div>
+          ? `<button class="start-trade-in" id="trade-in-button" onclick="initiateBirl(${customerId}, false)">
+          <span class="button-text">Begin Trade-in</span>
+          <span class="button-text-loading" style="display: none;">Loading...</span>
+        </button>`
+          : `<button class="start-trade-in" onclick="window.location.href = '/account/login'">Begin Trade-in</button>`
+      }
+      <button class="start-trade-in-later" onclick="openDropdown()">Maybe Later</button>
+    </div>
   </div>
+
+  <div class="drop_content_flex">
+    <div class="drop_content_item left">
+      <h2>How it Works</h2>
+
+      <div class="birl-carousel">
+        <div class="birl-carousel-item active">
+          <h3>1. Trade</h3>
+          <p>Choose to trade ${
+            storeType == "standard" ? "an item" : "a shirt"
+          } from your brand account or the Birl trade-in portal</p>
+        </div>
+
+        <div class="birl-carousel-item">
+          
+          <h3>2. Instant Credit</h3>
+          <p>Accept your credit and receive the voucher code instantly in your email inbox</p>
+        </div>
+
+        <div class="birl-carousel-item">
+         
+          <h3>3. Spend Immediately</h3>
+          <p>Your credit can be used as soon as you receive it or you can save it for your next purchase</p>
+        </div>
+
+        <div class="birl-carousel-item">
+         
+          <h3>4. Free Shipping</h3>
+          <p>Select your preferred courier and receive a free digital postage label to your email inbox</p>
+        </div>
+
+        <div class="birl-carousel-item">
+       
+          <h3>5. Easy to Return</h3>
+          <p>Pack your item and take it to a local drop off location that suits you</p>
+        </div>
+      </div>
+
+      <div class="birl-carousel-controls">
+        <button class="birl-carousel-control birl-carousel-control-prev" aria-label="Previous slide">
+          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="8" viewBox="0 0 11 8" fill="none">
+            <path d="M0.146935 3.4454C-0.0483274 3.64066 -0.0483274 3.95724 0.146935 4.1525L3.32892 7.33448C3.52418 7.52975 3.84076 7.52975 4.03602 7.33448C4.23128 7.13922 4.23128 6.82264 4.03602 6.62738L1.20759 3.79895L4.03602 0.970523C4.23128 0.775261 4.23128 0.458678 4.03602 0.263416C3.84076 0.0681541 3.52418 0.0681541 3.32892 0.263416L0.146935 3.4454ZM10.5005 3.29895L0.500488 3.29895V4.29895L10.5005 4.29895V3.29895Z" fill="black"/>
+          </svg>
+        </button>
+        <button class="birl-carousel-control birl-carousel-control-next" aria-label="Next slide">
+          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="8" viewBox="0 0 11 8" fill="none">
+            <path d="M10.3536 4.15238C10.5488 3.95712 10.5488 3.64054 10.3536 3.44527L7.17157 0.263294C6.97631 0.068032 6.65973 0.068032 6.46447 0.263294C6.2692 0.458556 6.2692 0.775139 6.46447 0.970401L9.29289 3.79883L6.46447 6.62726C6.2692 6.82252 6.2692 7.1391 6.46447 7.33436C6.65973 7.52962 6.97631 7.52962 7.17157 7.33436L10.3536 4.15238ZM0 4.29883H10V3.29883H0L0 4.29883Z" fill="black"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="dropdown-page-dots">
+        <div class="dropdown-page-dot active"></div>
+        <div class="dropdown-page-dot"></div>
+        <div class="dropdown-page-dot"></div>
+        <div class="dropdown-page-dot"></div>
+        <div class="dropdown-page-dot"></div>
+      </div>
+    </div>
+
+    <div class="drop_content_item" id="HowItWorksSection"></div>
+  </div>
+</div>
 `;
   }
 
