@@ -64,6 +64,8 @@ p {
     display: flex;
     flex-direction: row;
     align-content: center;
+    margin: 25px 0;
+    max-width: 75%;
 }
 
 p {
@@ -77,11 +79,6 @@ li h2 {
 
 li p {
     margin: 0;
-}
-
-li {
-    margin: 25px 0;
-    max-width: 75%;
 }
 
 ol {
