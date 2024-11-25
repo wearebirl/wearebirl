@@ -42,37 +42,36 @@ document.addEventListener("DOMContentLoaded", async function () {
     variant,
     width,
     storeTheme,
+    isMinimal,
     isHidden
   ) {
     return `
-      <div class="birl-cta-container tooltip-btn" style="${
-        width == "full" ? "width: 100%;" : `max-width: ${width}px;`
-      } ${isHidden && "display: none;"}" onClick="showBirlWelcome()"}">
-        <div class="tooltip-container">
-          <span class="tooltip-text">
-            <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> ${getDropdown1Text(storeName, storeTheme)}
-            <br><br>
-            <b style="color: black; width: 12px; text-align:left; display: inline-block;">2.</b> Spend your credit as soon as you receive your unique code.
-            <br><br>
-            <b style="color: black; width: 12px; text-align:left; display: inline-block;">3.</b> Send your trade-in back with the free digital label provided. 
-          </span>
-        </div>
-        <div class="birl-logo-container">
-          <img class="birl-logo-2" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo">
-         </div>
-        <div class="birl-product-cta-text">
-          <p>
-            <span><b>
-                ${
-                  variant == "product" ? "Get money off this item today" : ""
-                }${variant.includes("account") ? "Get money off your next purchase" : ""} </b
-              ><br>
+      <div class="birl-cta-container tooltip-btn" style="${width === " full" ? "width: 100%;" : `max-width: ${width}px;` } ${isHidden && "display: none;" } ${isMinimal ? 'border-radius: 0px;' : 'border-radius: 5px;'}" onClick="showBirlWelcome()" }">
+          <div class="tooltip-container">
+              <span class="tooltip-text">
+                  <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> ${getDropdown1Text(storeName, storeTheme)}
+                  <br><br>
+                  <b style="color: black; width: 12px; text-align:left; display: inline-block;">2.</b> Spend your credit as soon as you receive your unique code.
+                  <br><br>
+                  <b style="color: black; width: 12px; text-align:left; display: inline-block;">3.</b> Send your trade-in back with the free digital label provided.
               </span>
-              <span style="color: #808080;">
-              ${getButtonText(storeName, storeTheme)}
-            </span>
-          </p>
-        </div>
+          </div>
+          <div class="birl-logo-container">
+            ${isMinimal ? 
+                <img class="birl-logo-2" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo"></img> : 
+                <img class="birl-logo-2" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo"></img>
+              }
+            </div>
+          <div class="birl-product-cta-text">
+              <p>
+                  <span><b>
+                          ${
+              variant === "product" ? "Get money off this item today" : ""
+          }${variant.includes("account") ? "Get money off your next purchase" : ""} </b><br>
+                  </span>
+                  <span style="color: #808080;">${getButtonText(storeName, storeTheme)}</span>
+              </p>
+          </div>
       </div>
     `;
   }
@@ -134,6 +133,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       `It's <b>super easy</b> to trade-in your old pieces that you no longer need. <b>Earn instant</b> credit to upgrade your wardrobe with fresh items you'll love to wear.`;
 
     let isHidden = birlButton.getAttribute("data-isHidden") === "true";
+    let isMinimal = birlButton.getAttribute("data-isMinimal") === "false";
 
     try {
       const response = await fetch(
@@ -178,7 +178,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       variant,
       width,
       storeTheme,
-      isHidden
+      isHidden,
+        isMinimal
     );
     birlButton.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
     
