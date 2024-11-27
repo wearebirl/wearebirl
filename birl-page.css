@@ -77,6 +77,10 @@ li h2 {
     white-space: nowrap;
 }
 
+.birl-point {
+    margin-top: 0 !important;
+}
+
 li p {
     margin: 0;
 }
@@ -209,8 +213,8 @@ ol {
 .question-title {
     padding: 0;
     margin: 0;
-    margin-bottom: 2px;
-    font-weight: bold;
+    margin-bottom: 2px !important;
+    font-weight: bold !important;
 }
 
 .question-answer {
