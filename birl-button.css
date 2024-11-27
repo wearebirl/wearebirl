@@ -296,6 +296,7 @@
   display: inline-block;
   text-align: left;
   color: gray;
+  text-transform: none !important;
 }
 
 .tooltip-btn .tooltip-container {
