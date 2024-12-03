@@ -228,52 +228,32 @@ function initiateBirl(customerId) {
   console.log("Initiating Birl trade-in session...");
   let storeId = "";
   let variant = "";
-  const birlButtons = document.querySelectorAll(".birl-button"); // Select by class
+  const birlButtons = document.querySelectorAll(".birl-button");
 
   birlButtons.forEach(function (birlButton) {
     storeId = birlButton.getAttribute("data-storeId");
     variant = birlButton.getAttribute("data-variant");
   });
 
-  document.getElementById("primaryGetStarted-button").innerHTML =
-    '<div class="loader"></div>';
-  const url = `https://portal.wearebirl.com/api/external/createSession`;
-  const reqBody = {
+  document.getElementById("primaryGetStarted-button").innerHTML = '<div class="loader"></div>';
+
+  const userData = {
     customer_id: customerId || "",
     store_id: storeId,
     callback: window.location.href,
   };
-  console.log(reqBody);
-  async function initiateSession(url, reqBody) {
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(reqBody),
-      });
-      console.log(response);
 
-      if (!response.ok) {
-        alert("Failed to initiate session. Please try again.");
-        return;
-      }
+  const encodedUserData = btoa(JSON.stringify(userData));
 
-      document.getElementById("primaryGetStarted-button").innerHTML =
-        "Get started";
-      const body = await response.json();
-      setTimeout(() => {
-        window.open(
-          `https://portal.wearebirl.com/${body.store_id}/trade-in?session_id=${body.session_id}`,
-          "_blank"
-        );
-      });
-    } catch (error) {
-      console.error("Error initiating session:", error);
-      alert("An error occurred. Please try again.");
+  try {
+    document.getElementById("primaryGetStarted-button").innerHTML = "Get started";
+    const openedWindow = window.open(`https://portal.wearebirl.com/birl-demo/trade-in?u=${encodeURIComponent(encodedUserData)}`, "_blank");
+
+    if (!openedWindow || openedWindow.closed === undefined) {
+      alert('Failed to open popup window, please try again.');
     }
+  } catch (error) {
+    console.error("Error initiating session:", error);
+    alert("An error occurred. Please try again.");
   }
-  initiateSession(url, reqBody);
 }
