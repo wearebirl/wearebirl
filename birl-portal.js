@@ -247,7 +247,7 @@ function initiateBirl(customerId) {
 
   try {
     document.getElementById("primaryGetStarted-button").innerHTML = "Get started";
-    const openedWindow = window.open(`https://portal.wearebirl.com/birl-demo/trade-in?u=${encodeURIComponent(encodedUserData)}`, "_blank");
+    const openedWindow = window.open(`https://portal.wearebirl.com/${storeId}/trade-in?u=${encodeURIComponent(encodedUserData)}`, "_blank");
 
     if (!openedWindow || openedWindow.closed === undefined) {
       alert('Failed to open popup window, please try again.');
