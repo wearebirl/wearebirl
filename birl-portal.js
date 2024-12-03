@@ -120,8 +120,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   const birlButtons = document.querySelectorAll(".birl-button"); // Select by class
   await birlButtons.forEach(async function (birlButton) {
     let storeName = "";
-    const variant = birlButton.getAttribute("data-variant");
-    const width = birlButton.getAttribute("data-width");
+    const variant = birlButton.getAttribute("data-variant") || "product";
+    const width = birlButton.getAttribute("data-width") || "full";
     let img1 =
       birlButton.getAttribute("data-img1") ||
       "https://wearebirl.github.io/wearebirl/assets/home-1.png";
