@@ -281,6 +281,14 @@
   font-family: "Gilroy", serif !important;
 }
 
+.birl-product-cta-text b {
+  font-weight: 700 !important;
+}
+
+.birl-product-cta-text p {
+  font-weight: 400 !important;
+}
+
 .birl-product-cta-text button {
   color: white;
   text-decoration: underline;
