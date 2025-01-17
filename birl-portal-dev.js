@@ -16,8 +16,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     return new URLSearchParams(window.location.search).get(name);
   };
 
-  function getButtonText(storeName, storeTheme, isMinimal) {
-    if (isMinimal) {
+  function getButtonText(storeName, storeTheme, style) {
+    if (style === "minimal") {
       return `Trade-in garments you no longer use`;
     }
 
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                   <span style="color: #808080;">${getButtonText(
                     storeName,
                     storeTheme,
-                    isMinimal
+                    style
                   )}</span>
               </p>
           </div>
