@@ -1,8 +1,8 @@
+const SUPABASE_URL = "https://rclxweaaffupqiqdklhg.supabase.co";
+const SUPABASE_API_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjbHh3ZWFhZmZ1cHFpcWRrbGhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTEwOTU5OTgsImV4cCI6MjAyNjY3MTk5OH0.h-KRME-ajXT2J_YNAEavTm77A3MjUj-j8otnj0VzTfI";
+
 document.addEventListener("DOMContentLoaded", async function () {
-  const birlId = document
-    ?.querySelector('meta[name="birl-id"]')
-    ?.getAttribute("content");
-  console.log("Loading Birl: ", birlId);
   let example = `
   <birl-button class='birl-button'
   data-storeId='birl-garments'
@@ -44,18 +44,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     return `Trade-in your old ${storeName} items for immediate credit.`;
   }
 
-  function addButton(
-    storeName,
-    variant,
-    width,
-    storeTheme,
-    isHidden,
-    isMinimal
-  ) {
+  function addButton(storeName, variant, width, storeTheme, isHidden, style) {
     return `
       <div class="birl-cta-container tooltip-btn" style="${
         width === " full" ? "width: 100%;" : `max-width: ${width}px;`
-      }  ${isHidden ? "display: none;" : ""} ${isMinimal ? "border-radius: 0px; border-color: black;" : "border-radius: 5px;"}" onClick="showBirlWelcome()" }">
+      }  ${isHidden ? "display: none;" : ""} ${style === "minimal" ? "border-radius: 0px; border-color: black;" : "border-radius: 5px;"}" onClick="showBirlWelcome()" }">
           <div class="tooltip-container">
               <span class="tooltip-text">
                   <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> ${getDropdown1Text(
@@ -69,11 +62,11 @@ document.addEventListener("DOMContentLoaded", async function () {
               </span>
           </div>
           <div class="birl-logo-container" style="${
-            isMinimal && "background-color: transparent;"
+            style === "minimal" && "background-color: transparent;"
           }">
     
             ${
-              isMinimal
+              style === "minimal"
                 ? `<img class="birl-logo-2" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo"></img>`
                 : `<img class="birl-logo-2" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo"></img>`
             }
@@ -129,34 +122,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     document.body.insertAdjacentHTML("afterbegin", modalHTML);
   }
 
-  const SUPABASE_URL = "https://rclxweaaffupqiqdklhg.supabase.co";
-  const SUPABASE_API_KEY =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjbHh3ZWFhZmZ1cHFpcWRrbGhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTEwOTU5OTgsImV4cCI6MjAyNjY3MTk5OH0.h-KRME-ajXT2J_YNAEavTm77A3MjUj-j8otnj0VzTfI";
-
-  const birlButtons = document.querySelectorAll(".birl-button"); // Select by class
-  await birlButtons.forEach(async function (birlButton) {
-    let storeName = "";
-    const variant = birlButton.getAttribute("data-variant") || "product";
-    const width = birlButton.getAttribute("data-width") || "full";
-    let img1 =
-      birlButton.getAttribute("data-img1") ||
-      "https://wearebirl.github.io/wearebirl/assets/home-1.png";
-    let img2 =
-      birlButton.getAttribute("data-img2") ||
-      "https://wearebirl.github.io/wearebirl/assets/home-2.png";
-    const customerId = birlButton.getAttribute("data-customerId") || "";
-    let storeTheme = "default";
-    // Replace storeId retrieval with configured value
-    const storeId = birlId || birlButton.getAttribute("data-storeId");
-    let heading =
-      birlButton.getAttribute("data-heading") || "Get Instant Credit with Birl";
-    let bodyText =
-      birlButton.getAttribute("data-bodyText") ||
-      `It's <b>super easy</b> to trade-in your old pieces that you no longer need. <b>Earn instant</b> credit to upgrade your wardrobe with fresh items you'll love to wear.`;
-
-    let isHidden = birlButton.getAttribute("data-isHidden") === "true";
-    let isMinimal = birlButton.getAttribute("data-isMinimal") === "true";
-
+  async function fetchData(storeId) {
     try {
       const response = await fetch(
         `${SUPABASE_URL}/rest/v1/stores?store_name=eq.${storeId}`,
@@ -173,18 +139,17 @@ document.addEventListener("DOMContentLoaded", async function () {
       if (response.ok) {
         const data = await response.json();
         if (data.length > 0) {
-          heading = data[0].modal_heading || heading;
-          bodyText = data[0].modal_body || bodyText;
-          storeName = data[0].name || storeName;
-          storeTheme = data[0].theme || storeTheme;
-          const storeStatus = data[0].status;
-          if (storeStatus && storeStatus != "active" && storeStatus != "demo") {
-            isHidden = true;
-          }
-          if (data[0].use_modal_images === true) {
-            img1 = data[0].cover_image || img1;
-            img2 = data[0].cover_image_2 || img2;
-          }
+          return {
+            heading: data[0]?.modal_heading,
+            bodyText: data[0]?.modal_body,
+            storeName: data[0]?.name,
+            storeTheme: data[0]?.theme,
+            storeStatus: data[0]?.status,
+            img1: data[0]?.cover_image,
+            img2: data[0]?.cover_image_2,
+            location: data[0]?.button_location,
+            style: data[0]?.button_style,
+          };
         }
       } else {
         console.error("Error fetching store data:", response.statusText);
@@ -192,23 +157,54 @@ document.addEventListener("DOMContentLoaded", async function () {
     } catch (error) {
       console.error("Fetch error:", error);
     }
+  }
 
-    const newElement = document.createElement("div");
+  const birlId = document
+    ?.querySelector('meta[name="birl-id"]')
+    ?.getAttribute("content");
 
-    newElement.innerHTML = addButton(
-      storeName,
-      variant,
-      width,
-      storeTheme,
-      isHidden,
-      isMinimal
-    );
-    birlButton.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
+  const button = document?.querySelector(".birl-button");
+  const buttonId = button?.getAttribute("data-storeId");
 
-    addModal(heading, bodyText, img1, img2, customerId);
-    getURLParameter("openDropdown") === "true" && showBirlWelcome();
-    console.log("Birl added to page");
-  });
+  const storeData = await fetchData(birlId || buttonId);
+  addModal(
+    storeData.heading,
+    storeData.bodyText,
+    storeData.img1,
+    storeData.img2,
+    storeData.customerId
+  );
+
+  const storeName = storeData.storeName;
+  const width = button?.getAttribute("data-width") || "full";
+  const variant = button?.getAttribute("data-variant") || "product";
+  const storeTheme = storeData.storeTheme || "default";
+  const isHidden = storeData.storeStatus !== "active";
+  const customerId = button?.getAttribute("data-customerId");
+  const heading = storeData.heading || "Get Instant Credit with Birl";
+  const bodyText =
+    storeData.bodyText ||
+    `It's <b>super easy</b> to trade-in your old pieces that you no longer need. <b>Earn instant</b> credit to upgrade your wardrobe with fresh items you'll love to wear.`;
+  const style = storeData.style || "default";
+  const newElement = document.createElement("div");
+
+  newElement.innerHTML = addButton(
+    storeName,
+    variant,
+    width,
+    storeTheme,
+    isHidden,
+    style
+  );
+
+  const positionElement = document?.querySelector(
+    storeData.location || ".birl-button"
+  );
+  positionElement.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
+
+  addModal(heading, bodyText, img1, img2, customerId);
+  getURLParameter("openDropdown") === "true" && showBirlWelcome();
+  console.log("Birl added to page");
 
   var element = document.createElement("link");
   element.setAttribute("rel", "stylesheet");
@@ -240,12 +236,12 @@ function initiateBirl(customerId) {
   console.log("Initiating Birl trade-in session...");
   let storeId = "";
   let variant = "";
-  const birlButtons = document.querySelectorAll(".birl-button");
-
-  birlButtons.forEach(function (birlButton) {
-    storeId = birlButton.getAttribute("data-storeId");
-    variant = birlButton.getAttribute("data-variant");
-  });
+  const birlId = document
+    ?.querySelector('meta[name="birl-id"]')
+    ?.getAttribute("content");
+  const birlButton = document?.querySelector(".birl-button");
+  storeId = birlId || birlButton?.getAttribute("data-storeId");
+  variant = birlButton?.getAttribute("data-variant");
 
   document.getElementById("primaryGetStarted-button").innerHTML =
     '<div class="loader"></div>';
