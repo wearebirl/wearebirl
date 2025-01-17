@@ -167,13 +167,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   const buttonId = button?.getAttribute("data-storeId");
 
   const storeData = await fetchData(birlId || buttonId);
-  addModal(
-    storeData.heading,
-    storeData.bodyText,
-    storeData.img1,
-    storeData.img2,
-    storeData.customerId
-  );
 
   const storeName = storeData.storeName;
   const width = button?.getAttribute("data-width") || "full";
@@ -181,10 +174,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   const storeTheme = storeData.storeTheme || "default";
   const isHidden = storeData.storeStatus !== "active";
   const customerId = button?.getAttribute("data-customerId");
-  const heading = storeData.heading || "Get Instant Credit with Birl";
-  const bodyText =
-    storeData.bodyText ||
-    `It's <b>super easy</b> to trade-in your old pieces that you no longer need. <b>Earn instant</b> credit to upgrade your wardrobe with fresh items you'll love to wear.`;
   const style = storeData.style || "default";
   const newElement = document.createElement("div");
 
@@ -200,9 +189,20 @@ document.addEventListener("DOMContentLoaded", async function () {
   const positionElement = document?.querySelector(
     storeData.location || ".birl-button"
   );
+  if (!positionElement) {
+    return;
+  }
+
+  addModal(
+    storeData.heading,
+    storeData.bodyText,
+    storeData.img1,
+    storeData.img2,
+    customerId
+  );
+
   positionElement.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
 
-  addModal(heading, bodyText, img1, img2, customerId);
   getURLParameter("openDropdown") === "true" && showBirlWelcome();
   console.log("Birl added to page");
 
