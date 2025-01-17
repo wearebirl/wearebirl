@@ -1,14 +1,14 @@
 // Add this before the DOMContentLoaded event listener
 let birlConfig = {
-  storeId: null
+  storeId: null,
 };
 
-window.initBirl = function(config) {
+window.initBirl = function (config) {
   birlConfig.storeId = config.storeId;
 };
 
 document.addEventListener("DOMContentLoaded", async function () {
-
+  console.log("Loading Birl: ", storeId);
   let example = `
   <birl-button class='birl-button'
   data-storeId='birl-garments'
@@ -22,32 +22,32 @@ document.addEventListener("DOMContentLoaded", async function () {
     return new URLSearchParams(window.location.search).get(name);
   };
 
-  function getButtonText(storeName, storeTheme, isMinimal){
-    if(isMinimal){
-      return `Trade-in garments you no longer use`
+  function getButtonText(storeName, storeTheme, isMinimal) {
+    if (isMinimal) {
+      return `Trade-in garments you no longer use`;
     }
 
-    if(storeTheme === 'football'){
-      return `Trade-in ${storeName} shirts you no longer wear`
+    if (storeTheme === "football") {
+      return `Trade-in ${storeName} shirts you no longer wear`;
     }
 
-    if(storeTheme === 'jacket'){
-      return `Trade-in ${storeName} jackets you no longer use`
+    if (storeTheme === "jacket") {
+      return `Trade-in ${storeName} jackets you no longer use`;
     }
 
-    return `Trade-in ${storeName} garments you ${storeName.length >=15 ? "don't" : "no longer"} use`
+    return `Trade-in ${storeName} garments you ${storeName.length >= 15 ? "don't" : "no longer"} use`;
   }
 
-  function getDropdown1Text(storeName, storeTheme){
-    if(storeTheme === 'football'){
-      return `Trade-in your old ${storeName} shirts for immediate credit.`
+  function getDropdown1Text(storeName, storeTheme) {
+    if (storeTheme === "football") {
+      return `Trade-in your old ${storeName} shirts for immediate credit.`;
     }
 
-    if(storeTheme === 'jacket'){
-      return `Trade-in your old ${storeName} jackets for immediate credit.`
+    if (storeTheme === "jacket") {
+      return `Trade-in your old ${storeName} jackets for immediate credit.`;
     }
 
-    return `Trade-in your old ${storeName} items for immediate credit.`
+    return `Trade-in your old ${storeName} items for immediate credit.`;
   }
 
   function addButton(
@@ -56,34 +56,48 @@ document.addEventListener("DOMContentLoaded", async function () {
     width,
     storeTheme,
     isHidden,
-    isMinimal,
+    isMinimal
   ) {
     return `
-      <div class="birl-cta-container tooltip-btn" style="${width === " full" ? "width: 100%;" : `max-width: ${width}px;` }  ${isHidden ? "display: none;" : "" } ${isMinimal ? "border-radius: 0px; border-color: black;" : "border-radius: 5px;"}" onClick="showBirlWelcome()" }">
+      <div class="birl-cta-container tooltip-btn" style="${
+        width === " full" ? "width: 100%;" : `max-width: ${width}px;`
+      }  ${isHidden ? "display: none;" : ""} ${isMinimal ? "border-radius: 0px; border-color: black;" : "border-radius: 5px;"}" onClick="showBirlWelcome()" }">
           <div class="tooltip-container">
               <span class="tooltip-text">
-                  <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> ${getDropdown1Text(storeName, storeTheme)}
+                  <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> ${getDropdown1Text(
+                    storeName,
+                    storeTheme
+                  )}
                   <br><br>
                   <b style="color: black; width: 12px; text-align:left; display: inline-block;">2.</b> Spend your credit as soon as you receive your unique code.
                   <br><br>
                   <b style="color: black; width: 12px; text-align:left; display: inline-block;">3.</b> Send your trade-in back with the free digital label provided.
               </span>
           </div>
-          <div class="birl-logo-container" style="${isMinimal && "background-color: transparent;"}">
+          <div class="birl-logo-container" style="${
+            isMinimal && "background-color: transparent;"
+          }">
     
-            ${isMinimal ?
-        (`<img class="birl-logo-2" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo"></img>`) :
-        (`<img class="birl-logo-2" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo"></img>`)
-              }
+            ${
+              isMinimal
+                ? `<img class="birl-logo-2" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo"></img>`
+                : `<img class="birl-logo-2" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo"></img>`
+            }
             </div>
           <div class="birl-product-cta-text">
               <p>
                   <span><b>
                           ${
-              variant === "product" ? "Get money off this item today" : ""
-          }${variant.includes("account") ? "Get money off your next purchase" : ""} </b><br>
+                            variant === "product"
+                              ? "Get money off this item today"
+                              : ""
+                          }${variant.includes("account") ? "Get money off your next purchase" : ""} </b><br>
                   </span>
-                  <span style="color: #808080;">${getButtonText(storeName, storeTheme, isMinimal)}</span>
+                  <span style="color: #808080;">${getButtonText(
+                    storeName,
+                    storeTheme,
+                    isMinimal
+                  )}</span>
               </p>
           </div>
       </div>
@@ -121,7 +135,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     document.body.insertAdjacentHTML("afterbegin", modalHTML);
   }
 
-
   const SUPABASE_URL = "https://rclxweaaffupqiqdklhg.supabase.co";
   const SUPABASE_API_KEY =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjbHh3ZWFhZmZ1cHFpcWRrbGhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTEwOTU5OTgsImV4cCI6MjAyNjY3MTk5OH0.h-KRME-ajXT2J_YNAEavTm77A3MjUj-j8otnj0VzTfI";
@@ -140,7 +153,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     const customerId = birlButton.getAttribute("data-customerId") || "";
     let storeTheme = "default";
     // Replace storeId retrieval with configured value
-    const storeId = birlConfig.storeId || birlButton.getAttribute("data-storeId");
+    const storeId =
+      birlConfig.storeId || birlButton.getAttribute("data-storeId");
     let heading =
       birlButton.getAttribute("data-heading") || "Get Instant Credit with Birl";
     let bodyText =
@@ -194,10 +208,10 @@ document.addEventListener("DOMContentLoaded", async function () {
       width,
       storeTheme,
       isHidden,
-        isMinimal
+      isMinimal
     );
     birlButton.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
-    
+
     addModal(heading, bodyText, img1, img2, customerId);
     getURLParameter("openDropdown") === "true" && showBirlWelcome();
     console.log("Birl added to page");
@@ -217,21 +231,16 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Helper function to get URL parameters
 
     window.showBirlWelcome = () => {
-      
       var birlModal = document.getElementById("birlWelcome");
-      
-      birlModal.style.display = "grid";
 
-      
+      birlModal.style.display = "grid";
     };
 
     window.hideBirlWelcome = () => {
       var birlModal = document.getElementById("birlWelcome");
       birlModal.style.display = "none";
     };
-
   })();
-
 });
 
 function initiateBirl(customerId) {
@@ -245,7 +254,8 @@ function initiateBirl(customerId) {
     variant = birlButton.getAttribute("data-variant");
   });
 
-  document.getElementById("primaryGetStarted-button").innerHTML = '<div class="loader"></div>';
+  document.getElementById("primaryGetStarted-button").innerHTML =
+    '<div class="loader"></div>';
 
   const userData = {
     customer_id: customerId || "",
@@ -256,11 +266,17 @@ function initiateBirl(customerId) {
   const encodedUserData = btoa(JSON.stringify(userData));
 
   try {
-    document.getElementById("primaryGetStarted-button").innerHTML = "Get started";
-    const openedWindow = window.open(`https://portal.wearebirl.com/${storeId}/trade-in?u=${encodeURIComponent(encodedUserData)}`, "_blank");
+    document.getElementById("primaryGetStarted-button").innerHTML =
+      "Get started";
+    const openedWindow = window.open(
+      `https://portal.wearebirl.com/${storeId}/trade-in?u=${encodeURIComponent(
+        encodedUserData
+      )}`,
+      "_blank"
+    );
 
     if (!openedWindow || openedWindow.closed === undefined) {
-      alert('Failed to open popup window, please try again.');
+      alert("Failed to open popup window, please try again.");
     }
   } catch (error) {
     console.error("Error initiating session:", error);
