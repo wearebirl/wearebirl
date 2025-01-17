@@ -159,9 +159,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   }
 
-  const birlId = document
+  const birlFlags = document
     ?.querySelector('meta[name="birl-id"]')
     ?.getAttribute("content");
+
+  const flags = birlFlags.split(" ");
+  const birlId = flags[0];
+  const buttonEnabled = flags[1] === "enabled";
 
   const button = document?.querySelector(".birl-button");
   const buttonId = button?.getAttribute("data-storeId");
@@ -189,7 +193,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   const positionElement = document?.querySelector(
     storeData.location || ".birl-button"
   );
-  if (!positionElement) {
+
+  if (!flags && !button) {
     return;
   }
 
@@ -200,6 +205,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     storeData.img2,
     customerId
   );
+
+  if (!buttonEnabled) {
+    return;
+  }
 
   positionElement.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
 
