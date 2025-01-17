@@ -1,14 +1,8 @@
-// Add this before the DOMContentLoaded event listener
-let birlConfig = {
-  storeId: null,
-};
-
-window.initBirl = function (config) {
-  birlConfig.storeId = config.storeId;
-};
-
 document.addEventListener("DOMContentLoaded", async function () {
-  console.log("Loading Birl: ", storeId);
+  const birlId = document
+    ?.querySelector('meta[name="birl-id"]')
+    ?.getAttribute("content");
+  console.log("Loading Birl: ", birlId);
   let example = `
   <birl-button class='birl-button'
   data-storeId='birl-garments'
@@ -153,8 +147,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const customerId = birlButton.getAttribute("data-customerId") || "";
     let storeTheme = "default";
     // Replace storeId retrieval with configured value
-    const storeId =
-      birlConfig.storeId || birlButton.getAttribute("data-storeId");
+    const storeId = birlId || birlButton.getAttribute("data-storeId");
     let heading =
       birlButton.getAttribute("data-heading") || "Get Instant Credit with Birl";
     let bodyText =
