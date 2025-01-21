@@ -1,3 +1,6 @@
+//     <meta name="birl-id" content="wearebirl">
+//<script src="https://wearebirl.github.io/wearebirl/birl-portal-dev.js" defer="defer"/>
+
 const SUPABASE_URL = "https://rclxweaaffupqiqdklhg.supabase.co";
 const SUPABASE_API_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjbHh3ZWFhZmZ1cHFpcWRrbGhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTEwOTU5OTgsImV4cCI6MjAyNjY3MTk5OH0.h-KRME-ajXT2J_YNAEavTm77A3MjUj-j8otnj0VzTfI";
@@ -198,6 +201,15 @@ document.addEventListener("DOMContentLoaded", async function () {
     return;
   }
 
+  var element = document.createElement("link");
+  element.setAttribute("rel", "stylesheet");
+  element.setAttribute("type", "text/css");
+  element.setAttribute(
+    "href",
+    "https://wearebirl.github.io/wearebirl/birl-button.css"
+  );
+  document.getElementsByTagName("head")[0].appendChild(element);
+
   addModal(
     storeData.heading,
     storeData.bodyText,
@@ -214,15 +226,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   getURLParameter("openDropdown") === "true" && showBirlWelcome();
   console.log("Birl added to page");
-
-  var element = document.createElement("link");
-  element.setAttribute("rel", "stylesheet");
-  element.setAttribute("type", "text/css");
-  element.setAttribute(
-    "href",
-    "https://wearebirl.github.io/wearebirl/birl-button.css"
-  );
-  document.getElementsByTagName("head")[0].appendChild(element);
 
   (function () {
     console.log("URL parameters:", window.location.search);
