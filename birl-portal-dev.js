@@ -6,15 +6,6 @@ const SUPABASE_API_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjbHh3ZWFhZmZ1cHFpcWRrbGhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTEwOTU5OTgsImV4cCI6MjAyNjY3MTk5OH0.h-KRME-ajXT2J_YNAEavTm77A3MjUj-j8otnj0VzTfI";
 
 document.addEventListener("DOMContentLoaded", async function () {
-  let example = `
-  <birl-button class='birl-button'
-  data-storeId='birl-garments'
-  data-variant='product'
-  data-width='full'
-  data-customerId='123456'
- data-isHidden='false'
-  />`;
-
   const getURLParameter = (name) => {
     return new URLSearchParams(window.location.search).get(name);
   };
@@ -141,7 +132,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       if (response.ok) {
         const data = await response.json();
-        if (data.length > 0) {
+        if (data.length) {
           return {
             heading: data[0]?.modal_heading,
             bodyText: data[0]?.modal_body,
@@ -218,12 +209,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     customerId
   );
 
-  if (!buttonEnabled) {
-    return;
-  }
-
-  positionElement.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
-
   getURLParameter("openDropdown") === "true" && showBirlWelcome();
   console.log("Birl added to page");
 
@@ -242,12 +227,17 @@ document.addEventListener("DOMContentLoaded", async function () {
       birlModal.style.display = "none";
     };
   })();
+
+  if (!buttonEnabled || button) {
+    return;
+  }
+
+  positionElement.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
 });
 
 function initiateBirl(customerId) {
   console.log("Initiating Birl trade-in session...");
   let storeId = "";
-  let variant = "";
   const birlId = document
     ?.querySelector('meta[name="birl-id"]')
     ?.getAttribute("content");
