@@ -170,7 +170,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   const width = button?.getAttribute("data-width") || "full";
   const variant = button?.getAttribute("data-variant") || "product";
   const storeTheme = storeData.storeTheme || "default";
-  const isHidden = storeData.storeStatus !== "active";
+  const isHidden =
+    storeData.storeStatus !== "active" ||
+    button?.getAttribute("data-isHidden") === "true";
   const customerId = button?.getAttribute("data-customerId");
   const style = storeData.style || "default";
   const newElement = document.createElement("div");
@@ -228,7 +230,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     };
   })();
 
-  if (!buttonEnabled || !button) {
+  if (!buttonEnabled && !button) {
     return;
   }
 
