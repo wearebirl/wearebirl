@@ -5,6 +5,16 @@ const SUPABASE_URL = "https://rclxweaaffupqiqdklhg.supabase.co";
 const SUPABASE_API_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjbHh3ZWFhZmZ1cHFpcWRrbGhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTEwOTU5OTgsImV4cCI6MjAyNjY3MTk5OH0.h-KRME-ajXT2J_YNAEavTm77A3MjUj-j8otnj0VzTfI";
 
+window.showBirlWelcome = function () {
+  var birlModal = document.getElementById("birlWelcome");
+  birlModal.style.display = "grid";
+};
+
+window.hideBirlWelcome = function () {
+  var birlModal = document.getElementById("birlWelcome");
+  birlModal.style.display = "none";
+};
+
 document.addEventListener("DOMContentLoaded", async function () {
   const getURLParameter = (name) => {
     return new URLSearchParams(window.location.search).get(name);
@@ -214,21 +224,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   getURLParameter("openDropdown") === "true" && showBirlWelcome();
   console.log("Birl added to page");
 
-  (function () {
-    console.log("URL parameters:", window.location.search);
-    // Helper function to get URL parameters
-
-    window.showBirlWelcome = () => {
-      var birlModal = document.getElementById("birlWelcome");
-
-      birlModal.style.display = "grid";
-    };
-
-    window.hideBirlWelcome = () => {
-      var birlModal = document.getElementById("birlWelcome");
-      birlModal.style.display = "none";
-    };
-  })();
+  console.log("URL parameters:", window.location.search);
 
   if (!buttonEnabled && !button) {
     return;
