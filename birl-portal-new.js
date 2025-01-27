@@ -242,7 +242,8 @@ function initiateBirl(customerId) {
   let storeId = "";
   const birlId = document
     ?.querySelector('meta[name="birl-id"]')
-    ?.getAttribute("content");
+    ?.getAttribute("content")
+    .split(" ")[0];
   const birlButton = document?.querySelector(".birl-button");
   storeId = birlId || birlButton?.getAttribute("data-storeId");
   variant = birlButton?.getAttribute("data-variant");
