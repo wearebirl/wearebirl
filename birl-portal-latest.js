@@ -255,6 +255,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   if (cartLocation && cartLocation !== "") {
     console.log("Inserting Birl button after cart...");
     const cartElement = document?.querySelector(cartLocation);
+    if (!cartElement) {
+      console.log("This is where its wrong");
+    }
     cartElement.insertAdjacentElement("afterend", newElement);
   }
 
