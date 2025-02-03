@@ -253,8 +253,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   console.log("URL parameters:", window.location.search);
   console.log("Cart location:", cartLocation);
   if (cartLocation && cartLocation !== "") {
+    console.log("Inserting Birl button after cart...");
     const cartElement = document?.querySelector(cartLocation);
-    cartElement?.insertAdjacentElement("afterend", newElement);
+    cartElement.insertAdjacentElement("afterend", newElement);
   }
 
   if (!buttonEnabled && !button) {
