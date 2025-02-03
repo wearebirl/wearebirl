@@ -52,14 +52,20 @@ document.addEventListener("DOMContentLoaded", async function () {
     default: {
       container: "birl-cta-container tooltip-btn",
       logoContainer: "birl-logo-container",
+      logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo"></img>`,
+      ctaText: "birl-product-cta-text",
     },
     basic: {
       container: "birl-cta-container tooltip-btn birl-cta-container-basic",
-      logoContainer: "birl-logo-container birl-logo-container-basic",
+      logoContainer: "",
+      logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo"></img>`,
+      ctaText: "birl-product-cta-text-basic",
     },
     minimal: {
       container: "birl-cta-container tooltip-btn birl-cta-container-minimal",
       logoContainer: "birl-logo-container birl-logo-container-minimal",
+      logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo"></img>`,
+      ctaText: "birl-product-cta-text",
     },
   };
 
@@ -82,22 +88,31 @@ document.addEventListener("DOMContentLoaded", async function () {
           </div>
           <div class="${
             basicStyles[style].logoContainer
-          }"> ${style === "minimal" ? `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo"></img>` : `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo"></img>`}
+          }"> ${basicStyles[style].logo}
             </div>
-          <div class="birl-product-cta-text">
+          <div class=${basicStyles[style].ctaText}>
               <p>
-                  <span><b>
+              ${
+                style === "basic"
+                  ? `Get money off this item today with `
+                  : `<span><b>
                           ${
                             variant === "product"
                               ? "Get money off this item today"
                               : ""
-                          }${variant.includes("account") ? "Get money off your next purchase" : ""} </b><br>
+                          }${
+                      variant.includes("account")
+                        ? "Get money off your next purchase"
+                        : ""
+                    } </b><br>
                   </span>
                   <span style="color: #808080;">${getButtonText(
                     storeName,
                     storeTheme,
                     style
-                  )}</span>
+                  )}</span>`
+              }
+                  
               </p>
           </div>
       </div>
