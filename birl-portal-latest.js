@@ -251,7 +251,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   console.log("Birl added to page");
 
   console.log("URL parameters:", window.location.search);
-
+  console.log("Cart location:", cartLocation);
   if (cartLocation && cartLocation !== "") {
     const cartElement = document?.querySelector(cartLocation);
     cartElement?.insertAdjacentElement("afterend", newElement);
