@@ -52,11 +52,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     default: {
       container: "birl-cta-container tooltip-btn",
       logoContainer: "birl-logo-container",
+      tooltipContainer: "tooltip-container",
       logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo"></img>`,
       ctaText: "birl-product-cta-text",
     },
     basic: {
       container: "birl-cta-container tooltip-btn birl-cta-container-basic",
+      tooltipContainer: "tooltip-container tooltip-container-basic",
       logoContainer: "",
       logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo"></img>`,
       ctaText: "birl-product-cta-text-basic",
@@ -64,6 +66,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     minimal: {
       container: "birl-cta-container tooltip-btn birl-cta-container-minimal",
       logoContainer: "birl-logo-container birl-logo-container-minimal",
+      tooltipContainer: "tooltip-container",
       logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo"></img>`,
       ctaText: "birl-product-cta-text",
     },
@@ -74,7 +77,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       <div class="${
         basicStyles[style].container
       } ${isHidden && "birl-hidden"}" style="${width === " full" ? "width: 100%;" : `max-width: ${width}px;`}" onClick="showBirlWelcome()" }">
-          <div class="tooltip-container">
+          <div class=${basicStyles[style].tooltipContainer}>
               <span class="tooltip-text">
                   <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> ${getDropdown1Text(
                     storeName,

@@ -77,7 +77,7 @@
 
 .birl-cta-container-basic {
   border-width: 0px;
-  gap: 0px;
+  gap: 5px;
   font-family: default;
   flex-direction: row-reverse;
 }
@@ -241,6 +241,10 @@
   width: 100%;
   line-height: 110%;
   box-shadow: rgba(0, 0, 0, 0.45) 0px 0px 10px;
+}
+
+.tooltip-container-basic{
+  bottom: -120px;
 }
 
 .tooltip-btn .tooltip-container-2 {
