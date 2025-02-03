@@ -79,14 +79,11 @@ document.addEventListener("DOMContentLoaded", async function () {
       } ${isHidden && "birl-hidden"}" style="${width === " full" ? "width: 100%;" : `max-width: ${width}px;`}" onClick="showBirlWelcome()" }">
           <div class=${basicStyles[style].tooltipContainer}>
               <span class="tooltip-text">
-                  <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> ${getDropdown1Text(
-                    storeName,
-                    storeTheme
-                  )}
+                  <b>1.</b> ${getDropdown1Text(storeName, storeTheme)}
                   <br><br>
-                  <b style="color: black; width: 12px; text-align:left; display: inline-block;">2.</b> Spend your credit as soon as you receive your unique code.
+                  <b>2.</b> Spend your credit as soon as you receive your unique code.
                   <br><br>
-                  <b style="color: black; width: 12px; text-align:left; display: inline-block;">3.</b> Send your trade-in back with the free digital label provided.
+                  <b>3.</b> Send your trade-in back with the free digital label provided.
               </span>
           </div>
           <div class="${
@@ -180,6 +177,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             img2: data[0]?.cover_image_2,
             location: data[0]?.button_location,
             style: data[0]?.button_style,
+            cartLocation: data[0]?.cart_location,
           };
         }
       } else {
@@ -212,6 +210,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     button?.getAttribute("data-isHidden") === "true";
   const customerId = button?.getAttribute("data-customerId");
   const style = storeData.style || "default";
+  const cartLocation = storeData.cartLocation || "";
   const newElement = document.createElement("div");
 
   newElement.innerHTML = addButton(
@@ -252,6 +251,11 @@ document.addEventListener("DOMContentLoaded", async function () {
   console.log("Birl added to page");
 
   console.log("URL parameters:", window.location.search);
+
+  if (cartLocation && cartLocation !== "") {
+    const cartElement = document?.querySelector(cartLocation);
+    cartElement?.insertAdjacentElement("afterend", newElement);
+  }
 
   if (!buttonEnabled && !button) {
     return;

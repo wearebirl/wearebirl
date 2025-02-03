@@ -71,7 +71,7 @@
 }
 
 .birl-cta-container-minimal {
-  border-radius: 0px; 
+  border-radius: 0px;
   border-color: black;
 }
 
@@ -103,8 +103,7 @@
   text-align: left;
 }
 
-
-.birl-heading{
+.birl-heading {
   text-transform: none;
 }
 
@@ -243,8 +242,15 @@
   box-shadow: rgba(0, 0, 0, 0.45) 0px 0px 10px;
 }
 
-.tooltip-container-basic{
+.tooltip-container-basic {
   bottom: -120px;
+}
+
+.tooltip-text b {
+  color: black;
+  width: 12px;
+  text-align: left;
+  display: inline-block;
 }
 
 .tooltip-btn .tooltip-container-2 {
@@ -473,7 +479,6 @@
   line-height: 16px; /* 145.455% */
 }
 
-
 @media only screen and (max-width: 1072px) {
   .birl-announcement-container button {
     display: flex;
@@ -526,10 +531,6 @@
     width: 100%;
   }
 }
-
-
-
-
 
 .font-peregrine {
   font-family: "Gilroy", serif !important;
@@ -657,22 +658,22 @@
   text-transform: none !important;
 }
 
-.birlWelcome-img1{
+.birlWelcome-img1 {
   position: absolute;
-  top:0;
-  right:0;
+  top: 0;
+  right: 0;
   width: 75%;
-  height:75%;
+  height: 75%;
   object-fit: cover;
   border-radius: 16px;
 }
 
-.birlWelcome-img2{
+.birlWelcome-img2 {
   position: absolute;
-  bottom:0;
-  left:0;
+  bottom: 0;
+  left: 0;
   width: 40%;
-  height:40%;
+  height: 40%;
   object-fit: cover;
   border-radius: 16px;
 }
@@ -751,11 +752,19 @@
 
 /* Safari */
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
