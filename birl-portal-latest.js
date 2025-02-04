@@ -289,18 +289,64 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   console.log("URL parameters:", window.location.search);
   console.log("Cart location:", cartLocation);
-  if (cartLocation && cartLocation !== "") {
-    const newCartElement = document.createElement("div");
-    newCartElement.innerHTML = addButton(
-      storeName,
-      variant,
-      width,
-      storeTheme,
-      isHidden,
-      style
-    );
-    const cartElement = document?.querySelector(cartLocation);
-    cartElement.insertAdjacentElement("afterend", newCartElement);
+
+  // New function to handle cart button insertion
+  async function insertCartButton(storeData, buttonConfig) {
+    if (storeData.cartLocation && storeData.cartLocation !== "") {
+      const newCartElement = document.createElement("div");
+      newCartElement.innerHTML = addButton(
+        buttonConfig.storeName,
+        buttonConfig.variant,
+        buttonConfig.width,
+        buttonConfig.storeTheme,
+        buttonConfig.isHidden,
+        buttonConfig.style
+      );
+      const cartElement = document?.querySelector(storeData.cartLocation);
+      if (cartElement) {
+        // Remove existing Birl button if present
+        const existingButton = cartElement.nextElementSibling?.querySelector(
+          ".birl-cta-container"
+        );
+        if (existingButton) {
+          existingButton.parentElement.remove();
+        }
+        cartElement.insertAdjacentElement("afterend", newCartElement);
+      }
+    }
+  }
+
+  // Replace existing cart button insertion with new function
+  const buttonConfig = {
+    storeName,
+    variant,
+    width,
+    storeTheme,
+    isHidden,
+    style,
+  };
+
+  await insertCartButton(storeData, buttonConfig);
+
+  // Add mutation observer for cart updates
+  const cartObserverConfig = { childList: true, subtree: true };
+  const cartObserver = new MutationObserver(async (mutations) => {
+    const cartContainer = document.querySelector(
+      storeData.cartLocation
+    )?.parentElement;
+    if (
+      cartContainer &&
+      mutations.some((mutation) => cartContainer.contains(mutation.target))
+    ) {
+      await insertCartButton(storeData, buttonConfig);
+    }
+  });
+
+  const cartContainer = document.querySelector(
+    storeData.cartLocation
+  )?.parentElement;
+  if (cartContainer) {
+    cartObserver.observe(cartContainer, cartObserverConfig);
   }
 
   if (!buttonEnabled && !button) {
