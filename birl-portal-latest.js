@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   function addModal(heading, bodyText, img1, img2, customerId, style) {
     const modalHTML = `
-      <div id="birlWelcome" class="${modalStyles[style].container}">
+      <div id="birlWelcome" class="${modalStyles[style].container}" style="display: none;">
         <div class="${modalStyles[style].content}">
           <div class="${modalStyles[style].header}">
             <img class="${modalStyles[style].logo}" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" />
@@ -359,7 +359,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   });
 
   function startCartObserver() {
-    const cartContainer = document.querySelector(".cart_drawer");
+    const cartContainer = document.querySelector(".cart-drawer");
     if (cartContainer) {
       console.log("Cart observer started");
       cartObserver.observe(cartContainer, cartObserverConfig);
