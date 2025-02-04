@@ -616,6 +616,8 @@
 
 .birlWelcome-leftRight-basic {
   width: 50%;
+  justify-content: center;
+  align-items: center;
 }
 /* The Close Button */
 .birlWelcome-close {
@@ -642,7 +644,7 @@
 .birlWelcome-button-basic {
   background-color: #000000;
   border-radius: 0px;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .birlWelcome-button:hover {
@@ -668,6 +670,11 @@
   font-weight: 400;
   color: #4a4a4a;
   width: 80%;
+  text-transform: none !important;
+}
+
+.birlWelcome-bodyTextContent-basic {
+  margin: auto;
   text-transform: none !important;
 }
 
