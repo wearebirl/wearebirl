@@ -81,6 +81,7 @@
   font-family: default;
   flex-direction: row-reverse;
   justify-content: center;
+  max-width: 100%;
 }
 
 .birl-logo-container {
@@ -673,12 +674,6 @@
   border-radius: 16px;
 }
 
-.birlWelcome-img-basic {
-  border-radius: 0px;
-  width: 50%;
-  height: 60%;
-}
-
 .birlWelcome-img2 {
   position: absolute;
   bottom: 0;
@@ -687,6 +682,12 @@
   height: 40%;
   object-fit: cover;
   border-radius: 16px;
+}
+
+.birlWelcome-img-basic {
+  border-radius: 0px;
+  width: 50%;
+  height: 60%;
 }
 
 @media screen and (max-width: 1300px) {
