@@ -338,6 +338,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   };
 
   const cartObserver = new MutationObserver(async (mutations) => {
+    console.log("Cart observer triggered");
     try {
       // Debounce the callback to prevent multiple rapid executions
       if (cartObserver.timeout) {
@@ -358,9 +359,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   });
 
   function startCartObserver() {
-    const cartContainer = document.querySelector(
-      storeData.cartLocation
-    )?.parentElement;
+    const cartContainer = document.querySelector(".cart_drawer");
     if (cartContainer) {
       console.log("Cart observer started");
       cartObserver.observe(cartContainer, cartObserverConfig);
