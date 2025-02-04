@@ -362,7 +362,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       storeData.cartLocation
     )?.parentElement;
     if (cartContainer) {
-      cartObserver.observe(document.body, cartObserverConfig);
+      console.log("Cart observer started");
+      cartObserver.observe(cartContainer, cartObserverConfig);
     } else {
       setTimeout(startCartObserver, 500);
     }
