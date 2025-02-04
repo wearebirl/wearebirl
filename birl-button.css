@@ -610,6 +610,10 @@
   width: 40%;
   position: relative;
 }
+
+.birlWelcome-leftRight-basic {
+  width: 50%;
+}
 /* The Close Button */
 .birlWelcome-close {
   color: #aaa;
