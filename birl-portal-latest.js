@@ -72,6 +72,39 @@ document.addEventListener("DOMContentLoaded", async function () {
     },
   };
 
+  const modalStyles = {
+    default: {
+      container: "birlWelcome",
+      content: "birlWelcome-content",
+      header: "birlWelcome-header",
+      logo: "birlWelcome-logo",
+      close: "birlWelcome-close",
+      left: "birlWelcome-left",
+      heading: "birl-heading birl-Gilroy",
+      bodyText: "birlWelcome-bodyText",
+      bodyTextContent: "birlWelcome-bodyTextContent birl-Gilroy",
+      right: "birlWelcome-right",
+      img1: "birlWelcome-img1",
+      img2: "birlWelcome-img2",
+      button: "birlWelcome-button birl-Gilroy",
+    },
+    basic: {
+      container: "birlWelcome",
+      content: "birlWelcome-content birlWelcome-content-basic",
+      header: "birlWelcome-header",
+      logo: "birlWelcome-logo",
+      close: "birlWelcome-close",
+      left: "birlWelcome-left",
+      heading: "birl-heading",
+      bodyText: "birlWelcome-bodyText",
+      bodyTextContent: "birlWelcome-bodyTextContent",
+      right: "birlWelcome-right",
+      img1: "birlWelcome-img1",
+      img2: "birlWelcome-img2",
+      button: "birlWelcome-button birlWelcome-button-basic",
+    },
+  };
+
   function addButton(storeName, variant, width, storeTheme, isHidden, style) {
     return `
       <div class="${
@@ -119,30 +152,30 @@ document.addEventListener("DOMContentLoaded", async function () {
     `;
   }
 
-  function addModal(heading, bodyText, img1, img2, customerId) {
+  function addModal(heading, bodyText, img1, img2, customerId, style) {
     const modalHTML = `
-      <div id="birlWelcome" class="birlWelcome">
-        <div class="birlWelcome-content">
-          <div class="birlWelcome-header">
-            <img class="birlWelcome-logo" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" />
-            <span onclick="hideBirlWelcome()" class="birlWelcome-close">&times;</span>
+      <div id="birlWelcome" class="${modalStyles[style].container}">
+        <div class="${modalStyles[style].content}">
+          <div class="${modalStyles[style].header}">
+            <img class="${modalStyles[style].logo}" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" />
+            <span onclick="hideBirlWelcome()" class="${modalStyles[style].close}">&times;</span>
           </div>
-          <div class="birlWelcome-left">
-            <h1 class="birl-heading">
+          <div class="${modalStyles[style].left}">
+            <h1 class="${modalStyles[style].heading}">
               ${heading}
             </h1>
-            <div class="birlWelcome-bodyText"> 
-              <p class="birlWelcome-bodyTextContent">
+            <div class="${modalStyles[style].bodyText}"> 
+              <p class="${modalStyles[style].bodyTextContent}">
                 ${bodyText}              
               </p>
             </div>
-            <button id="primaryGetStarted-button" class="birlWelcome-button" onClick="event.preventDefault(); initiateBirl(${customerId});">
+            <button id="primaryGetStarted-button" class="${modalStyles[style].button}" onClick="event.preventDefault(); initiateBirl(${customerId});">
               Get started
             </button>
           </div>
-          <div class="birlWelcome-right">
-            <img class="birlWelcome-img1" src="${img1}" alt="img-1" />
-            <img class="birlWelcome-img2" src="${img2}" alt="img-2" />
+          <div class="${modalStyles[style].right}">
+            <img class="${modalStyles[style].img1}" src="${img1}" alt="img-1" />
+            <img class="${modalStyles[style].img2}" src="${img2}" alt="img-2" />
           </div>
         </div>
       </div>`;
@@ -178,6 +211,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             location: data[0]?.button_location,
             style: data[0]?.button_style,
             cartLocation: data[0]?.cart_location,
+            modalStyle: data[0]?.modal_style,
           };
         }
       } else {
@@ -210,6 +244,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     button?.getAttribute("data-isHidden") === "true";
   const customerId = button?.getAttribute("data-customerId");
   const style = storeData.style || "default";
+  const modalStyle = storeData.modalStyle || "default";
   const cartLocation = storeData.cartLocation || "";
   const newElement = document.createElement("div");
 
@@ -244,7 +279,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     storeData.bodyText,
     storeData.img1,
     storeData.img2,
-    customerId
+    customerId,
+    modalStyle
   );
 
   getURLParameter("openDropdown") === "true" && showBirlWelcome();

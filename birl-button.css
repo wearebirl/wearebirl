@@ -80,6 +80,7 @@
   gap: 5px;
   font-family: default;
   flex-direction: row-reverse;
+  justify-content: center;
 }
 
 .birl-logo-container {
@@ -532,11 +533,8 @@
   }
 }
 
-.font-peregrine {
-  font-family: "Gilroy", serif !important;
-}
-
-.font-gilroy {
+/* Modal Styles */
+.birl-Gilroy {
   font-family: "Gilroy", serif !important;
 }
 
@@ -573,6 +571,10 @@
   min-width: 1000px;
   gap: 20px;
   position: relative;
+}
+
+.birlWelcome-content-basic {
+  border-radius: 0px;
 }
 
 .birlWelcome-header {
@@ -617,7 +619,6 @@
 
 .birlWelcome-button {
   box-shadow: none;
-  font-family: "Gilroy", serif !important;
   display: inline-block;
   background-color: #3c315b;
   color: white;
@@ -628,6 +629,11 @@
   cursor: pointer;
   transition: opacity 0.3s;
   border: none;
+}
+
+.birlWelcome-button-basic {
+  background-color: #000000;
+  border-radius: 0px;
 }
 
 .birlWelcome-button:hover {
@@ -642,7 +648,6 @@
 }
 
 .birlWelcome h1 {
-  font-family: "Gilroy", serif !important;
   font-size: 36px;
   font-weight: 800;
   margin: 0;
@@ -650,7 +655,6 @@
 }
 
 .birlWelcome p {
-  font-family: "Gilroy", serif !important;
   font-size: 18px;
   font-weight: 400;
   color: #4a4a4a;

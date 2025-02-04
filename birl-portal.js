@@ -48,77 +48,134 @@ document.addEventListener("DOMContentLoaded", async function () {
     return `Trade-in your old ${storeName} items for immediate credit.`;
   }
 
+  const basicStyles = {
+    default: {
+      container: "birl-cta-container tooltip-btn",
+      logoContainer: "birl-logo-container",
+      tooltipContainer: "tooltip-container",
+      logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo"></img>`,
+      ctaText: "birl-product-cta-text",
+    },
+    basic: {
+      container: "birl-cta-container tooltip-btn birl-cta-container-basic",
+      tooltipContainer: "tooltip-container tooltip-container-basic",
+      logoContainer: "",
+      logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo"></img>`,
+      ctaText: "birl-product-cta-text-basic",
+    },
+    minimal: {
+      container: "birl-cta-container tooltip-btn birl-cta-container-minimal",
+      logoContainer: "birl-logo-container birl-logo-container-minimal",
+      tooltipContainer: "tooltip-container",
+      logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo"></img>`,
+      ctaText: "birl-product-cta-text",
+    },
+  };
+
+  const modalStyles = {
+    default: {
+      container: "birlWelcome",
+      content: "birlWelcome-content",
+      header: "birlWelcome-header",
+      logo: "birlWelcome-logo",
+      close: "birlWelcome-close",
+      left: "birlWelcome-left",
+      heading: "birl-heading birl-Gilroy",
+      bodyText: "birlWelcome-bodyText",
+      bodyTextContent: "birlWelcome-bodyTextContent birl-Gilroy",
+      right: "birlWelcome-right",
+      img1: "birlWelcome-img1",
+      img2: "birlWelcome-img2",
+      button: "birlWelcome-button birl-Gilroy",
+    },
+    basic: {
+      container: "birlWelcome",
+      content: "birlWelcome-content",
+      header: "birlWelcome-header",
+      logo: "birlWelcome-logo",
+      close: "birlWelcome-close",
+      left: "birlWelcome-left",
+      heading: "birl-heading",
+      bodyText: "birlWelcome-bodyText",
+      bodyTextContent: "birlWelcome-bodyTextContent",
+      right: "birlWelcome-right",
+      img1: "birlWelcome-img1",
+      img2: "birlWelcome-img2",
+      button: "birlWelcome-button birlWelcome-button-basic",
+    },
+  };
+
   function addButton(storeName, variant, width, storeTheme, isHidden, style) {
     return `
-      <div class="birl-cta-container tooltip-btn" style="${
-        width === " full" ? "width: 100%;" : `max-width: ${width}px;`
-      }  ${isHidden ? "display: none;" : ""} ${style === "minimal" ? "border-radius: 0px; border-color: black;" : "border-radius: 5px;"}" onClick="showBirlWelcome()" }">
-          <div class="tooltip-container">
+      <div class="${
+        basicStyles[style].container
+      } ${isHidden && "birl-hidden"}" style="${width === " full" ? "width: 100%;" : `max-width: ${width}px;`}" onClick="showBirlWelcome()" }">
+          <div class=${basicStyles[style].tooltipContainer}>
               <span class="tooltip-text">
-                  <b style="color: black; width: 12px; text-align:left; display: inline-block;">1.</b> ${getDropdown1Text(
-                    storeName,
-                    storeTheme
-                  )}
+                  <b>1.</b> ${getDropdown1Text(storeName, storeTheme)}
                   <br><br>
-                  <b style="color: black; width: 12px; text-align:left; display: inline-block;">2.</b> Spend your credit as soon as you receive your unique code.
+                  <b>2.</b> Spend your credit as soon as you receive your unique code.
                   <br><br>
-                  <b style="color: black; width: 12px; text-align:left; display: inline-block;">3.</b> Send your trade-in back with the free digital label provided.
+                  <b>3.</b> Send your trade-in back with the free digital label provided.
               </span>
           </div>
-          <div class="birl-logo-container" style="${
-            style === "minimal" && "background-color: transparent;"
-          }">
-    
-            ${
-              style === "minimal"
-                ? `<img class="birl-logo-2" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo"></img>`
-                : `<img class="birl-logo-2" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo"></img>`
-            }
+          <div class="${
+            basicStyles[style].logoContainer
+          }"> ${basicStyles[style].logo}
             </div>
-          <div class="birl-product-cta-text">
+          <div class=${basicStyles[style].ctaText}>
               <p>
-                  <span><b>
+              ${
+                style === "basic"
+                  ? `Get money off this item today with `
+                  : `<span><b>
                           ${
                             variant === "product"
                               ? "Get money off this item today"
                               : ""
-                          }${variant.includes("account") ? "Get money off your next purchase" : ""} </b><br>
+                          }${
+                      variant.includes("account")
+                        ? "Get money off your next purchase"
+                        : ""
+                    } </b><br>
                   </span>
                   <span style="color: #808080;">${getButtonText(
                     storeName,
                     storeTheme,
                     style
-                  )}</span>
+                  )}</span>`
+              }
+                  
               </p>
           </div>
       </div>
     `;
   }
 
-  function addModal(heading, bodyText, img1, img2, customerId) {
+  function addModal(heading, bodyText, img1, img2, customerId, style) {
     const modalHTML = `
-      <div id="birlWelcome" class="birlWelcome">
-        <div class="birlWelcome-content">
-          <div class="birlWelcome-header">
-            <img class="birlWelcome-logo" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" />
-            <span onclick="hideBirlWelcome()" class="birlWelcome-close">&times;</span>
+      <div id="birlWelcome" class="${modalStyles[style].container}">
+        <div class="${modalStyles[style].content}">
+          <div class="${modalStyles[style].header}">
+            <img class="${modalStyles[style].logo}" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" />
+            <span onclick="hideBirlWelcome()" class="${modalStyles[style].close}">&times;</span>
           </div>
-          <div class="birlWelcome-left">
-            <h1 class="birl-heading">
+          <div class="${modalStyles[style].left}">
+            <h1 class="${modalStyles[style].heading}">
               ${heading}
             </h1>
-            <div class="birlWelcome-bodyText"> 
-              <p class="birlWelcome-bodyTextContent">
+            <div class="${modalStyles[style].bodyText}"> 
+              <p class="${modalStyles[style].bodyTextContent}">
                 ${bodyText}              
               </p>
             </div>
-            <button id="primaryGetStarted-button" class="birlWelcome-button" onClick="event.preventDefault(); initiateBirl(${customerId});">
+            <button id="primaryGetStarted-button" class="${modalStyles[style].button}" onClick="event.preventDefault(); initiateBirl(${customerId});">
               Get started
             </button>
           </div>
-          <div class="birlWelcome-right">
-            <img class="birlWelcome-img1" src="${img1}" alt="img-1" />
-            <img class="birlWelcome-img2" src="${img2}" alt="img-2" />
+          <div class="${modalStyles[style].right}">
+            <img class="${modalStyles[style].img1}" src="${img1}" alt="img-1" />
+            <img class="${modalStyles[style].img2}" src="${img2}" alt="img-2" />
           </div>
         </div>
       </div>`;
@@ -153,6 +210,8 @@ document.addEventListener("DOMContentLoaded", async function () {
             img2: data[0]?.cover_image_2,
             location: data[0]?.button_location,
             style: data[0]?.button_style,
+            cartLocation: data[0]?.cart_location,
+            modalStyle: data[0]?.modal_style,
           };
         }
       } else {
@@ -185,6 +244,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     button?.getAttribute("data-isHidden") === "true";
   const customerId = button?.getAttribute("data-customerId");
   const style = storeData.style || "default";
+  const modalStyle = storeData.modalStyle || "default";
+  const cartLocation = storeData.cartLocation || "";
   const newElement = document.createElement("div");
 
   newElement.innerHTML = addButton(
@@ -218,13 +279,23 @@ document.addEventListener("DOMContentLoaded", async function () {
     storeData.bodyText,
     storeData.img1,
     storeData.img2,
-    customerId
+    customerId,
+    modalStyle
   );
 
   getURLParameter("openDropdown") === "true" && showBirlWelcome();
   console.log("Birl added to page");
 
   console.log("URL parameters:", window.location.search);
+  console.log("Cart location:", cartLocation);
+  if (cartLocation && cartLocation !== "") {
+    console.log("Inserting Birl button after cart...");
+    const cartElement = document?.querySelector(cartLocation);
+    if (!cartElement) {
+      console.log("This is where its wrong");
+    }
+    cartElement.insertAdjacentElement("afterend", newElement);
+  }
 
   if (!buttonEnabled && !button) {
     return;
