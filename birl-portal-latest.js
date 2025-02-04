@@ -293,25 +293,24 @@ document.addEventListener("DOMContentLoaded", async function () {
   async function insertCartButton(storeData, buttonConfig) {
     console.log("Inserting cart button...");
     if (storeData.cartLocation && storeData.cartLocation !== "") {
-      const newCartElement = document.createElement("div");
-      newCartElement.innerHTML = addButton(
-        buttonConfig.storeName,
-        buttonConfig.variant,
-        buttonConfig.width,
-        buttonConfig.storeTheme,
-        buttonConfig.isHidden,
-        buttonConfig.style
-      );
       const cartElement = document?.querySelector(storeData.cartLocation);
-      if (cartElement) {
+      if (!cartElement) {
         // Remove existing Birl cart button if present
         const existingButton = cartElement.nextElementSibling?.querySelector(
           ".birl-cta-container"
         );
-        if (existingButton) {
-          existingButton.parentElement.remove();
+        if (!existingButton) {
+          const newCartElement = document.createElement("div");
+          newCartElement.innerHTML = addButton(
+            buttonConfig.storeName,
+            buttonConfig.variant,
+            buttonConfig.width,
+            buttonConfig.storeTheme,
+            buttonConfig.isHidden,
+            buttonConfig.style
+          );
+          cartElement.insertAdjacentElement("afterend", newCartElement);
         }
-        cartElement.insertAdjacentElement("afterend", newCartElement);
       } else {
         console.error("Cart location not found");
       }
