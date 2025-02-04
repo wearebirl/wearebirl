@@ -732,13 +732,6 @@
 }
 
 @media screen and (max-width: 900px) {
-  .birlWelcome-content-basic {
-    padding: 0px;
-    min-height: 500px;
-    max-width: 800px;
-    min-width: 700px;
-  }
-
   .birlWelcome p {
     width: 90%;
   }
@@ -747,6 +740,13 @@
     min-height: 300px;
     width: 90%;
     padding: 90px 50px 50px 50px;
+  }
+
+  .birlWelcome-content-basic {
+    padding: 0px;
+    min-height: 500px;
+    max-width: 800px;
+    min-width: 700px;
   }
 
   .birlWelcome-header {
@@ -793,6 +793,15 @@
   .birlWelcome-content-basic p {
     margin: auto;
     text-transform: none !important;
+    width: 90%;
+  }
+
+  .birlWelcome-content-basic h1 {
+    margin-top: 40px;
+  }
+
+  .birlWelcome-button-basic {
+    margin-bottom: 40px;
   }
 
   .birlWelcome-right {
