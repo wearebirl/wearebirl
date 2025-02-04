@@ -618,6 +618,7 @@
   width: 50%;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 /* The Close Button */
 .birlWelcome-close {
@@ -665,7 +666,7 @@
   color: black;
 }
 
-.birlWelcome-heading-basic h1 {
+.birl-heading-basic h1 {
   font-size: 28px;
   width: 90%;
   margin: auto;
@@ -681,7 +682,7 @@
   text-transform: none !important;
 }
 
-.birlWelcome-bodyTextContent-basic p {
+.birlWelcome-bodyTextContent-basic {
   margin: auto;
   text-transform: none !important;
   font-weight: initial;
