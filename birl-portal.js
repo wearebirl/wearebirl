@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       content: "birlWelcome-content birlWelcome-content-basic",
       header: "birlWelcome-header birlWelcome-header-basic",
       logo: "birlWelcome-logo",
-      close: "birlWelcome-close",
+      close: "birlWelcome-close birlWelcome-close-basic",
       left: "birlWelcome-left birlWelcome-leftRight-basic",
       heading: "birl-heading-basic",
       bodyText: "birlWelcome-bodyText",
@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   function addModal(heading, bodyText, img1, img2, customerId, style) {
     const modalHTML = `
-      <div id="birlWelcome" class="${modalStyles[style].container}">
+      <div id="birlWelcome" class="${modalStyles[style].container}" style="display: none;">
         <div class="${modalStyles[style].content}">
           <div class="${modalStyles[style].header}">
             <img class="${modalStyles[style].logo}" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" />
@@ -287,20 +287,82 @@ document.addEventListener("DOMContentLoaded", async function () {
   getURLParameter("openDropdown") === "true" && showBirlWelcome();
   console.log("Birl added to page");
 
-  console.log("URL parameters:", window.location.search);
-  console.log("Cart location:", cartLocation);
-  if (cartLocation && cartLocation !== "") {
-    const newCartElement = document.createElement("div");
-    newCartElement.innerHTML = addButton(
-      storeName,
-      variant,
-      width,
-      storeTheme,
-      isHidden,
-      style
-    );
-    const cartElement = document?.querySelector(cartLocation);
-    cartElement.insertAdjacentElement("afterend", newCartElement);
+  async function insertCartButton(storeData, buttonConfig) {
+    console.log("Inserting cart button...");
+    if (storeData.cartLocation && storeData.cartLocation !== "") {
+      const cartElement = document?.querySelector(storeData.cartLocation);
+      if (cartElement) {
+        // Remove existing Birl cart button if present
+        const existingButton = cartElement.nextElementSibling?.querySelector(
+          ".birl-cta-container"
+        );
+        if (!existingButton) {
+          const newCartElement = document.createElement("div");
+          newCartElement.innerHTML = addButton(
+            buttonConfig.storeName,
+            buttonConfig.variant,
+            buttonConfig.width,
+            buttonConfig.storeTheme,
+            buttonConfig.isHidden,
+            buttonConfig.style
+          );
+          cartElement.insertAdjacentElement("afterend", newCartElement);
+        }
+      }
+    }
+  }
+
+  // Replace existing cart button insertion with new function
+  const buttonConfig = {
+    storeName,
+    variant,
+    width,
+    storeTheme,
+    isHidden,
+    style,
+  };
+
+  await insertCartButton(storeData, buttonConfig);
+
+  const cartObserverConfig = {
+    childList: true,
+    subtree: true,
+    characterData: true,
+    attributes: true,
+  };
+
+  const cartObserver = new MutationObserver(async (mutations) => {
+    try {
+      // Debounce the callback to prevent multiple rapid executions
+      if (cartObserver.timeout) {
+        clearTimeout(cartObserver.timeout);
+      }
+
+      cartObserver.timeout = setTimeout(async () => {
+        const cartContainer = document.querySelector(
+          storeData.cartLocation
+        )?.parentElement;
+        if (cartContainer) {
+          await insertCartButton(storeData, buttonConfig);
+        }
+      }, 100);
+    } catch (error) {
+      console.error("Cart observer error:", error);
+    }
+  });
+
+  function startCartObserver() {
+    const cartContainer = document.querySelector(".cart-drawer");
+    if (cartContainer) {
+      console.log("Cart observer started");
+      cartObserver.observe(cartContainer, cartObserverConfig);
+    } else {
+      setTimeout(startCartObserver, 500);
+    }
+  }
+
+  if (storeData.cartLocation) {
+    startCartObserver();
   }
 
   if (!buttonEnabled && !button) {

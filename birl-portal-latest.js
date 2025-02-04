@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       content: "birlWelcome-content birlWelcome-content-basic",
       header: "birlWelcome-header birlWelcome-header-basic",
       logo: "birlWelcome-logo",
-      close: "birlWelcome-close",
+      close: "birlWelcome-close birlWelcome-close-basic",
       left: "birlWelcome-left birlWelcome-leftRight-basic",
       heading: "birl-heading-basic",
       bodyText: "birlWelcome-bodyText",
@@ -287,9 +287,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   getURLParameter("openDropdown") === "true" && showBirlWelcome();
   console.log("Birl added to page");
 
-  console.log("URL parameters:", window.location.search);
-  console.log("Cart location:", cartLocation);
-
   async function insertCartButton(storeData, buttonConfig) {
     console.log("Inserting cart button...");
     if (storeData.cartLocation && storeData.cartLocation !== "") {
@@ -311,8 +308,6 @@ document.addEventListener("DOMContentLoaded", async function () {
           );
           cartElement.insertAdjacentElement("afterend", newCartElement);
         }
-      } else {
-        console.error("Cart location not found");
       }
     }
   }
@@ -337,7 +332,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   };
 
   const cartObserver = new MutationObserver(async (mutations) => {
-    console.log("Cart observer triggered");
     try {
       // Debounce the callback to prevent multiple rapid executions
       if (cartObserver.timeout) {

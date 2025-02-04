@@ -309,6 +309,12 @@
   font-weight: bold;
 }
 
+.birlWelcome-close-basic {
+  color: black;
+  font-weight: 300;
+  z-index: 9999;
+}
+
 .birlWelcome-button {
   box-shadow: none;
   display: inline-block;
