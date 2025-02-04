@@ -665,6 +665,14 @@
   color: black;
 }
 
+.birlWelcome-heading-basic h1 {
+  font-size: 28px;
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  font-weight: initial;
+}
+
 .birlWelcome p {
   font-size: 18px;
   font-weight: 400;
@@ -673,9 +681,10 @@
   text-transform: none !important;
 }
 
-.birlWelcome-bodyTextContent-basic {
+.birlWelcome-bodyTextContent-basic p {
   margin: auto;
   text-transform: none !important;
+  font-weight: initial;
 }
 
 .birlWelcome-img1 {
