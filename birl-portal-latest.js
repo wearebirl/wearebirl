@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       bodyTextContent: "birlWelcome-bodyTextContent",
       right: "birlWelcome-right birlWelcome-leftRight-basic",
       img1: "birlWelcome-img1 birlWelcome-img-basic",
-      img2: "birlWelcome-img2 birlWelcome-img-basic",
+      img2: "birlWelcome-img2 birl-hidden",
       button: "birlWelcome-button birlWelcome-button-basic",
     },
   };
