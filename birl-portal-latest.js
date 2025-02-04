@@ -290,8 +290,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   console.log("URL parameters:", window.location.search);
   console.log("Cart location:", cartLocation);
 
-  // New function to handle cart button insertion
   async function insertCartButton(storeData, buttonConfig) {
+    console.log("Inserting cart button...");
     if (storeData.cartLocation && storeData.cartLocation !== "") {
       const newCartElement = document.createElement("div");
       newCartElement.innerHTML = addButton(
@@ -304,7 +304,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       );
       const cartElement = document?.querySelector(storeData.cartLocation);
       if (cartElement) {
-        // Remove existing Birl button if present
+        // Remove existing Birl cart button if present
         const existingButton = cartElement.nextElementSibling?.querySelector(
           ".birl-cta-container"
         );
@@ -312,6 +312,8 @@ document.addEventListener("DOMContentLoaded", async function () {
           existingButton.parentElement.remove();
         }
         cartElement.insertAdjacentElement("afterend", newCartElement);
+      } else {
+        console.error("Cart location not found");
       }
     }
   }
@@ -328,25 +330,46 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   await insertCartButton(storeData, buttonConfig);
 
-  // Add mutation observer for cart updates
-  const cartObserverConfig = { childList: true, subtree: true };
+  const cartObserverConfig = {
+    childList: true,
+    subtree: true,
+    characterData: true,
+    attributes: true,
+  };
+
   const cartObserver = new MutationObserver(async (mutations) => {
-    const cartContainer = document.querySelector(
-      storeData.cartLocation
-    )?.parentElement;
-    if (
-      cartContainer &&
-      mutations.some((mutation) => cartContainer.contains(mutation.target))
-    ) {
-      await insertCartButton(storeData, buttonConfig);
+    try {
+      // Debounce the callback to prevent multiple rapid executions
+      if (cartObserver.timeout) {
+        clearTimeout(cartObserver.timeout);
+      }
+
+      cartObserver.timeout = setTimeout(async () => {
+        const cartContainer = document.querySelector(
+          storeData.cartLocation
+        )?.parentElement;
+        if (cartContainer) {
+          await insertCartButton(storeData, buttonConfig);
+        }
+      }, 100);
+    } catch (error) {
+      console.error("Cart observer error:", error);
     }
   });
 
-  const cartContainer = document.querySelector(
-    storeData.cartLocation
-  )?.parentElement;
-  if (cartContainer) {
-    cartObserver.observe(cartContainer, cartObserverConfig);
+  function startCartObserver() {
+    const cartContainer = document.querySelector(
+      storeData.cartLocation
+    )?.parentElement;
+    if (cartContainer) {
+      cartObserver.observe(document.body, cartObserverConfig);
+    } else {
+      setTimeout(startCartObserver, 500);
+    }
+  }
+
+  if (storeData.cartLocation) {
+    startCartObserver();
   }
 
   if (!buttonEnabled && !button) {
