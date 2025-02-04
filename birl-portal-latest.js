@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       <div class="${
         buttonStyles[style].container
       } ${isHidden && "birl-hidden"}" style="${width === " full" ? "width: 100%;" : `max-width: ${width}px;`}" onClick="showBirlWelcome()" }">
-          <div class=${buttonStyles[style].tooltipContainer}>
+          <div class="${buttonStyles[style].tooltipContainer}">
               <span class="tooltip-text">
                   <b>1.</b> ${getDropdown1Text(storeName, storeTheme)}
                   <br><br>
