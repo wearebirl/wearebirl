@@ -99,8 +99,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       bodyText: "birlWelcome-bodyText",
       bodyTextContent: "birlWelcome-bodyTextContent",
       right: "birlWelcome-right",
-      img1: "birlWelcome-img1",
-      img2: "birlWelcome-img2",
+      img1: "birlWelcome-img1 birlWelcome-img-basic",
+      img2: "birlWelcome-img2 birlWelcome-img-basic",
       button: "birlWelcome-button birlWelcome-button-basic",
     },
   };
@@ -289,12 +289,17 @@ document.addEventListener("DOMContentLoaded", async function () {
   console.log("URL parameters:", window.location.search);
   console.log("Cart location:", cartLocation);
   if (cartLocation && cartLocation !== "") {
-    console.log("Inserting Birl button after cart...");
+    const newCartElement = document.createElement("div");
+    newCartElement.innerHTML = addButton(
+      storeName,
+      variant,
+      width,
+      storeTheme,
+      isHidden,
+      style
+    );
     const cartElement = document?.querySelector(cartLocation);
-    if (!cartElement) {
-      console.log("This is where its wrong");
-    }
-    cartElement.insertAdjacentElement("afterend", newElement);
+    cartElement.insertAdjacentElement("afterend", newCartElement);
   }
 
   if (!buttonEnabled && !button) {

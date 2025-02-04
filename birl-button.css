@@ -634,6 +634,7 @@
 .birlWelcome-button-basic {
   background-color: #000000;
   border-radius: 0px;
+  font-weight: 600;
 }
 
 .birlWelcome-button:hover {
@@ -670,6 +671,12 @@
   height: 75%;
   object-fit: cover;
   border-radius: 16px;
+}
+
+.birlWelcome-img-basic {
+  border-radius: 0px;
+  width: 50%;
+  height: 60%;
 }
 
 .birlWelcome-img2 {
