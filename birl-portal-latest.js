@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     basic: {
       container: "birlWelcome",
       content: "birlWelcome-content birlWelcome-content-basic",
-      header: "birlWelcome-header",
+      header: "birlWelcome-header birlWelcome-header-basic",
       logo: "birlWelcome-logo",
       close: "birlWelcome-close",
       left: "birlWelcome-left birlWelcome-leftRight-basic",

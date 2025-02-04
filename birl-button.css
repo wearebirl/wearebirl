@@ -592,6 +592,10 @@
   padding: 40px;
 }
 
+.birlWelcome-header-basic {
+  padding: 20px;
+}
+
 .birlWelcome-logo {
   width: 100px;
   height: 28px;
@@ -723,6 +727,7 @@
 
   .birlWelcome-content-basic {
     padding: 0px;
+    min-height: 500px;
   }
 }
 
@@ -735,6 +740,11 @@
     min-height: 300px;
     width: 90%;
     padding: 90px 50px 50px 50px;
+  }
+
+  .birlWelcome-content-basic {
+    padding: 0px;
+    min-height: 500px;
   }
 
   .birlWelcome-header {
@@ -761,6 +771,11 @@
     padding: 80px 40px 40px 40px;
     flex-direction: column-reverse;
     min-width: revert;
+  }
+
+  .birlWelcome-content-basic {
+    padding: 0px;
+    min-height: 400px;
   }
 
   .birlWelcome-left {
