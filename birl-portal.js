@@ -48,9 +48,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     return `Trade-in your old ${storeName} items for immediate credit.`;
   }
 
-  const basicStyles = {
+  const buttonStyles = {
     default: {
-      container: "birl-cta-container tooltip-btn",
+      container: "birl-cta-container tooltip-btn birl-Gilroy",
       logoContainer: "birl-logo-container",
       tooltipContainer: "tooltip-container",
       logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo"></img>`,
@@ -64,7 +64,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       ctaText: "birl-product-cta-text-basic",
     },
     minimal: {
-      container: "birl-cta-container tooltip-btn birl-cta-container-minimal",
+      container:
+        "birl-cta-container tooltip-btn birl-cta-container-minimal birl-Gilroy",
       logoContainer: "birl-logo-container birl-logo-container-minimal",
       tooltipContainer: "tooltip-container",
       logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo"></img>`,
@@ -90,17 +91,17 @@ document.addEventListener("DOMContentLoaded", async function () {
     },
     basic: {
       container: "birlWelcome",
-      content: "birlWelcome-content",
-      header: "birlWelcome-header",
+      content: "birlWelcome-content birlWelcome-content-basic",
+      header: "birlWelcome-header birlWelcome-header-basic",
       logo: "birlWelcome-logo",
       close: "birlWelcome-close",
-      left: "birlWelcome-left",
-      heading: "birl-heading",
+      left: "birlWelcome-left birlWelcome-leftRight-basic",
+      heading: "birl-heading-basic",
       bodyText: "birlWelcome-bodyText",
-      bodyTextContent: "birlWelcome-bodyTextContent",
-      right: "birlWelcome-right",
-      img1: "birlWelcome-img1",
-      img2: "birlWelcome-img2",
+      bodyTextContent: "birlWelcome-bodyTextContent-basic",
+      right: "birlWelcome-right birlWelcome-leftRight-basic",
+      img1: "birlWelcome-img1 birlWelcome-img-basic",
+      img2: "birlWelcome-img2 birl-hidden",
       button: "birlWelcome-button birlWelcome-button-basic",
     },
   };
@@ -108,9 +109,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   function addButton(storeName, variant, width, storeTheme, isHidden, style) {
     return `
       <div class="${
-        basicStyles[style].container
+        buttonStyles[style].container
       } ${isHidden && "birl-hidden"}" style="${width === " full" ? "width: 100%;" : `max-width: ${width}px;`}" onClick="showBirlWelcome()" }">
-          <div class=${basicStyles[style].tooltipContainer}>
+          <div class=${buttonStyles[style].tooltipContainer}>
               <span class="tooltip-text">
                   <b>1.</b> ${getDropdown1Text(storeName, storeTheme)}
                   <br><br>
@@ -120,10 +121,10 @@ document.addEventListener("DOMContentLoaded", async function () {
               </span>
           </div>
           <div class="${
-            basicStyles[style].logoContainer
-          }"> ${basicStyles[style].logo}
+            buttonStyles[style].logoContainer
+          }"> ${buttonStyles[style].logo}
             </div>
-          <div class=${basicStyles[style].ctaText}>
+          <div class=${buttonStyles[style].ctaText}>
               <p>
               ${
                 style === "basic"
@@ -289,12 +290,17 @@ document.addEventListener("DOMContentLoaded", async function () {
   console.log("URL parameters:", window.location.search);
   console.log("Cart location:", cartLocation);
   if (cartLocation && cartLocation !== "") {
-    console.log("Inserting Birl button after cart...");
+    const newCartElement = document.createElement("div");
+    newCartElement.innerHTML = addButton(
+      storeName,
+      variant,
+      width,
+      storeTheme,
+      isHidden,
+      style
+    );
     const cartElement = document?.querySelector(cartLocation);
-    if (!cartElement) {
-      console.log("This is where its wrong");
-    }
-    cartElement.insertAdjacentElement("afterend", newElement);
+    cartElement.insertAdjacentElement("afterend", newCartElement);
   }
 
   if (!buttonEnabled && !button) {
