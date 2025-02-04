@@ -294,7 +294,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     console.log("Inserting cart button...");
     if (storeData.cartLocation && storeData.cartLocation !== "") {
       const cartElement = document?.querySelector(storeData.cartLocation);
-      if (!cartElement) {
+      if (cartElement) {
         // Remove existing Birl cart button if present
         const existingButton = cartElement.nextElementSibling?.querySelector(
           ".birl-cta-container"
