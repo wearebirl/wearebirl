@@ -223,6 +223,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   }
 
+  console.log("Birl loading...");
+
   const birlFlags = document
     ?.querySelector('meta[name="birl-id"]')
     ?.getAttribute("content");
