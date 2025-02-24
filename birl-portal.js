@@ -292,7 +292,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   async function insertCartButton(storeData, buttonConfig) {
     if (storeData.cartLocation && storeData.cartLocation !== "") {
       console.log(`Inserting cart button after: ${cartLocation}`);
-      const cartElement = document?.querySelector(storeData.cartLocation);
+      const cartElement = document.querySelector(storeData.cartLocation);
       if (cartElement) {
         // Remove existing Birl cart button if present
         const existingButton = cartElement.nextElementSibling?.querySelector(
@@ -302,7 +302,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           const newCartElement = document.createElement("div");
           newCartElement.innerHTML = addButton(
             buttonConfig.storeName,
-            buttonConfig.variant,
+            "account",
             buttonConfig.width,
             buttonConfig.storeTheme,
             buttonConfig.isHidden,
