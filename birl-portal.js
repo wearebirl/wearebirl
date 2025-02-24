@@ -371,6 +371,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     return;
   }
 
+  if (!positionElement) {
+    console.log("Button PDP position element not found");
+  }
   console.log(
     `Inserting Birl PDP button after: ${storeData.location || ".birl-button"}`
   );
