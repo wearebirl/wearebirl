@@ -15,7 +15,7 @@ window.hideBirlWelcome = function () {
   birlModal.style.display = "none";
 };
 
-document.addEventListener("DOMContentLoaded", async function () {
+async function initializeBirl() {
   const getURLParameter = (name) => {
     return new URLSearchParams(window.location.search).get(name);
   };
@@ -33,7 +33,9 @@ document.addEventListener("DOMContentLoaded", async function () {
       return `Trade-in ${storeName} jackets you no longer use`;
     }
 
-    return `Trade-in ${storeName} garments you ${storeName.length >= 15 ? "don't" : "no longer"} use`;
+    return `Trade-in ${storeName} garments you ${
+      storeName.length >= 15 ? "don't" : "no longer"
+    } use`;
   }
 
   function getDropdown1Text(storeName, storeTheme) {
@@ -108,9 +110,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   function addButton(storeName, variant, width, storeTheme, isHidden, style) {
     return `
-      <div class="${
-        buttonStyles[style].container
-      } ${isHidden && "birl-hidden"}" style="${width === " full" ? "width: 100%;" : `max-width: ${width}px;`}" onClick="showBirlWelcome()" }">
+      <div class="${buttonStyles[style].container} ${
+      isHidden && "birl-hidden"
+    }" style="${
+      width === " full" ? "width: 100%;" : `max-width: ${width}px;`
+    }" onClick="showBirlWelcome()" }">
           <div class="${buttonStyles[style].tooltipContainer}">
               <span class="tooltip-text">
                   <b>1.</b> ${getDropdown1Text(storeName, storeTheme)}
@@ -120,9 +124,9 @@ document.addEventListener("DOMContentLoaded", async function () {
                   <b>3.</b> Send your trade-in back with the free digital label provided.
               </span>
           </div>
-          <div class="${
-            buttonStyles[style].logoContainer
-          }"> ${buttonStyles[style].logo}
+          <div class="${buttonStyles[style].logoContainer}"> ${
+      buttonStyles[style].logo
+    }
             </div>
           <div class=${buttonStyles[style].ctaText}>
               <p>
@@ -378,7 +382,14 @@ document.addEventListener("DOMContentLoaded", async function () {
     `Inserting Birl PDP button after: ${storeData.location || ".birl-button"}`
   );
   positionElement.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
-});
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initializeBirl);
+} else {
+  // DOM is already loaded, run initialization directly
+  initializeBirl();
+}
 
 function initiateBirl(customerId) {
   console.log("Initiating Birl trade-in session...");
