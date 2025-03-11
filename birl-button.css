@@ -39,11 +39,6 @@
 }
 
 /* New Styles */
-.birl-full-width {
-  width: 100%;
-  max-width: 100%;
-}
-
 .birl-hidden {
   display: none;
 }
@@ -107,27 +102,6 @@
   text-transform: none;
 }
 
-.birl-product-cta-content {
-  display: flex;
-  align-items: center;
-  margin-bottom: 6px;
-}
-
-.birl-logo-2 {
-  height: 15px;
-  object-fit: contain;
-}
-
-.birl-product-cta-container img {
-  width: 50px;
-  height: 17px;
-}
-
-.birl-product-cta-container3 img {
-  width: 50px;
-  height: 17px;
-  margin-right: 16px;
-}
 .birl-product-cta-text p {
   margin: 0;
   text-transform: none !important;
@@ -140,18 +114,8 @@
 }
 
 .birl-product-cta-text p {
-  font-weight: 400 !important;
-}
-
-.birl-product-cta-text button {
-  color: white;
-  text-decoration: underline;
-  font-weight: 600;
-  text-underline-offset: 2px;
-  font-family: "Inter", sans-serif;
-  margin-left: 0;
   font-size: 12px;
-  padding: 0;
+  font-weight: 400 !important;
 }
 
 .tooltip-btn .tooltip-text {
@@ -193,15 +157,6 @@
   width: 12px;
   text-align: left;
   display: inline-block;
-}
-
-.tooltip-btn .tooltip-container-2 {
-  padding: 15px;
-  border-radius: 10px;
-  border: grey;
-  border-width: 0.06rem;
-  border-style: solid;
-  bottom: -150px; /* Position above the button */
 }
 
 @media (hover: hover) {
