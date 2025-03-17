@@ -1,6 +1,6 @@
-//     <meta name="birl-id" content="wearebirl">
-//<script src="https://wearebirl.github.io/wearebirl/birl-portal-dev.js" defer="defer"/>
-
+//<meta name="birl-id" content="wearebirl">
+//<script src="https://wearebirl.github.io/wearebirl/birl-portal.js" defer="defer"/>
+console.log("Birl Portal script loaded");
 const SUPABASE_URL = "https://rclxweaaffupqiqdklhg.supabase.co";
 const SUPABASE_API_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjbHh3ZWFhZmZ1cHFpcWRrbGhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTEwOTU5OTgsImV4cCI6MjAyNjY3MTk5OH0.h-KRME-ajXT2J_YNAEavTm77A3MjUj-j8otnj0VzTfI";
@@ -15,7 +15,7 @@ window.hideBirlWelcome = function () {
   birlModal.style.display = "none";
 };
 
-document.addEventListener("DOMContentLoaded", async function () {
+async function initializeBirl() {
   const getURLParameter = (name) => {
     return new URLSearchParams(window.location.search).get(name);
   };
@@ -33,7 +33,9 @@ document.addEventListener("DOMContentLoaded", async function () {
       return `Trade-in ${storeName} jackets you no longer use`;
     }
 
-    return `Trade-in ${storeName} garments you ${storeName.length >= 15 ? "don't" : "no longer"} use`;
+    return `Trade-in ${storeName} garments you ${
+      storeName.length >= 15 ? "don't" : "no longer"
+    } use`;
   }
 
   function getDropdown1Text(storeName, storeTheme) {
@@ -108,9 +110,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   function addButton(storeName, variant, width, storeTheme, isHidden, style) {
     return `
-      <div class="${
-        buttonStyles[style].container
-      } ${isHidden && "birl-hidden"}" style="${width === " full" ? "width: 100%;" : `max-width: ${width}px;`}" onClick="showBirlWelcome()" }">
+      <div class="${buttonStyles[style].container} ${
+      isHidden && "birl-hidden"
+    }" style="${
+      width === " full" ? "width: 100%;" : `max-width: ${width}px;`
+    }" onClick="showBirlWelcome()" }">
           <div class="${buttonStyles[style].tooltipContainer}">
               <span class="tooltip-text">
                   <b>1.</b> ${getDropdown1Text(storeName, storeTheme)}
@@ -120,9 +124,9 @@ document.addEventListener("DOMContentLoaded", async function () {
                   <b>3.</b> Send your trade-in back with the free digital label provided.
               </span>
           </div>
-          <div class="${
-            buttonStyles[style].logoContainer
-          }"> ${buttonStyles[style].logo}
+          <div class="${buttonStyles[style].logoContainer}"> ${
+      buttonStyles[style].logo
+    }
             </div>
           <div class=${buttonStyles[style].ctaText}>
               <p>
@@ -187,7 +191,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   async function fetchData(storeId) {
     try {
       const response = await fetch(
-        `${SUPABASE_URL}/rest/v1/stores?store_name=eq.${storeId}`,
+        `${SUPABASE_URL}/rest/v1/stores?select=*,categories(*)&store_name=eq.${storeId}`,
         {
           method: "GET",
           headers: {
@@ -201,6 +205,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       if (response.ok) {
         const data = await response.json();
         if (data.length) {
+          console.log("Store data fetched:", data[0]);
           return {
             heading: data[0]?.modal_heading,
             bodyText: data[0]?.modal_body,
@@ -213,6 +218,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             style: data[0]?.button_style,
             cartLocation: data[0]?.cart_location,
             modalStyle: data[0]?.modal_style,
+            categories: data[0]?.categories,
           };
         }
       } else {
@@ -222,6 +228,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       console.error("Fetch error:", error);
     }
   }
+
+  console.log("Birl loading...");
 
   const birlFlags = document
     ?.querySelector('meta[name="birl-id"]')
@@ -288,9 +296,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   console.log("Birl added to page");
 
   async function insertCartButton(storeData, buttonConfig) {
-    console.log("Inserting cart button...");
     if (storeData.cartLocation && storeData.cartLocation !== "") {
-      const cartElement = document?.querySelector(storeData.cartLocation);
+      console.log(`Inserting cart button after: ${cartLocation}`);
+      const cartElement = document.querySelector(storeData.cartLocation);
       if (cartElement) {
         // Remove existing Birl cart button if present
         const existingButton = cartElement.nextElementSibling?.querySelector(
@@ -300,7 +308,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           const newCartElement = document.createElement("div");
           newCartElement.innerHTML = addButton(
             buttonConfig.storeName,
-            buttonConfig.variant,
+            "account",
             buttonConfig.width,
             buttonConfig.storeTheme,
             buttonConfig.isHidden,
@@ -369,8 +377,21 @@ document.addEventListener("DOMContentLoaded", async function () {
     return;
   }
 
+  if (!positionElement) {
+    console.log("Button PDP position element not found");
+  }
+  console.log(
+    `Inserting Birl PDP button after: ${storeData.location || ".birl-button"}`
+  );
   positionElement.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
-});
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initializeBirl);
+} else {
+  // DOM is already loaded, run initialization directly
+  initializeBirl();
+}
 
 function initiateBirl(customerId) {
   console.log("Initiating Birl trade-in session...");
@@ -412,3 +433,49 @@ function initiateBirl(customerId) {
     alert("An error occurred. Please try again.");
   }
 }
+
+function productTypeToCategory(productType, categories, categoryName) {
+  //Excluded
+  const excludeCat = categories.find(
+    (cat) => cat.category_type === CategoryType.EXCLUDE
+  );
+  if (excludeCat?.store_category_ids.includes(productType)) {
+    //Excluded
+    return excludeCat?.id;
+  }
+  //Included
+  const includeCat = categories.find(
+    (cat) =>
+      (cat.store_category_ids.includes(productType) ||
+        cat.backup_categories.includes(categoryName || "")) &&
+      cat.category_type === CategoryType.INCLUDE
+  );
+  if (includeCat) {
+    //Included
+    return includeCat?.id;
+  }
+  //Default
+  const defaultCat = categories.find(
+    (cat) => cat.category_type === CategoryType.DEFAULT
+  );
+  return defaultCat?.id;
+}
+
+const calculateMaxCreditValue = (item, category) => {
+  const pricing = category?.pricing?.find(
+    (pricing) => pricing.pricing_type.valueOf() == "internal"
+  );
+  if (!item || !pricing) {
+    const missingParams = [];
+    if (!item) missingParams.push("item");
+    if (!pricing) missingParams.push("pricing");
+    console.error(
+      "Missing required parameters for calculateCreditValues:",
+      missingParams.join(", ")
+    );
+    return;
+  }
+
+  const credit = Math.ceil((pricing.grade_a_amount / 100) * item.price);
+  return Math.ceil((credit * (1 + pricing.grade_a_upsell / 100)) / 5) * 5;
+};
