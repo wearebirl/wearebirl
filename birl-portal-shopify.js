@@ -191,7 +191,7 @@ async function initializeBirl() {
   async function fetchData(storeId) {
     try {
       const response = await fetch(
-        `${SUPABASE_URL}/rest/v1/stores?select=*,categories(*)&store_name=eq.${storeId}`,
+        `${SUPABASE_URL}/rest/v1/stores?select=*,categories(*, pricings(*))&store_name=eq.${storeId}`,
         {
           method: "GET",
           headers: {
@@ -243,6 +243,8 @@ async function initializeBirl() {
   const buttonId = button?.getAttribute("data-storeId");
 
   const storeData = await fetchData(birlFlags ? birlId : buttonId);
+
+  const categories = storeData.categories;
 
   const storeName = storeData.storeName;
   const width = button?.getAttribute("data-width") || "full";
