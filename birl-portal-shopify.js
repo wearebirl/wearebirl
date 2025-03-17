@@ -245,6 +245,9 @@ async function initializeBirl() {
   const storeData = await fetchData(birlFlags ? birlId : buttonId);
 
   const categories = storeData.categories;
+  console.log(window.productType);
+  const category = productTypeToCategory(window.productType, categories);
+  console.log(category);
 
   const storeName = storeData.storeName;
   const width = button?.getAttribute("data-width") || "full";
