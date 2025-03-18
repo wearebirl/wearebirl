@@ -108,7 +108,15 @@ async function initializeBirl() {
     },
   };
 
-  function addButton(storeName, variant, width, storeTheme, isHidden, style) {
+  function addButton(
+    storeName,
+    variant,
+    width,
+    storeTheme,
+    isHidden,
+    style,
+    shortName
+  ) {
     return `
       <div class="${buttonStyles[style].container} ${
       isHidden && "birl-hidden"
@@ -145,7 +153,7 @@ async function initializeBirl() {
                     } </b><br>
                   </span>
                   <span style="color: #808080;">${getButtonText(
-                    storeName,
+                    shortName || storeName,
                     storeTheme,
                     style
                   )}</span>`
@@ -209,6 +217,7 @@ async function initializeBirl() {
             heading: data[0]?.modal_heading,
             bodyText: data[0]?.modal_body,
             storeName: data[0]?.name,
+            shortName: data[0]?.short_name,
             storeTheme: data[0]?.theme,
             storeStatus: data[0]?.status,
             img1: data[0]?.cover_image,
@@ -243,6 +252,7 @@ async function initializeBirl() {
   const storeData = await fetchData(birlFlags ? birlId : buttonId);
 
   const storeName = storeData.storeName;
+  const shortName = storeData.shortName;
   const width = button?.getAttribute("data-width") || "full";
   const variant = button?.getAttribute("data-variant") || "product";
   const storeTheme = storeData.storeTheme || "default";
@@ -261,7 +271,8 @@ async function initializeBirl() {
     width,
     storeTheme,
     isHidden,
-    style
+    style,
+    shortName
   );
 
   const positionElement = document?.querySelector(
