@@ -175,7 +175,7 @@
   display: none; /* Hidden by default */
   place-items: center;
   position: fixed; /* Stay in place */
-  z-index: 9999; /* Sit on top */
+  z-index: 10000000000; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
