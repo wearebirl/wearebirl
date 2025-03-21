@@ -488,7 +488,7 @@ function productTypeToCategory(productType, categories, categoryName) {
 }
 
 const calculateMaxCreditValue = (price, category) => {
-  const pricing = category?.pricing?.find(
+  const pricing = category?.pricings?.find(
     (pricing) => pricing.pricing_type.valueOf() == "internal"
   );
   if (!price || !pricing) {
