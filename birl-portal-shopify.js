@@ -254,11 +254,17 @@ async function initializeBirl() {
   const storeData = await fetchData(birlFlags ? birlId : buttonId);
 
   const categories = storeData.categories;
-
+  console.log("Categories:", categories);
+  console.log("Product type:", window?.productType);
+  console.log("Product price:", window?.productPrice);
   let maxCredit = null;
   if (!categories || !window?.productType) {
     const category = productTypeToCategory(window.productType, categories);
-    maxCredit = calculateMaxCreditValue(Number(window?.productPrice), category);
+    console.log("Category:", category);
+    maxCredit = calculateMaxCreditValue(
+      Number(window.productPrice) / 100,
+      category
+    );
   }
 
   console.log("Max credit value:", maxCredit);
