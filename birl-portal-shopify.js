@@ -143,7 +143,7 @@ async function initializeBirl() {
                 style === "basic"
                   ? maxCredit > 0
                     ? `Get up to £${maxCredit} for trading in this item with`
-                    : "money off this item today with"
+                    : "Get money off this item today with"
                   : `<span><b>
                           ${
                             variant === "product"
