@@ -115,7 +115,8 @@ async function initializeBirl() {
     storeTheme,
     isHidden,
     style,
-    shortName
+    shortName,
+    maxCredit
   ) {
     return `
       <div class="${buttonStyles[style].container} ${
@@ -140,7 +141,9 @@ async function initializeBirl() {
               <p>
               ${
                 style === "basic"
-                  ? `Get money off this item today with `
+                  ? `Get ${
+                      maxCredit > 0 ? `up to £${maxCredit}}` : "money"
+                    } off this item today with `
                   : `<span><b>
                           ${
                             variant === "product"
@@ -289,7 +292,8 @@ async function initializeBirl() {
     storeTheme,
     isHidden,
     style,
-    shortName
+    shortName,
+    maxCredit
   );
 
   const positionElement = document?.querySelector(
