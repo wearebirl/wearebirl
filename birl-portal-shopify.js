@@ -254,10 +254,14 @@ async function initializeBirl() {
   const storeData = await fetchData(birlFlags ? birlId : buttonId);
 
   const categories = storeData.categories;
-  console.log(window.productType);
-  const category = productTypeToCategory(window.productType, categories);
-  console.log(category);
 
+  let maxCredit = null;
+  if (!categories || !window?.productType) {
+    const category = productTypeToCategory(window.productType, categories);
+    maxCredit = calculateMaxCreditValue(Number(window?.productPrice), category);
+  }
+
+  console.log("Max credit value:", maxCredit);
   const storeName = storeData.storeName;
   const shortName = storeData.shortName;
   const width = button?.getAttribute("data-width") || "full";
@@ -455,7 +459,7 @@ function productTypeToCategory(productType, categories, categoryName) {
   const excludeCat = categories.find((cat) => cat.category_type === "exclude");
   if (excludeCat?.store_category_ids.includes(productType)) {
     //Excluded
-    return excludeCat?.id;
+    return excludeCat;
   }
   //Included
   const includeCat = categories.find(
@@ -466,20 +470,20 @@ function productTypeToCategory(productType, categories, categoryName) {
   );
   if (includeCat) {
     //Included
-    return includeCat?.id;
+    return includeCat;
   }
   //Default
   const defaultCat = categories.find((cat) => cat.category_type === "default");
-  return defaultCat?.id;
+  return defaultCat;
 }
 
-const calculateMaxCreditValue = (item, category) => {
+const calculateMaxCreditValue = (price, category) => {
   const pricing = category?.pricing?.find(
     (pricing) => pricing.pricing_type.valueOf() == "internal"
   );
-  if (!item || !pricing) {
+  if (!price || !pricing) {
     const missingParams = [];
-    if (!item) missingParams.push("item");
+    if (!price) missingParams.push("price");
     if (!pricing) missingParams.push("pricing");
     console.error(
       "Missing required parameters for calculateCreditValues:",
@@ -488,6 +492,6 @@ const calculateMaxCreditValue = (item, category) => {
     return;
   }
 
-  const credit = Math.ceil((pricing.grade_a_amount / 100) * item.price);
+  const credit = Math.ceil((pricing.grade_a_amount / 100) * price);
   return Math.ceil((credit * (1 + pricing.grade_a_upsell / 100)) / 5) * 5;
 };
