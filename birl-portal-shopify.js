@@ -452,9 +452,7 @@ function initiateBirl(customerId) {
 
 function productTypeToCategory(productType, categories, categoryName) {
   //Excluded
-  const excludeCat = categories.find(
-    (cat) => cat.category_type === CategoryType.EXCLUDE
-  );
+  const excludeCat = categories.find((cat) => cat.category_type === "exclude");
   if (excludeCat?.store_category_ids.includes(productType)) {
     //Excluded
     return excludeCat?.id;
@@ -464,16 +462,14 @@ function productTypeToCategory(productType, categories, categoryName) {
     (cat) =>
       (cat.store_category_ids.includes(productType) ||
         cat.backup_categories.includes(categoryName || "")) &&
-      cat.category_type === CategoryType.INCLUDE
+      cat.category_type === "include"
   );
   if (includeCat) {
     //Included
     return includeCat?.id;
   }
   //Default
-  const defaultCat = categories.find(
-    (cat) => cat.category_type === CategoryType.DEFAULT
-  );
+  const defaultCat = categories.find((cat) => cat.category_type === "default");
   return defaultCat?.id;
 }
 
