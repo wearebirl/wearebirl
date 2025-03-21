@@ -258,8 +258,8 @@ async function initializeBirl() {
   console.log("Product type:", window?.productType);
   console.log("Product price:", window?.productPrice);
   let maxCredit = -1;
-  if (categories && !window?.productType) {
-    const category = productTypeToCategory(window.productType, categories);
+  if (categories && window?.productType) {
+    const category = productTypeToCategory(window.productType, categories, "");
     console.log("Category:", category);
     maxCredit = calculateMaxCreditValue(
       Number(window.productPrice) / 100,
