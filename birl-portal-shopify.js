@@ -268,7 +268,8 @@ async function initializeBirl() {
     console.log("Category:", category);
     maxCredit = calculateMaxCreditValue(
       Number(window.productPrice) / 100,
-      category
+      category,
+      storeData?.storeTheme || "default"
     );
   }
 
@@ -489,7 +490,7 @@ function productTypeToCategory(productType, categories, categoryName) {
   return defaultCat;
 }
 
-const calculateMaxCreditValue = (price, category) => {
+const calculateMaxCreditValue = (price, category, theme) => {
   const pricing = category?.pricings?.find(
     (pricing) => pricing.pricing_type.valueOf() == "internal"
   );
@@ -504,7 +505,23 @@ const calculateMaxCreditValue = (price, category) => {
     return;
   }
 
+  const price = Math.max(50, price);
+
   const credit = Math.ceil((pricing.grade_a_amount / 100) * price);
-  console.log("Credit:", credit);
-  return Math.ceil((credit * (1 + pricing.grade_a_upsell / 100)) / 5) * 5;
+  const sCredit = Math.max(credit, 5);
+  const fCredit =
+    theme === "football"
+      ? oneRound(sCredit, upsell)
+      : fiveRound(sCredit, upsell);
+  const uCredit = Math.max(fCredit, 10);
+  console.log("Credit:", uCredit);
+  return uCredit;
 };
+
+function oneRound(value, upsell) {
+  return Math.ceil(value * (1 + upsell / 100));
+}
+
+function fiveRound(value, upsell) {
+  return Math.ceil((value * (1 + upsell / 100)) / 5) * 5;
+}
