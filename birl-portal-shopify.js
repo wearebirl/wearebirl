@@ -505,9 +505,9 @@ const calculateMaxCreditValue = (price, category, theme) => {
     return;
   }
 
-  const price = Math.max(50, price);
+  const itemPrice = Math.max(50, price);
 
-  const credit = Math.ceil((pricing.grade_a_amount / 100) * price);
+  const credit = Math.ceil((pricing.grade_a_amount / 100) * itemPrice);
   const sCredit = Math.max(credit, 5);
   const fCredit =
     theme === "football"
