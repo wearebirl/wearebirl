@@ -275,7 +275,7 @@ async function initializeBirl() {
     shortName
   );
 
-  const positionElement = document?.querySelector(
+  const positionElement = document?.querySelectorAll(
     storeData.location || ".birl-button"
   );
 
@@ -386,13 +386,15 @@ async function initializeBirl() {
     return;
   }
 
-  if (!positionElement) {
+  if (!positionElement.length) {
     console.log("Button PDP position element not found");
   }
   console.log(
     `Inserting Birl PDP button after: ${storeData.location || ".birl-button"}`
   );
-  positionElement.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
+  positionElement.forEach((e) => {
+    e.insertAdjacentElement("afterend", newElement);
+  }); // Replace directly with newElement
 }
 
 if (document.readyState === "loading") {
