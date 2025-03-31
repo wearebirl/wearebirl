@@ -263,17 +263,6 @@ async function initializeBirl() {
   const style = storeData.style || "default";
   const modalStyle = storeData.modalStyle || "default";
   const cartLocation = storeData.cartLocation || "";
-  const newElement = document.createElement("div");
-
-  newElement.innerHTML = addButton(
-    storeName,
-    variant,
-    width,
-    storeTheme,
-    isHidden,
-    style,
-    shortName
-  );
 
   const positionElement = document?.querySelectorAll(
     storeData.location || ".birl-button"
@@ -393,8 +382,19 @@ async function initializeBirl() {
     `Inserting Birl PDP button after: ${storeData.location || ".birl-button"}`
   );
   positionElement.forEach((e) => {
-    e.insertAdjacentElement("afterend", newElement);
-  }); // Replace directly with newElement
+    // Create a new element for each position
+    const buttonElement = document.createElement("div");
+    buttonElement.innerHTML = addButton(
+      storeName,
+      variant,
+      width,
+      storeTheme,
+      isHidden,
+      style,
+      shortName
+    );
+    e.insertAdjacentElement("afterend", buttonElement.firstElementChild);
+  });
 }
 
 if (document.readyState === "loading") {
