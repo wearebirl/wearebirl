@@ -264,7 +264,25 @@ async function initializeBirl() {
   const modalStyle = storeData.modalStyle || "default";
   const cartLocation = storeData.cartLocation || "";
 
-  const positionElement = document?.querySelectorAll(
+  function findElementsIncludingTemplates(selector) {
+    const mainElements = Array.from(document.querySelectorAll(selector));
+    const templates = document.querySelectorAll("template");
+    let templateElements = [];
+    templates.forEach((template) => {
+      const elementsInTemplate = Array.from(
+        template.content.querySelectorAll(selector)
+      );
+      if (elementsInTemplate.length) {
+        elementsInTemplate.forEach((el) => {
+          el._parentTemplate = template;
+        });
+        templateElements = [...templateElements, ...elementsInTemplate];
+      }
+    });
+    return mainElements.concat(templateElements);
+  }
+
+  const positionElement = findElementsIncludingTemplates(
     storeData.location || ".birl-button"
   );
 
@@ -296,29 +314,66 @@ async function initializeBirl() {
   async function insertCartButton(storeData, buttonConfig) {
     if (storeData.cartLocation && storeData.cartLocation !== "") {
       console.log(`Inserting cart button after: ${cartLocation}`);
-      const cartElement = document.querySelector(storeData.cartLocation);
-      if (cartElement) {
-        // Remove existing Birl cart button if present
-        const existingButton = cartElement.nextElementSibling?.querySelector(
-          ".birl-cta-container"
-        );
-        if (!existingButton) {
-          const newCartElement = document.createElement("div");
-          newCartElement.innerHTML = addButton(
-            buttonConfig.storeName,
-            "account",
-            buttonConfig.width,
-            buttonConfig.storeTheme,
-            buttonConfig.isHidden,
-            buttonConfig.style
-          );
-          cartElement.insertAdjacentElement("afterend", newCartElement);
-        }
+      const cartElements = findElementsIncludingTemplates(
+        storeData.cartLocation
+      );
+      if (cartElements.length) {
+        cartElements.forEach((cartElement) => {
+          if (cartElement._parentTemplate) {
+            const template = cartElement._parentTemplate;
+            const clonedContent = document.importNode(template.content, true);
+            const correspondingElement = clonedContent.querySelector(
+              storeData.cartLocation
+            );
+            if (correspondingElement) {
+              const existingButton =
+                correspondingElement.nextElementSibling?.querySelector(
+                  ".birl-cta-container"
+                );
+              if (!existingButton) {
+                const newCartElement = document.createElement("div");
+                newCartElement.innerHTML = addButton(
+                  buttonConfig.storeName,
+                  "account",
+                  buttonConfig.width,
+                  buttonConfig.storeTheme,
+                  buttonConfig.isHidden,
+                  buttonConfig.style
+                );
+                correspondingElement.insertAdjacentElement(
+                  "afterend",
+                  newCartElement.firstElementChild
+                );
+                template.content.replaceChildren();
+                template.content.append(...clonedContent.childNodes);
+              }
+            }
+          } else {
+            const existingButton =
+              cartElement.nextElementSibling?.querySelector(
+                ".birl-cta-container"
+              );
+            if (!existingButton) {
+              const newCartElement = document.createElement("div");
+              newCartElement.innerHTML = addButton(
+                buttonConfig.storeName,
+                "account",
+                buttonConfig.width,
+                buttonConfig.storeTheme,
+                buttonConfig.isHidden,
+                buttonConfig.style
+              );
+              cartElement.insertAdjacentElement(
+                "afterend",
+                newCartElement.firstElementChild
+              );
+            }
+          }
+        });
       }
     }
   }
 
-  // Replace existing cart button insertion with new function
   const buttonConfig = {
     storeName,
     variant,
@@ -339,7 +394,6 @@ async function initializeBirl() {
 
   const cartObserver = new MutationObserver(async (mutations) => {
     try {
-      // Debounce the callback to prevent multiple rapid executions
       if (cartObserver.timeout) {
         clearTimeout(cartObserver.timeout);
       }
@@ -382,25 +436,49 @@ async function initializeBirl() {
     `Inserting Birl PDP button after: ${storeData.location || ".birl-button"}`
   );
   positionElement.forEach((e) => {
-    // Create a new element for each position
-    const buttonElement = document.createElement("div");
-    buttonElement.innerHTML = addButton(
-      storeName,
-      variant,
-      width,
-      storeTheme,
-      isHidden,
-      style,
-      shortName
-    );
-    e.insertAdjacentElement("afterend", buttonElement.firstElementChild);
+    if (e._parentTemplate) {
+      const buttonElement = document.createElement("div");
+      buttonElement.innerHTML = addButton(
+        storeName,
+        variant,
+        width,
+        storeTheme,
+        isHidden,
+        style,
+        shortName
+      );
+      const template = e._parentTemplate;
+      const clonedContent = document.importNode(template.content, true);
+      const correspondingElement = clonedContent.querySelector(
+        storeData.location || ".birl-button"
+      );
+      if (correspondingElement) {
+        correspondingElement.insertAdjacentElement(
+          "afterend",
+          buttonElement.firstElementChild
+        );
+        template.content.replaceChildren();
+        template.content.append(...clonedContent.childNodes);
+      }
+    } else {
+      const buttonElement = document.createElement("div");
+      buttonElement.innerHTML = addButton(
+        storeName,
+        variant,
+        width,
+        storeTheme,
+        isHidden,
+        style,
+        shortName
+      );
+      e.insertAdjacentElement("afterend", buttonElement.firstElementChild);
+    }
   });
 }
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initializeBirl);
 } else {
-  // DOM is already loaded, run initialization directly
   initializeBirl();
 }
 
