@@ -86,7 +86,7 @@ async function initializeBirl() {
       heading: "birl-heading birl-Gilroy",
       bodyText: "birlWelcome-bodyText",
       bodyTextContent: "birlWelcome-bodyTextContent birl-Gilroy",
-      bodyTextNote: "birlWelcome-bodyTextNote",
+      bodyTextNote: "birlWelcome-bodyTextNote birl-Gilroy",
       right: "birlWelcome-right",
       img1: "birlWelcome-img1",
       img2: "birlWelcome-img2",
