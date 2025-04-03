@@ -269,6 +269,12 @@
   z-index: 9999;
 }
 
+.birlWelcome-bodyTextNote {
+  margin-top: 12px;
+  font-style: italic;
+  font-size: 16px;
+}
+
 .birlWelcome-button {
   box-shadow: none;
   display: inline-block;

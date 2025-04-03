@@ -86,6 +86,7 @@ async function initializeBirl() {
       heading: "birl-heading birl-Gilroy",
       bodyText: "birlWelcome-bodyText",
       bodyTextContent: "birlWelcome-bodyTextContent birl-Gilroy",
+      bodyTextNote: "birlWelcome-bodyTextNote",
       right: "birlWelcome-right",
       img1: "birlWelcome-img1",
       img2: "birlWelcome-img2",
@@ -101,6 +102,7 @@ async function initializeBirl() {
       heading: "birl-heading-basic",
       bodyText: "birlWelcome-bodyText",
       bodyTextContent: "birlWelcome-bodyTextContent-basic",
+      bodyTextNote: "birlWelcome-bodyTextNote",
       right: "birlWelcome-right birlWelcome-leftRight-basic",
       img1: "birlWelcome-img1 birlWelcome-img-basic",
       img2: "birlWelcome-img2 birl-hidden",
@@ -165,13 +167,19 @@ async function initializeBirl() {
     `;
   }
 
-  function addModal(heading, bodyText, img1, img2, customerId, style) {
+  function addModal(heading, bodyText, img1, img2, customerId, style, instore) {
     const modalHTML = `
-      <div id="birlWelcome" class="${modalStyles[style].container}" style="display: none;">
+      <div id="birlWelcome" class="${
+        modalStyles[style].container
+      }" style="display: none;">
         <div class="${modalStyles[style].content}">
           <div class="${modalStyles[style].header}">
-            <img class="${modalStyles[style].logo}" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" />
-            <span onclick="hideBirlWelcome()" class="${modalStyles[style].close}">&times;</span>
+            <img class="${
+              modalStyles[style].logo
+            }" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" />
+            <span onclick="hideBirlWelcome()" class="${
+              modalStyles[style].close
+            }">&times;</span>
           </div>
           <div class="${modalStyles[style].left}">
             <h1 class="${modalStyles[style].heading}">
@@ -181,8 +189,14 @@ async function initializeBirl() {
               <p class="${modalStyles[style].bodyTextContent}">
                 ${bodyText}              
               </p>
+              ${
+                !instore &&
+                `<p class="${modalStyles[style].bodyTextNote}">Currently only available online.</p>`
+              }
             </div>
-            <button id="primaryGetStarted-button" class="${modalStyles[style].button}" onClick="event.preventDefault(); initiateBirl(${customerId});">
+            <button id="primaryGetStarted-button" class="${
+              modalStyles[style].button
+            }" onClick="event.preventDefault(); initiateBirl(${customerId});">
               Get started
             </button>
           </div>
@@ -226,6 +240,7 @@ async function initializeBirl() {
             style: data[0]?.button_style,
             cartLocation: data[0]?.cart_location,
             modalStyle: data[0]?.modal_style,
+            instore_enabled: data[0]?.instore_enabled,
           };
         }
       } else {
@@ -263,6 +278,7 @@ async function initializeBirl() {
   const style = storeData.style || "default";
   const modalStyle = storeData.modalStyle || "default";
   const cartLocation = storeData.cartLocation || "";
+  const instore = storeData.instore_enabled || false;
 
   function findElementsIncludingTemplates(selector) {
     const mainElements = Array.from(document.querySelectorAll(selector));
