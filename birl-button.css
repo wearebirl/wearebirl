@@ -272,7 +272,7 @@
 .birlWelcome-bodyTextNote {
   margin-top: 12px;
   font-style: italic;
-  font-size: 16px;
+  font-size: 12px !important;
 }
 
 .birlWelcome-button {
