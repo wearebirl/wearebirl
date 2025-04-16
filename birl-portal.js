@@ -73,6 +73,14 @@ async function initializeBirl() {
       logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo"></img>`,
       ctaText: "birl-product-cta-text",
     },
+    sticky: {
+      container:
+        "birl-cta-container-fixed tooltip-btn birl-cta-container-basic",
+      tooltipContainer: "tooltip-container tooltip-container-basic",
+      logoContainer: "",
+      logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo"></img>`,
+      ctaText: "birl-product-cta-text-basic",
+    },
   };
 
   const modalStyles = {

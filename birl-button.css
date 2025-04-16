@@ -64,6 +64,36 @@
   border-radius: 5px;
 }
 
+.birl-cta-container-fixed {
+  position: relative;
+  padding: 8px 20px;
+  background-color: white;
+  color: black;
+  font-size: 12px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  border-width: 1px;
+  cursor: pointer;
+  border-style: solid;
+  border-color: #dadada;
+  margin: 12px 0;
+  justify-content: start;
+  text-align: center;
+  max-width: 44rem;
+  border-radius: 5px;
+}
+
+@media only screen and (min-width: 1024px) {
+  .birl-cta-container-fixed {
+    transform: translate(-50%);
+    position: fixed !important;
+    left: 50%;
+    bottom: 2rem;
+  }
+}
+
 .birl-cta-container-minimal {
   border-radius: 0px;
   border-color: black;
