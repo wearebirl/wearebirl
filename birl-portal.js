@@ -74,7 +74,8 @@ async function initializeBirl() {
       ctaText: "birl-product-cta-text",
     },
     sticky: {
-      container: "birl-cta-container-fixed tooltip-btn",
+      container:
+        "birl-cta-container-fixed tooltip-btn birl-cta-container-basic",
       tooltipContainer: "tooltip-container tooltip-container-basic",
       logoContainer: "",
       logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo"></img>`,
@@ -148,36 +149,24 @@ async function initializeBirl() {
           <div class=${buttonStyles[style].ctaText}>
               <p>
               ${
-                style === "basic" ? (
-                  `Get money off this item today with `
-                ) : style === "sticky" ? (
-                  <p>
-                    <span>
-                      <b>Get money your next purchase</b>
-                      <br />
-                    </span>
-                    <span style={{ color: "#808080" }}>
-                      {getButtonText(organisation)}
-                    </span>
-                  </p>
-                ) : (
-                  `<span><b>
+                style === "basic"
+                  ? `Get money off this item today with `
+                  : `<span><b>
                           ${
                             variant === "product"
                               ? "Get money off this item today"
                               : ""
                           }${
-                    variant.includes("account")
-                      ? "Get money off your next purchase"
-                      : ""
-                  } </b><br>
+                      variant.includes("account")
+                        ? "Get money off your next purchase"
+                        : ""
+                    } </b><br>
                   </span>
                   <span style="color: #808080;">${getButtonText(
                     shortName || storeName,
                     storeTheme,
                     style
                   )}</span>`
-                )
               }
                   
               </p>
