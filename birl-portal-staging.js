@@ -541,7 +541,7 @@ function initiateBirl(customerId) {
     document.getElementById("primaryGetStarted-button").innerHTML =
       "Get started";
     const openedWindow = window.open(
-      `https://portal.wearebirl.com/${storeId}/trade-in?u=${encodeURIComponent(
+      `https://portal-dev.wearebirl.com/${storeId}/trade-in?u=${encodeURIComponent(
         encodedUserData
       )}`,
       "_blank"
