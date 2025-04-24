@@ -207,8 +207,9 @@ async function initializeBirl() {
                 ${bodyText}              
               </p>
               ${
-                !instore &&
-                `<p class="${modalStyles[style].bodyTextNote}">Currently only available online.</p>`
+                !instore
+                  ? `<p class="${modalStyles[style].bodyTextNote}">Currently only available online.</p>`
+                  : ""
               }
             </div>
             <button id="primaryGetStarted-button" class="${
