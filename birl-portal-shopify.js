@@ -303,6 +303,7 @@ async function initializeBirl() {
   const style = storeData.style || "default";
   const modalStyle = storeData.modalStyle || "default";
   const cartLocation = storeData.cartLocation || "";
+  const instore = storeData.instore_enabled || false;
   const newElement = document.createElement("div");
 
   newElement.innerHTML = addButton(
