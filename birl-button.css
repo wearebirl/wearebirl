@@ -142,6 +142,11 @@
   font-weight: 400 !important;
 }
 
+.birl-product-cta-text-basic p {
+  margin: 0;
+  margin-bottom: 0 !important;
+}
+
 .birl-product-cta-text b {
   font-weight: 700 !important;
 }
