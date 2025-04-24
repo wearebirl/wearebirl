@@ -103,7 +103,7 @@
   border-width: 0px;
   gap: 5px;
   flex-direction: row-reverse;
-  justify-content: center;
+  /* justify-content: center; */
   max-width: 100%;
 }
 
@@ -134,18 +134,16 @@
 
 .birl-product-cta-text p {
   margin: 0;
+  margin-bottom: 0 !important;
   text-transform: none !important;
   letter-spacing: 0 !important;
   font-family: "Gilroy", serif !important;
+  font-size: 12px;
+  font-weight: 400 !important;
 }
 
 .birl-product-cta-text b {
   font-weight: 700 !important;
-}
-
-.birl-product-cta-text p {
-  font-size: 12px;
-  font-weight: 400 !important;
 }
 
 .tooltip-btn .tooltip-text {

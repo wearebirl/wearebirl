@@ -338,7 +338,8 @@ async function initializeBirl() {
     storeData.img1,
     storeData.img2,
     customerId,
-    modalStyle
+    modalStyle,
+    instore
   );
 
   getURLParameter("openDropdown") === "true" && showBirlWelcome();
