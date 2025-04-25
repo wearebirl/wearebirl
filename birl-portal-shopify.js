@@ -158,7 +158,11 @@ async function initializeBirl() {
                       <br />
                     </span>
                     <span style={{ color: "#808080" }}>
-                      ${getButtonText(organisation)}
+                      ${getButtonText(
+                        shortName || storeName,
+                        storeTheme,
+                        style
+                      )}
                     </span>
                   </p>`
                   : `<span><b>
