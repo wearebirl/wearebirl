@@ -106,6 +106,7 @@
   gap: 5px;
   flex-direction: row-reverse;
   /* justify-content: center; */
+  padding: 8px 0px;
   max-width: 100%;
 }
 
