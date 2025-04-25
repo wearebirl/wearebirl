@@ -158,7 +158,7 @@ async function initializeBirl() {
                       <br />
                     </span>
                     <span style={{ color: "#808080" }}>
-                      {getButtonText(organisation)}
+                      ${getButtonText(organisation)}
                     </span>
                   </p>`
                   : `<span><b>
