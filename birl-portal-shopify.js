@@ -446,7 +446,7 @@ async function initializeBirl() {
   } else {
     positionElement.insertAdjacentElement("afterend", newElement);
   }
-  positionElement.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
+  // positionElement.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
 }
 
 if (document.readyState === "loading") {
