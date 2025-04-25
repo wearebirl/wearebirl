@@ -254,6 +254,7 @@ async function initializeBirl() {
             cartLocation: data[0]?.cart_location,
             modalStyle: data[0]?.modal_style,
             categories: data[0]?.categories,
+            instore_enabled: data[0]?.instore_enabled,
           };
         }
       } else {
@@ -308,6 +309,7 @@ async function initializeBirl() {
   const modalStyle = storeData.modalStyle || "default";
   const cartLocation = storeData.cartLocation || "";
   const instore = storeData.instore_enabled || false;
+
   const newElement = document.createElement("div");
 
   newElement.innerHTML = addButton(
@@ -439,6 +441,11 @@ async function initializeBirl() {
   console.log(
     `Inserting Birl PDP button after: ${storeData.location || ".birl-button"}`
   );
+  if (style === "sticky") {
+    document.body.insertAdjacentHTML("afterbegin", newElement);
+  } else {
+    positionElement.insertAdjacentElement("afterend", newElement);
+  }
   positionElement.insertAdjacentElement("afterend", newElement); // Replace directly with newElement
 }
 
