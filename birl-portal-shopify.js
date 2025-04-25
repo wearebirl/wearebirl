@@ -442,7 +442,7 @@ async function initializeBirl() {
     `Inserting Birl PDP button after: ${storeData.location || ".birl-button"}`
   );
   if (style === "sticky") {
-    document.body.insertAdjacentHTML("afterbegin", newElement);
+    document.body.insertAdjacentHTML("afterbegin", newElement.innerHTML);
   } else {
     positionElement.insertAdjacentElement("afterend", newElement);
   }
