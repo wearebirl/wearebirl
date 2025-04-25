@@ -65,6 +65,7 @@
 }
 
 .birl-cta-container-fixed {
+  display: none;
   position: relative;
   padding: 8px 20px;
   background-color: white;
@@ -87,6 +88,7 @@
 
 @media only screen and (min-width: 1024px) {
   .birl-cta-container-fixed {
+    display: block;
     transform: translate(-50%);
     position: fixed !important;
     left: 50%;
