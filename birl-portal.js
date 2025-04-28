@@ -219,7 +219,7 @@ async function initializeBirl() {
             <button id="primaryGetStarted-button" class="${
               modalStyles[style].button
             }" onClick="event.preventDefault(); initiateBirl(${customerId});">
-              Get started
+              Get Started
             </button>
           </div>
           <div class="${modalStyles[style].right}">
