@@ -115,6 +115,22 @@ async function initializeBirl() {
       img2: "birlWelcome-img2 birl-hidden",
       button: "birlWelcome-button birlWelcome-button-basic",
     },
+    basic_khanums: {
+      container: "birlWelcome",
+      content: "birlWelcome-content birlWelcome-content-basic",
+      header: "birlWelcome-header birlWelcome-header-basic",
+      logo: "birlWelcome-logo",
+      close: "birlWelcome-close birlWelcome-close-basic",
+      left: "birlWelcome-left birlWelcome-leftRight-basic",
+      heading: "birl-heading-basic",
+      bodyText: "birlWelcome-bodyText",
+      bodyTextContent: "birlWelcome-bodyTextContent-basic",
+      bodyTextNote: "birlWelcome-bodyTextNote",
+      right: "birlWelcome-right birlWelcome-leftRight-basic",
+      img1: "birlWelcome-img1 birlWelcome-img-basic",
+      img2: "birlWelcome-img2 birl-hidden",
+      button: "birlWelcome-button birlWelcome-button-basic birl-uppercase",
+    },
   };
 
   function addButton(
