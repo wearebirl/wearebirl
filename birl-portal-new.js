@@ -21,11 +21,7 @@ const CONFIG = {
     },
   },
   DEFAULTS: {
-    BUTTON_STYLE: "default",
-    MODAL_STYLE: "default",
     PORTAL_URL: "https://portal.wearebirl.com",
-    RETRY_ATTEMPTS: 3,
-    DEBOUNCE_DELAY: 100,
   },
 };
 
@@ -269,7 +265,7 @@ class BirlPortal {
   addButton(config, hideForDesktop = false) {
     return `
       <div class="${BUTTON_STYLES[config.style].container} ${
-      isHidden && "birl-hidden"
+      config.isHidden && "birl-hidden"
     } ${hideForDesktop && "birl-hide-for-desktop"}" style="${
       config.width === " full"
         ? "width: 100%;"
