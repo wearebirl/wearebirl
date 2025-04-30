@@ -71,7 +71,6 @@
   background-color: white;
   color: black;
   font-size: 12px;
-  display: flex;
   flex-direction: row;
   gap: 20px;
   align-items: center;
@@ -92,7 +91,7 @@
 
 @media only screen and (min-width: 1024px) {
   .birl-cta-container-fixed {
-    display: block;
+    display: flex;
     transform: translate(-50%);
     position: fixed !important;
     left: 50%;
