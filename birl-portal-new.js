@@ -332,9 +332,9 @@ async function initializeBirl() {
   const modalStyle = storeData.modalStyle || "default";
   const cartLocation = storeData.cartLocation || "";
   const instore_enabled = storeData.instore_enabled || false;
-  const { portal_url } = storeData || {
-    portal_url: `https://portal.wearebirl.com/${store_name}/trade-in`,
-  };
+  const portal_url =
+    storeData?.portal_url ||
+    `https://portal.wearebirl.com/${store_name}/trade-in`;
 
   console.log(portal_url);
 
