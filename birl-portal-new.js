@@ -316,27 +316,38 @@ async function initializeBirl() {
 
   console.log("Birl loading...");
 
-  const birlFlags = document
-    ?.querySelector('meta[name="birl-id"]')
-    ?.getAttribute("content");
+  function getStoreId() {
+    const birlMeta = safeDOM.querySelector('meta[name="birl-id"]');
+    const birlButton = safeDOM.querySelector(".birl-button");
 
-  const flags = birlFlags?.split(" ");
-  const birlId = flags?.[0];
-  const buttonEnabled = flags?.[1] === "enabled";
+    return (
+      birlMeta?.getAttribute("content")?.split(" ")[0] ||
+      birlButton?.getAttribute("data-storeId")
+    );
+  }
 
-  const button = document?.querySelector(".birl-button");
-  const buttonId = button?.getAttribute("data-storeId");
+  function isButtonEnabled() {
+    const birlMeta = safeDOM.querySelector('meta[name="birl-id"]');
+    const birlButton = safeDOM.querySelector(".birl-button");
+
+    return (
+      birlMeta?.getAttribute("content")?.split(" ")[1] === "enabled" ||
+      birlButton?.getAttribute("data-storeId")
+    );
+  }
+
+  const storeId = getStoreId();
+  const buttonEnabled = isButtonEnabled();
+
   let storeData = null;
   try {
-    storeData = await fetchData(birlFlags ? birlId : buttonId);
+    storeData = await fetchData(storeId);
   } catch (error) {
     console.error("Failed to initialize Birl Portal:", error);
     return;
   }
 
-  const isHidden =
-    storeData.status !== "active" ||
-    button?.getAttribute("data-isHidden") === "true";
+  const isHidden = storeData.status !== "active" || !buttonEnabled;
   const portal_url =
     storeData?.portal_url ||
     `${CONFIG.DEFAULTS.PORTAL_URL}/${storeId}/trade-in`;
@@ -362,10 +373,6 @@ async function initializeBirl() {
   const positionElement = findElementsIncludingTemplates(
     storeData.location || ".birl-button"
   );
-
-  if (!flags && !button) {
-    return;
-  }
 
   loadStyles();
 
