@@ -297,7 +297,6 @@ class BirlPortal {
                     </span>
                     <span style={{ color: "#808080" }}>
                       ${this.getButtonText(config.style)}
-                      )}
                     </span>
                   </p>`
                   : `<span><b>
