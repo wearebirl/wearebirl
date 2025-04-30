@@ -1,23 +1,47 @@
 //<meta name="birl-id" content="wearebirl">
 //<script src="https://wearebirl.github.io/wearebirl/birl-portal.js" defer="defer"/>
 console.log("Birl Portal script loaded");
-const SUPABASE_URL = "https://rclxweaaffupqiqdklhg.supabase.co";
-const SUPABASE_API_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjbHh3ZWFhZmZ1cHFpcWRrbGhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTEwOTU5OTgsImV4cCI6MjAyNjY3MTk5OH0.h-KRME-ajXT2J_YNAEavTm77A3MjUj-j8otnj0VzTfI";
+
+const CONFIG = {
+  API: {
+    SUPABASE_URL: "https://rclxweaaffupqiqdklhg.supabase.co",
+    SUPABASE_API_KEY:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjbHh3ZWFhZmZ1cHFpcWRrbGhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTEwOTU5OTgsImV4cCI6MjAyNjY3MTk5OH0.h-KRME-ajXT2J_YNAEavTm77A3MjUj-j8otnj0VzTfI",
+    ENDPOINTS: {
+      STORES: "/rest/v1/stores",
+    },
+  },
+  ASSETS: {
+    CSS_URL: "https://wearebirl.github.io/wearebirl/birl-button.css",
+    IMAGES: {
+      LOGO_PURPLE:
+        "https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg",
+      LOGO_BLACK:
+        "https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg",
+    },
+  },
+  DEFAULTS: {
+    BUTTON_STYLE: "default",
+    MODAL_STYLE: "default",
+    PORTAL_URL: "https://portal.wearebirl.com",
+    RETRY_ATTEMPTS: 3,
+    DEBOUNCE_DELAY: 100,
+  },
+};
 
 const BUTTON_STYLES = {
   default: {
     container: "birl-cta-container tooltip-btn birl-Gilroy",
     logoContainer: "birl-logo-container",
     tooltipContainer: "tooltip-container",
-    logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo"></img>`,
+    logo: `<img src="${CONFIG.ASSETS.IMAGES.LOGO_PURPLE}" width="56" height="19" alt="Birl Logo"></img>`,
     ctaText: "birl-product-cta-text",
   },
   basic: {
     container: "birl-cta-container tooltip-btn birl-cta-container-basic",
     tooltipContainer: "tooltip-container tooltip-container-basic",
     logoContainer: "",
-    logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo"></img>`,
+    logo: `<img src="${CONFIG.ASSETS.IMAGES.LOGO_BLACK}" width="56" height="19" alt="Birl Logo"></img>`,
     ctaText: "birl-product-cta-text-basic",
   },
   minimal: {
@@ -25,14 +49,14 @@ const BUTTON_STYLES = {
       "birl-cta-container tooltip-btn birl-cta-container-minimal birl-Gilroy",
     logoContainer: "birl-logo-container birl-logo-container-minimal",
     tooltipContainer: "tooltip-container",
-    logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo"></img>`,
+    logo: `<img src="${CONFIG.ASSETS.IMAGES.LOGO_BLACK}" width="56" height="19" alt="Birl Logo"></img>`,
     ctaText: "birl-product-cta-text",
   },
   sticky: {
     container: "birl-cta-container-fixed tooltip-btn",
     tooltipContainer: "tooltip-container tooltip-container-basic",
     logoContainer: "",
-    logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo"></img>`,
+    logo: `<img src="${CONFIG.ASSETS.IMAGES.LOGO_BLACK}" width="56" height="19" alt="Birl Logo"></img>`,
     ctaText: "birl-product-cta-text-basic",
   },
 };
@@ -102,6 +126,14 @@ async function initializeBirl() {
   const getURLParameter = (name) => {
     return new URLSearchParams(window.location.search).get(name);
   };
+
+  function loadStyles() {
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.type = "text/css";
+    link.href = CONFIG.ASSETS.CSS_URL;
+    document.head.appendChild(link);
+  }
 
   function getButtonText(storeName, storeTheme, style) {
     if (style === "minimal") {
@@ -262,46 +294,24 @@ async function initializeBirl() {
   }
 
   async function fetchData(storeId) {
-    try {
-      const response = await fetch(
-        `${SUPABASE_URL}/rest/v1/stores?select=*,button_styles(*)&store_name=eq.${storeId}`,
-        {
-          method: "GET",
-          headers: {
-            apikey: SUPABASE_API_KEY,
-            Authorization: `Bearer ${SUPABASE_API_KEY}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (response.ok) {
-        const data = await response.json();
-        if (data.length) {
-          return {
-            heading: data[0]?.modal_heading,
-            bodyText: data[0]?.modal_body,
-            store_name: data[0]?.name,
-            short_store_name: data[0]?.short_name,
-            storeTheme: data[0]?.theme,
-            storeStatus: data[0]?.status,
-            img1: data[0]?.cover_image,
-            img2: data[0]?.cover_image_2,
-            location: data[0]?.button_location,
-            button_style: data[0]?.button_style,
-            cartLocation: data[0]?.cart_location,
-            modalStyle: data[0]?.modal_style,
-            instore_enabled: data[0]?.instore_enabled,
-            button_styles: data[0]?.button_styles,
-            portal_url: data[0]?.portal_url,
-          };
-        }
-      } else {
-        console.error("Error fetching store data:", response.statusText);
+    const response = await fetch(
+      `${CONFIG.API.SUPABASE_URL}${CONFIG.API.ENDPOINTS.STORES}?select=*,button_styles(*)&store_name=eq.${storeId}`,
+      {
+        method: "GET",
+        headers: {
+          apikey: CONFIG.API.SUPABASE_API_KEY,
+          Authorization: `Bearer ${CONFIG.SUPABASE_API_KEY}`,
+          "Content-Type": "application/json",
+        },
       }
-    } catch (error) {
-      console.error("Fetch error:", error);
+    );
+    if (!response.ok) {
+      throw new Error(`Error fetching store data! status: ${response.status}`);
     }
+
+    const data = await response.json();
+
+    return data[0] || null;
   }
 
   console.log("Birl loading...");
@@ -316,29 +326,20 @@ async function initializeBirl() {
 
   const button = document?.querySelector(".birl-button");
   const buttonId = button?.getAttribute("data-storeId");
+  let storeData = null;
+  try {
+    storeData = await fetchData(birlFlags ? birlId : buttonId);
+  } catch (error) {
+    console.error("Failed to initialize Birl Portal:", error);
+    return;
+  }
 
-  const storeData = await fetchData(birlFlags ? birlId : buttonId);
-
-  const { button_styles } = storeData;
-
-  const store_name = storeData.store_name;
-  const short_store_name = storeData.short_store_name;
-  const width = button?.getAttribute("data-width") || "full";
-  const variant = button?.getAttribute("data-variant") || "product";
-  const storeTheme = storeData.storeTheme || "default";
   const isHidden =
-    storeData.storeStatus !== "active" ||
+    storeData.status !== "active" ||
     button?.getAttribute("data-isHidden") === "true";
-  const modalStyle = storeData.modalStyle || "default";
-  const cartLocation = storeData.cartLocation || "";
-  const instore_enabled = storeData.instore_enabled || false;
   const portal_url =
-    storeData?.portal_url || `https://portal.wearebirl.com/${storeId}/trade-in`;
-
-  console.log(portal_url);
-
-  const button_style =
-    button_styles?.style || storeData.button_style || "default";
+    storeData?.portal_url ||
+    `${CONFIG.DEFAULTS.PORTAL_URL}/${storeId}/trade-in`;
 
   function findElementsIncludingTemplates(selector) {
     const mainElements = Array.from(document.querySelectorAll(selector));
@@ -366,33 +367,26 @@ async function initializeBirl() {
     return;
   }
 
-  var element = document.createElement("link");
-  element.setAttribute("rel", "stylesheet");
-  element.setAttribute("type", "text/css");
-  element.setAttribute(
-    "href",
-    "https://wearebirl.github.io/wearebirl/birl-button.css"
-  );
-  document.getElementsByTagName("head")[0].appendChild(element);
+  loadStyles();
 
   addModal(
-    storeData.heading,
-    storeData.bodyText,
-    storeData.img1,
-    storeData.img2,
-    modalStyle,
-    instore_enabled,
+    storeData.modal_heading,
+    storeData.modal_body,
+    storeData.cover_image,
+    storeData.cover_image_2,
+    storeData.modalStyle,
+    storeData.instore_enabled,
     portal_url
   );
 
   getURLParameter("openDropdown") === "true" && showBirlWelcome();
   console.log("Birl added to page");
 
-  async function insertCartButton(storeData, buttonConfig) {
-    if (storeData.cartLocation && storeData.cartLocation !== "") {
-      console.log(`Inserting cart button after: ${cartLocation}`);
+  async function insertCartButton() {
+    if (storeData.cart_location && storeData.cart_location !== "") {
+      console.log(`Inserting cart button after: ${storeData.cart_location}`);
       const cartElements = findElementsIncludingTemplates(
-        storeData.cartLocation
+        storeData.cart_location
       );
       if (cartElements.length) {
         cartElements.forEach((cartElement) => {
@@ -400,7 +394,7 @@ async function initializeBirl() {
             const template = cartElement._parentTemplate;
             const clonedContent = document.importNode(template.content, true);
             const correspondingElement = clonedContent.querySelector(
-              storeData.cartLocation
+              storeData.cart_location
             );
             if (correspondingElement) {
               const existingButton =
@@ -410,13 +404,13 @@ async function initializeBirl() {
               if (!existingButton) {
                 const newCartElement = document.createElement("div");
                 newCartElement.innerHTML = addButton(
-                  buttonConfig.store_name,
+                  storeData.name,
                   "account",
-                  buttonConfig.width,
-                  buttonConfig.storeTheme,
-                  buttonConfig.isHidden,
-                  buttonConfig.button_style,
-                  buttonConfig.short_store_name
+                  "full",
+                  storeData.theme,
+                  isHidden,
+                  storeData?.button_styles?.style || storeData.button_style,
+                  storeData.short_name
                 );
                 correspondingElement.insertAdjacentElement(
                   "afterend",
@@ -434,13 +428,13 @@ async function initializeBirl() {
             if (!existingButton) {
               const newCartElement = document.createElement("div");
               newCartElement.innerHTML = addButton(
-                buttonConfig.store_name,
+                storeData.name,
                 "account",
-                buttonConfig.width,
-                buttonConfig.storeTheme,
-                buttonConfig.isHidden,
-                buttonConfig.button_style,
-                buttonConfig.short_store_name
+                "full",
+                storeData.theme,
+                isHidden,
+                storeData?.button_styles?.style || storeData.button_style,
+                storeData.short_name
               );
               cartElement.insertAdjacentElement(
                 "afterend",
@@ -453,17 +447,7 @@ async function initializeBirl() {
     }
   }
 
-  const buttonConfig = {
-    store_name,
-    variant,
-    width,
-    storeTheme,
-    isHidden,
-    button_style,
-    short_store_name,
-  };
-
-  await insertCartButton(storeData, buttonConfig);
+  await insertCartButton(storeData);
 
   const cartObserverConfig = {
     childList: true,
@@ -480,10 +464,10 @@ async function initializeBirl() {
 
       cartObserver.timeout = setTimeout(async () => {
         const cartContainer = document.querySelector(
-          storeData.cartLocation
+          storeData.cart_location
         )?.parentElement;
         if (cartContainer) {
-          await insertCartButton(storeData, buttonConfig);
+          await insertCartButton();
         }
       }, 100);
     } catch (error) {
@@ -501,27 +485,29 @@ async function initializeBirl() {
     }
   }
 
-  if (storeData.cartLocation) {
+  if (storeData.cart_location) {
     startCartObserver();
   }
 
   if (!buttonEnabled && !button) {
     return;
   }
-
-  if (button_styles?.sticky_enabled) {
+  function insertStickyButton() {
     const stickyButton = document.createElement("div");
-
     stickyButton.innerHTML = addButton(
-      store_name,
-      variant,
-      width,
-      storeTheme,
+      storeData.name,
+      "product",
+      "full",
+      storeData.theme,
       isHidden,
       "sticky",
-      short_store_name
+      storeData.short_name
     );
     document.body.insertAdjacentHTML("afterbegin", stickyButton.innerHTML);
+  }
+
+  if (storeData?.button_styles?.sticky_enabled) {
+    insertStickyButton();
   }
 
   if (!positionElement.length) {
@@ -534,14 +520,14 @@ async function initializeBirl() {
     if (e._parentTemplate) {
       const buttonElement = document.createElement("div");
       buttonElement.innerHTML = addButton(
-        store_name,
-        variant,
-        width,
-        storeTheme,
+        storeData.name,
+        "product",
+        "full",
+        storeData.theme,
         isHidden,
-        button_style,
-        short_store_name,
-        button_styles?.sticky_enabled
+        storeData?.button_styles?.style || storeData.button_style,
+        storeData.short_name,
+        storeData?.button_styles?.sticky_enabled
       );
       const template = e._parentTemplate;
       const clonedContent = document.importNode(template.content, true);
@@ -559,14 +545,14 @@ async function initializeBirl() {
     } else {
       const buttonElement = document.createElement("div");
       buttonElement.innerHTML = addButton(
-        store_name,
-        variant,
-        width,
-        storeTheme,
+        storeData.name,
+        "product",
+        "full",
+        storeData.theme,
         isHidden,
-        button_style,
-        short_store_name,
-        button_styles?.sticky_enabled
+        storeData?.button_styles?.style || storeData.button_style,
+        storeData.short_name,
+        storeData?.button_styles?.sticky_enabled
       );
       e.insertAdjacentElement("afterend", buttonElement.firstElementChild);
     }
