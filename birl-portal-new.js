@@ -361,7 +361,7 @@ class BirlPortal {
             </div>
             <button id="primaryGetStarted-button" class="${
               MODAL_STYLES[style].button
-            }" onClick="event.preventDefault(); initiateBirl(${portal_url});">
+            }" onClick="event.preventDefault(); initiateBirl('${portal_url}');">
               Get Started
             </button>
           </div>
