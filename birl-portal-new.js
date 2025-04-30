@@ -317,8 +317,8 @@ async function initializeBirl() {
   console.log("Birl loading...");
 
   function getStoreId() {
-    const birlMeta = safeDOM.querySelector('meta[name="birl-id"]');
-    const birlButton = safeDOM.querySelector(".birl-button");
+    const birlMeta = document.querySelector('meta[name="birl-id"]');
+    const birlButton = document.querySelector(".birl-button");
 
     return (
       birlMeta?.getAttribute("content")?.split(" ")[0] ||
@@ -327,8 +327,8 @@ async function initializeBirl() {
   }
 
   function isButtonEnabled() {
-    const birlMeta = safeDOM.querySelector('meta[name="birl-id"]');
-    const birlButton = safeDOM.querySelector(".birl-button");
+    const birlMeta = document.querySelector('meta[name="birl-id"]');
+    const birlButton = document.querySelector(".birl-button");
 
     return (
       birlMeta?.getAttribute("content")?.split(" ")[1] === "enabled" ||
