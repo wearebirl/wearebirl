@@ -300,7 +300,7 @@ async function initializeBirl() {
         method: "GET",
         headers: {
           apikey: CONFIG.API.SUPABASE_API_KEY,
-          Authorization: `Bearer ${CONFIG.SUPABASE_API_KEY}`,
+          Authorization: `Bearer ${CONFIG.API.SUPABASE_API_KEY}`,
           "Content-Type": "application/json",
         },
       }
