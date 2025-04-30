@@ -115,6 +115,7 @@ class BirlPortal {
     this.storeData = null;
     this.buttonConfig = null;
     this.modalConfig = null;
+    this.storeId = null;
   }
   async init() {
     if (this.initialized) return;
@@ -123,12 +124,12 @@ class BirlPortal {
       console.log("Initializing Birl...");
 
       // Load store data
-      const storeId = this.getStoreId();
-      if (!storeId) {
+      this.storeId = this.getStoreId();
+      if (!this.storeId) {
         throw new Error("No store ID found");
       }
 
-      this.storeData = await this.fetchStoreData(storeId);
+      this.storeData = await this.fetchStoreData(this.storeId);
       if (!this.storeData) {
         throw new Error("Failed to fetch store data");
       }
@@ -220,7 +221,7 @@ class BirlPortal {
       instore_enabled: this.storeData.instore_enabled,
       portal_url:
         this.storeData.portal_url ||
-        `${CONFIG.DEFAULTS.PORTAL_URL}/${this.storeData.name}/trade-in`,
+        `${CONFIG.DEFAULTS.PORTAL_URL}/${this.storeId}/trade-in`,
     };
   }
 
