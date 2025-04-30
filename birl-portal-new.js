@@ -571,7 +571,7 @@ if (document.readyState === "loading") {
   initializeBirl();
 }
 
-function initiateBirl() {
+function initiateBirl(portal_url) {
   console.log("Initiating Birl trade-in session...");
 
   document.getElementById("primaryGetStarted-button").innerHTML =
