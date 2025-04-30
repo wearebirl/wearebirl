@@ -381,7 +381,7 @@ async function initializeBirl() {
     storeData.modal_body,
     storeData.cover_image,
     storeData.cover_image_2,
-    storeData.modalStyle,
+    storeData.modal_style,
     storeData.instore_enabled,
     portal_url
   );
