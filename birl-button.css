@@ -98,6 +98,10 @@
     left: 50%;
     bottom: 2rem;
   }
+
+  .birl-hide-for-desktop {
+    display: none;
+  }
 }
 
 .birl-cta-container-minimal {
