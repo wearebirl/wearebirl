@@ -327,8 +327,15 @@ class BirlPortal {
   }
 
   renderModal() {
-    const { heading, bodyText, img1, img2, style, portal_url } =
-      this.modalConfig;
+    const {
+      heading,
+      bodyText,
+      img1,
+      img2,
+      style,
+      portal_url,
+      instore_enabled,
+    } = this.modalConfig;
     const modalHTML = `
       <div id="birlWelcome" class="${
         MODAL_STYLES[style].container
