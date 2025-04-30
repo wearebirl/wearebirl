@@ -557,7 +557,7 @@ async function initializeBirl() {
         width,
         storeTheme,
         isHidden,
-        style,
+        button_style,
         short_store_name
       );
       e.insertAdjacentElement("afterend", buttonElement.firstElementChild);
