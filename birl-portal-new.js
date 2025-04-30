@@ -5,6 +5,89 @@ const SUPABASE_URL = "https://rclxweaaffupqiqdklhg.supabase.co";
 const SUPABASE_API_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjbHh3ZWFhZmZ1cHFpcWRrbGhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTEwOTU5OTgsImV4cCI6MjAyNjY3MTk5OH0.h-KRME-ajXT2J_YNAEavTm77A3MjUj-j8otnj0VzTfI";
 
+const BUTTON_STYLES = {
+  default: {
+    container: "birl-cta-container tooltip-btn birl-Gilroy",
+    logoContainer: "birl-logo-container",
+    tooltipContainer: "tooltip-container",
+    logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo"></img>`,
+    ctaText: "birl-product-cta-text",
+  },
+  basic: {
+    container: "birl-cta-container tooltip-btn birl-cta-container-basic",
+    tooltipContainer: "tooltip-container tooltip-container-basic",
+    logoContainer: "",
+    logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo"></img>`,
+    ctaText: "birl-product-cta-text-basic",
+  },
+  minimal: {
+    container:
+      "birl-cta-container tooltip-btn birl-cta-container-minimal birl-Gilroy",
+    logoContainer: "birl-logo-container birl-logo-container-minimal",
+    tooltipContainer: "tooltip-container",
+    logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo"></img>`,
+    ctaText: "birl-product-cta-text",
+  },
+  sticky: {
+    container: "birl-cta-container-fixed tooltip-btn",
+    tooltipContainer: "tooltip-container tooltip-container-basic",
+    logoContainer: "",
+    logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo"></img>`,
+    ctaText: "birl-product-cta-text-basic",
+  },
+};
+
+const MODAL_STYLES = {
+  default: {
+    container: "birlWelcome",
+    content: "birlWelcome-content",
+    header: "birlWelcome-header",
+    logo: "birlWelcome-logo",
+    close: "birlWelcome-close",
+    left: "birlWelcome-left",
+    heading: "birl-heading birl-Gilroy",
+    bodyText: "birlWelcome-bodyText",
+    bodyTextContent: "birlWelcome-bodyTextContent birl-Gilroy",
+    bodyTextNote: "birlWelcome-bodyTextNote birl-Gilroy",
+    right: "birlWelcome-right",
+    img1: "birlWelcome-img1",
+    img2: "birlWelcome-img2",
+    button: "birlWelcome-button birl-Gilroy",
+  },
+  basic: {
+    container: "birlWelcome",
+    content: "birlWelcome-content birlWelcome-content-basic",
+    header: "birlWelcome-header birlWelcome-header-basic",
+    logo: "birlWelcome-logo",
+    close: "birlWelcome-close birlWelcome-close-basic",
+    left: "birlWelcome-left birlWelcome-leftRight-basic",
+    heading: "birl-heading-basic",
+    bodyText: "birlWelcome-bodyText",
+    bodyTextContent: "birlWelcome-bodyTextContent-basic",
+    bodyTextNote: "birlWelcome-bodyTextNote",
+    right: "birlWelcome-right birlWelcome-leftRight-basic",
+    img1: "birlWelcome-img1 birlWelcome-img-basic",
+    img2: "birlWelcome-img2 birl-hidden",
+    button: "birlWelcome-button birlWelcome-button-basic",
+  },
+  basic_khanums: {
+    container: "birlWelcome",
+    content: "birlWelcome-content birlWelcome-content-basic",
+    header: "birlWelcome-header birlWelcome-header-basic",
+    logo: "birlWelcome-logo",
+    close: "birlWelcome-close birlWelcome-close-basic",
+    left: "birlWelcome-left birlWelcome-leftRight-basic",
+    heading: "birl-heading-basic",
+    bodyText: "birlWelcome-bodyText",
+    bodyTextContent: "birlWelcome-bodyTextContent-basic",
+    bodyTextNote: "birlWelcome-bodyTextNote",
+    right: "birlWelcome-right birlWelcome-leftRight-basic",
+    img1: "birlWelcome-img1 birlWelcome-img-basic",
+    img2: "birlWelcome-img2 birl-hidden",
+    button: "birlWelcome-button birlWelcome-button-basic birl-uppercase",
+  },
+};
+
 window.showBirlWelcome = function () {
   var birlModal = document.getElementById("birlWelcome");
   birlModal.style.display = "grid";
@@ -50,89 +133,6 @@ async function initializeBirl() {
     return `Trade-in your old ${storeName} items for immediate credit.`;
   }
 
-  const buttonStyles = {
-    default: {
-      container: "birl-cta-container tooltip-btn birl-Gilroy",
-      logoContainer: "birl-logo-container",
-      tooltipContainer: "tooltip-container",
-      logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo"></img>`,
-      ctaText: "birl-product-cta-text",
-    },
-    basic: {
-      container: "birl-cta-container tooltip-btn birl-cta-container-basic",
-      tooltipContainer: "tooltip-container tooltip-container-basic",
-      logoContainer: "",
-      logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo"></img>`,
-      ctaText: "birl-product-cta-text-basic",
-    },
-    minimal: {
-      container:
-        "birl-cta-container tooltip-btn birl-cta-container-minimal birl-Gilroy",
-      logoContainer: "birl-logo-container birl-logo-container-minimal",
-      tooltipContainer: "tooltip-container",
-      logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo"></img>`,
-      ctaText: "birl-product-cta-text",
-    },
-    sticky: {
-      container: "birl-cta-container-fixed tooltip-btn",
-      tooltipContainer: "tooltip-container tooltip-container-basic",
-      logoContainer: "",
-      logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo"></img>`,
-      ctaText: "birl-product-cta-text-basic",
-    },
-  };
-
-  const modalStyles = {
-    default: {
-      container: "birlWelcome",
-      content: "birlWelcome-content",
-      header: "birlWelcome-header",
-      logo: "birlWelcome-logo",
-      close: "birlWelcome-close",
-      left: "birlWelcome-left",
-      heading: "birl-heading birl-Gilroy",
-      bodyText: "birlWelcome-bodyText",
-      bodyTextContent: "birlWelcome-bodyTextContent birl-Gilroy",
-      bodyTextNote: "birlWelcome-bodyTextNote birl-Gilroy",
-      right: "birlWelcome-right",
-      img1: "birlWelcome-img1",
-      img2: "birlWelcome-img2",
-      button: "birlWelcome-button birl-Gilroy",
-    },
-    basic: {
-      container: "birlWelcome",
-      content: "birlWelcome-content birlWelcome-content-basic",
-      header: "birlWelcome-header birlWelcome-header-basic",
-      logo: "birlWelcome-logo",
-      close: "birlWelcome-close birlWelcome-close-basic",
-      left: "birlWelcome-left birlWelcome-leftRight-basic",
-      heading: "birl-heading-basic",
-      bodyText: "birlWelcome-bodyText",
-      bodyTextContent: "birlWelcome-bodyTextContent-basic",
-      bodyTextNote: "birlWelcome-bodyTextNote",
-      right: "birlWelcome-right birlWelcome-leftRight-basic",
-      img1: "birlWelcome-img1 birlWelcome-img-basic",
-      img2: "birlWelcome-img2 birl-hidden",
-      button: "birlWelcome-button birlWelcome-button-basic",
-    },
-    basic_khanums: {
-      container: "birlWelcome",
-      content: "birlWelcome-content birlWelcome-content-basic",
-      header: "birlWelcome-header birlWelcome-header-basic",
-      logo: "birlWelcome-logo",
-      close: "birlWelcome-close birlWelcome-close-basic",
-      left: "birlWelcome-left birlWelcome-leftRight-basic",
-      heading: "birl-heading-basic",
-      bodyText: "birlWelcome-bodyText",
-      bodyTextContent: "birlWelcome-bodyTextContent-basic",
-      bodyTextNote: "birlWelcome-bodyTextNote",
-      right: "birlWelcome-right birlWelcome-leftRight-basic",
-      img1: "birlWelcome-img1 birlWelcome-img-basic",
-      img2: "birlWelcome-img2 birl-hidden",
-      button: "birlWelcome-button birlWelcome-button-basic birl-uppercase",
-    },
-  };
-
   function addButton(
     storeName,
     variant,
@@ -144,12 +144,12 @@ async function initializeBirl() {
     hideForDesktop = false
   ) {
     return `
-      <div class="${buttonStyles[style].container} ${
+      <div class="${BUTTON_STYLES[style].container} ${
       isHidden && "birl-hidden"
     } ${hideForDesktop && "birl-hide-for-desktop"}" style="${
       width === " full" ? "width: 100%;" : `max-width: ${width}px;`
     }" onClick="showBirlWelcome()" }">
-          <div class="${buttonStyles[style].tooltipContainer}">
+          <div class="${BUTTON_STYLES[style].tooltipContainer}">
               <span class="tooltip-text">
                   <b>1.</b> ${getDropdown1Text(storeName, storeTheme)}
                   <br><br>
@@ -158,11 +158,11 @@ async function initializeBirl() {
                   <b>3.</b> Send your trade-in back with the free digital label provided.
               </span>
           </div>
-          <div class="${buttonStyles[style].logoContainer}"> ${
-      buttonStyles[style].logo
+          <div class="${BUTTON_STYLES[style].logoContainer}"> ${
+      BUTTON_STYLES[style].logo
     }
             </div>
-          <div class=${buttonStyles[style].ctaText}>
+          <div class=${BUTTON_STYLES[style].ctaText}>
               <p>
               ${
                 style === "basic"
@@ -216,40 +216,44 @@ async function initializeBirl() {
   ) {
     const modalHTML = `
       <div id="birlWelcome" class="${
-        modalStyles[style].container
+        MODAL_STYLES[style].container
       }" style="display: none;">
-        <div class="${modalStyles[style].content}">
-          <div class="${modalStyles[style].header}">
+        <div class="${MODAL_STYLES[style].content}">
+          <div class="${MODAL_STYLES[style].header}">
             <img class="${
-              modalStyles[style].logo
+              MODAL_STYLES[style].logo
             }" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" />
             <span onclick="hideBirlWelcome()" class="${
-              modalStyles[style].close
+              MODAL_STYLES[style].close
             }">&times;</span>
           </div>
-          <div class="${modalStyles[style].left}">
-            <h1 class="${modalStyles[style].heading}">
+          <div class="${MODAL_STYLES[style].left}">
+            <h1 class="${MODAL_STYLES[style].heading}">
               ${heading}
             </h1>
-            <div class="${modalStyles[style].bodyText}"> 
-              <p class="${modalStyles[style].bodyTextContent}">
+            <div class="${MODAL_STYLES[style].bodyText}"> 
+              <p class="${MODAL_STYLES[style].bodyTextContent}">
                 ${bodyText}              
               </p>
               ${
                 !instore_enabled
-                  ? `<p class="${modalStyles[style].bodyTextNote}">Currently only available online.</p>`
+                  ? `<p class="${MODAL_STYLES[style].bodyTextNote}">Currently only available online.</p>`
                   : ""
               }
             </div>
             <button id="primaryGetStarted-button" class="${
-              modalStyles[style].button
+              MODAL_STYLES[style].button
             }" onClick="event.preventDefault(); initiateBirl(${portal_url});">
               Get Started
             </button>
           </div>
-          <div class="${modalStyles[style].right}">
-            <img class="${modalStyles[style].img1}" src="${img1}" alt="img-1" />
-            <img class="${modalStyles[style].img2}" src="${img2}" alt="img-2" />
+          <div class="${MODAL_STYLES[style].right}">
+            <img class="${
+              MODAL_STYLES[style].img1
+            }" src="${img1}" alt="img-1" />
+            <img class="${
+              MODAL_STYLES[style].img2
+            }" src="${img2}" alt="img-2" />
           </div>
         </div>
       </div>`;
@@ -284,7 +288,7 @@ async function initializeBirl() {
             img1: data[0]?.cover_image,
             img2: data[0]?.cover_image_2,
             location: data[0]?.button_location,
-            style: data[0]?.button_style,
+            button_style: data[0]?.button_style,
             cartLocation: data[0]?.cart_location,
             modalStyle: data[0]?.modal_style,
             instore_enabled: data[0]?.instore_enabled,
@@ -332,7 +336,10 @@ async function initializeBirl() {
     portal_url: `https://portal.wearebirl.com/${store_name}/trade-in`,
   };
 
-  const button_style = button_styles?.style || storeData.style || "default";
+  console.log(portal_url);
+
+  const button_style =
+    button_styles?.style || storeData.button_style || "default";
 
   function findElementsIncludingTemplates(selector) {
     const mainElements = Array.from(document.querySelectorAll(selector));
@@ -534,7 +541,8 @@ async function initializeBirl() {
         storeTheme,
         isHidden,
         button_style,
-        short_store_name
+        short_store_name,
+        button_styles?.sticky_enabled
       );
       const template = e._parentTemplate;
       const clonedContent = document.importNode(template.content, true);
@@ -558,7 +566,8 @@ async function initializeBirl() {
         storeTheme,
         isHidden,
         button_style,
-        short_store_name
+        short_store_name,
+        button_styles?.sticky_enabled
       );
       e.insertAdjacentElement("afterend", buttonElement.firstElementChild);
     }

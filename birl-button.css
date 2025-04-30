@@ -97,6 +97,7 @@
     position: fixed !important;
     left: 50%;
     bottom: 2rem;
+    z-index: 999;
   }
 
   .birl-hide-for-desktop {
