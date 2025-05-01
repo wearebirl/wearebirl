@@ -388,6 +388,15 @@ async function initializeBirl() {
       );
       if (cartElements.length) {
         cartElements.forEach((cartElement) => {
+          // Check for existing buttons in the parent container
+          const parentContainer = cartElement.parentElement;
+          if (
+            parentContainer &&
+            parentContainer.querySelector(".birl-cta-container")
+          ) {
+            return; // Skip if button already exists in parent container
+          }
+
           if (cartElement._parentTemplate) {
             const template = cartElement._parentTemplate;
             const clonedContent = document.importNode(template.content, true);
@@ -395,10 +404,10 @@ async function initializeBirl() {
               storeData.cartLocation
             );
             if (correspondingElement) {
-              const existingButton =
-                correspondingElement.nextElementSibling?.querySelector(
-                  ".birl-cta-container"
-                );
+              // Check for existing button in the template
+              const existingButton = template.content.querySelector(
+                ".birl-cta-container"
+              );
               if (!existingButton) {
                 const newCartElement = document.createElement("div");
                 newCartElement.innerHTML = addButton(
@@ -418,25 +427,19 @@ async function initializeBirl() {
               }
             }
           } else {
-            const existingButton =
-              cartElement.nextElementSibling?.querySelector(
-                ".birl-cta-container"
-              );
-            if (!existingButton) {
-              const newCartElement = document.createElement("div");
-              newCartElement.innerHTML = addButton(
-                buttonConfig.storeName,
-                "account",
-                buttonConfig.width,
-                buttonConfig.storeTheme,
-                buttonConfig.isHidden,
-                buttonConfig.style
-              );
-              cartElement.insertAdjacentElement(
-                "afterend",
-                newCartElement.firstElementChild
-              );
-            }
+            const newCartElement = document.createElement("div");
+            newCartElement.innerHTML = addButton(
+              buttonConfig.storeName,
+              "account",
+              buttonConfig.width,
+              buttonConfig.storeTheme,
+              buttonConfig.isHidden,
+              buttonConfig.style
+            );
+            cartElement.insertAdjacentElement(
+              "afterend",
+              newCartElement.firstElementChild
+            );
           }
         });
       }
@@ -471,10 +474,15 @@ async function initializeBirl() {
         const cartContainer = document.querySelector(
           storeData.cartLocation
         )?.parentElement;
-        if (cartContainer) {
+
+        // Only insert if container exists and doesn't already have a button
+        if (
+          cartContainer &&
+          !cartContainer.querySelector(".birl-cta-container")
+        ) {
           await insertCartButton(storeData, buttonConfig);
         }
-      }, 100);
+      }, 250); // Increased debounce time for better performance
     } catch (error) {
       console.error("Cart observer error:", error);
     }
@@ -483,6 +491,10 @@ async function initializeBirl() {
   function startCartObserver() {
     const cartContainer = document.querySelector(".cart-drawer");
     if (cartContainer) {
+      // Check if observer is already attached
+      if (cartObserver._target) {
+        cartObserver.disconnect();
+      }
       console.log("Cart observer started");
       cartObserver.observe(cartContainer, cartObserverConfig);
     } else {
