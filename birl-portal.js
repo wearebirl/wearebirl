@@ -204,7 +204,16 @@ async function initializeBirl() {
     `;
   }
 
-  function addModal(heading, bodyText, img1, img2, customerId, style, instore) {
+  function addModal(
+    heading,
+    bodyText,
+    img1,
+    img2,
+    customerId,
+    style,
+    instore,
+    portalUrl
+  ) {
     const modalHTML = `
       <div id="birlWelcome" class="${
         modalStyles[style].container
@@ -234,7 +243,7 @@ async function initializeBirl() {
             </div>
             <button id="primaryGetStarted-button" class="${
               modalStyles[style].button
-            }" onClick="event.preventDefault(); initiateBirl(${customerId});">
+            }" onClick="event.preventDefault(); initiateBirl('${portalUrl}');">
               Get Started
             </button>
           </div>
@@ -279,6 +288,7 @@ async function initializeBirl() {
             cartLocation: data[0]?.cart_location,
             modalStyle: data[0]?.modal_style,
             instore_enabled: data[0]?.instore_enabled,
+            portalUrl: data[0]?.portal_url,
           };
         }
       } else {
@@ -317,6 +327,9 @@ async function initializeBirl() {
   const modalStyle = storeData.modalStyle || "default";
   const cartLocation = storeData.cartLocation || "";
   const instore = storeData.instore_enabled || false;
+  const portalUrl =
+    storeData.portalUrl ||
+    `https://portal.wearebirl.com/${birlId || buttonId}/trade-in`;
 
   function findElementsIncludingTemplates(selector) {
     const mainElements = Array.from(document.querySelectorAll(selector));
@@ -360,7 +373,8 @@ async function initializeBirl() {
     storeData.img2,
     customerId,
     modalStyle,
-    instore
+    instore,
+    portalUrl
   );
 
   getURLParameter("openDropdown") === "true" && showBirlWelcome();
@@ -537,23 +551,13 @@ if (document.readyState === "loading") {
   initializeBirl();
 }
 
-function initiateBirl(customerId) {
+function initiateBirl(portalUrl) {
   console.log("Initiating Birl trade-in session...");
-  let storeId = "";
-  const birlId = document
-    ?.querySelector('meta[name="birl-id"]')
-    ?.getAttribute("content")
-    .split(" ")[0];
-  const birlButton = document?.querySelector(".birl-button");
-  storeId = birlId || birlButton?.getAttribute("data-storeId");
-  variant = birlButton?.getAttribute("data-variant");
 
   document.getElementById("primaryGetStarted-button").innerHTML =
     '<div class="loader"></div>';
 
   const userData = {
-    customer_id: customerId || "",
-    store_id: storeId,
     callback: window.location.href,
   };
 
@@ -563,9 +567,7 @@ function initiateBirl(customerId) {
     document.getElementById("primaryGetStarted-button").innerHTML =
       "Get started";
     const openedWindow = window.open(
-      `https://portal.wearebirl.com/${storeId}/trade-in?u=${encodeURIComponent(
-        encodedUserData
-      )}`,
+      `${portalUrl}?u=${encodeURIComponent(encodedUserData)}`,
       "_blank"
     );
 
