@@ -80,6 +80,13 @@ async function initializeBirl() {
       logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" width="56" height="19" alt="Birl Logo"></img>`,
       ctaText: "birl-product-cta-text-basic",
     },
+    cart_1: {
+      container: "birl-cta-container tooltip-btn birl-Gilroy cart-1-container",
+      logoContainer: "birl-logo-container",
+      tooltipContainer: "tooltip-container tooltip-container-basic",
+      logo: `<img src="https://wearebirl.github.io/wearebirl/assets/birl-logo-purple.svg" width="56" height="19" alt="Birl Logo"></img>`,
+      ctaText: "birl-product-cta-text",
+    },
   };
 
   const modalStyles = {
@@ -164,7 +171,9 @@ async function initializeBirl() {
           <div class=${buttonStyles[style].ctaText}>
               <p>
               ${
-                style === "basic"
+                style === "cart_1"
+                  ? "Got styles you've outgrown? Trade them in and get credit towards something new with"
+                  : style === "basic"
                   ? `Get money off this item today with `
                   : style === "sticky"
                   ? `<p>
@@ -416,7 +425,7 @@ async function initializeBirl() {
                   buttonConfig.width,
                   buttonConfig.storeTheme,
                   buttonConfig.isHidden,
-                  buttonConfig.style
+                  "cart_1"
                 );
                 correspondingElement.insertAdjacentElement(
                   "afterend",
@@ -434,7 +443,7 @@ async function initializeBirl() {
               buttonConfig.width,
               buttonConfig.storeTheme,
               buttonConfig.isHidden,
-              buttonConfig.style
+              "cart_1"
             );
             cartElement.insertAdjacentElement(
               "afterend",
@@ -591,3 +600,5 @@ function initiateBirl(portalUrl) {
     alert("An error occurred. Please try again.");
   }
 }
+
+//.cart-item-list__body
