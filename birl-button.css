@@ -64,6 +64,15 @@
   border-radius: 5px;
 }
 
+.cart-1-container {
+  background-color: rgb(227, 227, 227);
+  border-radius: 0px;
+  justify-content: center;
+  font-size: 11px;
+  width: 100%;
+  padding: 8px;
+}
+
 .birl-cta-container-fixed {
   display: none;
   position: relative;
