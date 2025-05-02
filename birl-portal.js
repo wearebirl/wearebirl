@@ -172,7 +172,7 @@ async function initializeBirl() {
               <p>
               ${
                 style === "cart_1"
-                  ? "Trade in styles you've outgrown and get credit for something new"
+                  ? "Trade in styles you've outgrown & get credit for something new"
                   : style === "basic"
                   ? `Get money off this item today with `
                   : style === "sticky"
