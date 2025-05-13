@@ -37,6 +37,8 @@
     width: 100%;
     margin: 32px auto;
     max-width: 1600px;
+    display: flex;
+    flex-direction: column;
 }
 
 .birl-page-body h1 {
@@ -237,6 +239,7 @@ ol {
     transition: opacity 0.3s;
     border: none;
     margin: 16px 0;
+    text-align: center;
 }
 
 @media (max-width: 1440px) {
