@@ -20,7 +20,23 @@ async function initializeBirl() {
     return new URLSearchParams(window.location.search).get(name);
   };
 
+  function getButtonTitle(storeName, variant){
+    if(storeName === "West Ham United FC"){
+      return "Get up to £15 off this item today"
+    }
+    if(variant === "product") {
+      return "Get money off this item today"
+    }
+    if(variant.includes("account")){
+      return "Get money off your next purchase"
+    }
+  }
+
   function getButtonText(storeName, storeTheme, style) {
+    if(storeName === "West Ham United FC"){
+      return 'Trade-in your old West Ham United Shirts '
+    }
+
     if (style === "minimal") {
       return `Trade-in garments you no longer use`;
     }
@@ -190,21 +206,16 @@ async function initializeBirl() {
                     </span>
                   </p>`
                   : `<span><b>
-                          ${
-                            variant === "product"
-                              ? "Get money off this item today"
-                              : ""
-                          }${
-                      variant.includes("account")
-                        ? "Get money off your next purchase"
-                        : ""
-                    } </b><br>
+                        ${getButtonTitle(storeName, variant)}
+                        </b><br>
                   </span>
-                  <span style="color: #808080;">${getButtonText(
+                  <span style="color: #808080;">
+                    ${getButtonText(
                     shortName || storeName,
                     storeTheme,
                     style
-                  )}</span>`
+                  )}${storeName === 'West Ham United FC' ? '<u>Learn More</u>' : ''}
+                    </span>`
               }
                   
               </p>
