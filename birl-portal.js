@@ -255,11 +255,6 @@ async function initializeBirl() {
               <p class="${modalStyles[style].bodyTextContent}">
                 ${bodyText}              
               </p>
-              ${
-                !instore
-                  ? `<p class="${modalStyles[style].bodyTextNote}">Currently only available online.</p>`
-                  : ""
-              }
             </div>
             <button id="primaryGetStarted-button" class="${
               modalStyles[style].button
