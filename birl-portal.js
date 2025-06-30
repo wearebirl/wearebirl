@@ -470,6 +470,10 @@ async function initializeBirl() {
     style,
   };
 
+  if(isHidden){
+    return;
+  }
+
   await insertCartButton(storeData, buttonConfig);
 
   const cartObserverConfig = {
