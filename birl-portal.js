@@ -34,7 +34,7 @@ async function initializeBirl() {
 
   function getButtonText(storeName, storeTheme, style) {
     if(storeName === "West Ham United FC"){
-      return 'Trade-in your old West Ham United Shirts '
+      return 'Trade-in your old West Ham United Shirt '
     }
 
     if (style === "minimal") {
