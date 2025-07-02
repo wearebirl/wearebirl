@@ -56,7 +56,7 @@ async function initializeBirl() {
 
   function getDropdown1Text(storeName, storeTheme) {
     if (storeTheme === "football") {
-      return `Trade-in your old ${storeName} shirts for immediate credit.`;
+      return `Trade-in your old ${storeName} shirt for immediate credit.`;
     }
 
     if (storeTheme === "jacket") {
