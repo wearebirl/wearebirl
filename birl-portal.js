@@ -209,13 +209,13 @@ async function initializeBirl() {
                         ${getButtonTitle(storeName, variant)}
                         </b><br>
                   </span>
-                  <span style="color: #808080;">
+                  <u><span style="color: #808080;">
                     ${getButtonText(
                     shortName || storeName,
                     storeTheme,
                     style
-                  )}${storeName === 'West Ham United FC' ? '<u>Learn More</u>' : ''}
-                    </span>`
+                  )}
+                    </span></u>`
               }
                   
               </p>
