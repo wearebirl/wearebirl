@@ -1,10 +1,6 @@
 //<meta name="birl-id" content="wearebirl">
 //<script src="https://wearebirl.github.io/wearebirl/birl-portal.js" defer="defer"/>
 console.log("Birl Portal script loaded");
-const SUPABASE_URL = "https://rclxweaaffupqiqdklhg.supabase.co";
-const SUPABASE_API_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjbHh3ZWFhZmZ1cHFpcWRrbGhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTEwOTU5OTgsImV4cCI6MjAyNjY3MTk5OH0.h-KRME-ajXT2J_YNAEavTm77A3MjUj-j8otnj0VzTfI";
-
 window.showBirlWelcome = function () {
   var birlModal = document.getElementById("birlWelcome");
   birlModal.style.display = "grid";
@@ -275,37 +271,33 @@ async function initializeBirl() {
   async function fetchData(storeId) {
     try {
       const response = await fetch(
-        `${SUPABASE_URL}/rest/v1/stores?store_name=eq.${storeId}`,
+        `https://api.wearebirl.com/public/v1/birl-demo`,
         {
           method: "GET",
-          headers: {
-            apikey: SUPABASE_API_KEY,
-            Authorization: `Bearer ${SUPABASE_API_KEY}`,
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
         }
       );
 
       if (response.ok) {
         const data = await response.json();
-        if (data.length) {
+
           return {
-            heading: data[0]?.modal_heading,
-            bodyText: data[0]?.modal_body,
-            storeName: data[0]?.name,
-            shortName: data[0]?.short_name,
-            storeTheme: data[0]?.theme,
-            storeStatus: data[0]?.status,
-            img1: data[0]?.cover_image,
-            img2: data[0]?.cover_image_2,
-            location: data[0]?.button_location,
-            style: data[0]?.button_style,
-            cartLocation: data[0]?.cart_location,
-            modalStyle: data[0]?.modal_style,
-            instore_enabled: data[0]?.instore_enabled,
-            portalUrl: data[0]?.portal_url,
+            heading: data?.modal_heading,
+            bodyText: data?.modal_body,
+            storeName: data?.name,
+            shortName: data?.short_name,
+            storeTheme: data?.theme,
+            storeStatus: data?.status,
+            img1: data?.cover_image,
+            img2: data?.cover_image_2,
+            location: data?.button_location,
+            style: data?.button_style,
+            cartLocation: data?.cart_location,
+            modalStyle: data?.modal_style,
+            instore_enabled: data?.instore_enabled,
+            portalUrl: data?.portal_url,
           };
-        }
+
       } else {
         console.error("Error fetching store data:", response.statusText);
       }
