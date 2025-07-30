@@ -17,7 +17,7 @@ async function initializeBirl() {
   };
 
   function getButtonTitle(storeName, variant){
-    if(storeName === "West Ham United FC"){
+    if(storeName === "West Ham United FC" || storeName === "Oxford United"){
       return "Get up to £15 off this item today"
     }
     if(variant === "product") {
@@ -31,6 +31,10 @@ async function initializeBirl() {
   function getButtonText(storeName, storeTheme, style) {
     if(storeName === "West Ham United FC"){
       return 'Trade-in your old West Ham United Shirt '
+    }
+
+    if(storeName === "Oxford United"){
+      return 'Trade-in your old Oxford United Shirt '
     }
 
     if (style === "minimal") {
