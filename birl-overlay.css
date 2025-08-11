@@ -2,17 +2,67 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: white;
-    border: 1px solid black;
-    padding: 10px 15px;
+    background-color: snow;
+    padding: 10px;
     border-radius: 8px;
     transition: all 0.3s ease-out;
-    width: 120px;
-    height: 20px;
 }
 
-.birl-overlay-container:hover{
-    width: 240px;
-    height: 120px;
-
+.birl-overlay-title {
+    margin: 8px;
+    padding: 0;
+    font-size: 16px;
 }
+
+.birl-overlay-subtitle {
+    display: none;
+    margin: 0 8px;
+    padding: 0;
+    font-size: 12px;
+}
+
+.birl-overlay-card {
+    margin: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    outline: 1px solid #E4E4E7;
+}
+
+.birl-overlay-card-header {
+    padding: 8px 12px;
+    text-align: center;
+    background-color: #E5E7EB;
+    font-size: 12px;
+    border-radius: 8px 8px 0 0;
+}
+
+.birl-overlay-card-footer {
+    padding: 8px 12px;
+    text-align: center;
+    background-color: #3A3258;
+    font-size: 12px;
+    border-radius: 0 0 8px 8px;
+    color: white;
+}
+
+.birl-overlay-card-container {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    max-height: 0;
+    max-width: 0;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.birl-overlay-container:hover .birl-overlay-card-container {
+    max-height: 500px;
+    max-width: 500px;
+    opacity: 1;
+}
+
+.birl-overlay-container:hover .birl-overlay-subtitle {
+    display: block;
+}
+
+
