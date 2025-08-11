@@ -8,9 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     overlayElement.innerHTML = `
     <div style="
-        position: absolute;
-        bottom: 20px;
-        right: 20px;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
       background-color: #333;
       color: #fff;
       padding: 10px 15px;
