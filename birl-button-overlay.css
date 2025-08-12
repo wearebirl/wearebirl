@@ -12,7 +12,7 @@
     font-style: normal;
 }
 
-.birl-button-overlay-container-master {
+.birl-button-overlay-container {
     padding: 16px 32px 16px 24px;
     position: fixed;
     bottom: 20px;
@@ -24,15 +24,15 @@
     white-space: nowrap;
 }
 
-.birl-button-overlay-container {
+.birl-button-overlay-content {
     display: flex;
     flex-direction: row;
     height: 32px;
     transition: all 0.3s ease-out;
 }
 
-.birl-button-overlay-container-master:hover .birl-button-overlay-container {
-   height: 96px;
+.birl-button-overlay-container:hover .birl-button-overlay-content {
+    height: 96px;
 }
 
 .birl-button-overlay-logo {
