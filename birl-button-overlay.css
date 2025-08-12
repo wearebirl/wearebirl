@@ -3,6 +3,7 @@
     src: url("https://wearebirl.github.io/wearebirl/Gilroy-Light.woff") format("woff");
     font-weight: 300;
     font-style: normal;
+    font-display: block;
 }
 
 @font-face {
@@ -10,6 +11,7 @@
     src: url("https://wearebirl.github.io/wearebirl/Gilroy-Medium.woff") format("woff");
     font-weight: 400;
     font-style: normal;
+    font-display: block;
 }
 
 .birl-button-overlay-container {
