@@ -274,7 +274,7 @@ async function initializeBirl() {
 
   async function fetchData(storeId) {
     try {
-      const response = await fetch(`https://api.wearebirl.com/public/v1/${storeId}`);
+      const response = await fetch(`https://api.wearebirl.com/portal/v1/public/${storeId}`);
 
       if (response.ok) {
         const data = await response.json();
