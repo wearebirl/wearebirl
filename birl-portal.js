@@ -4,13 +4,12 @@ console.log("Birl Portal script loaded");
 window.showBirlWelcome = function () {
   var birlModal = document.getElementById("birlWelcome");
   birlModal.style.display = "grid";
+  const birlButton = document.getElementById("birl-cta-button");
+  const variant = birlButton.getAttribute("data-variant");
   posthog.capture("cta_clicked", {
     app_name: "birl_shopify",
     step_name: "pdp",
-    meta_data: {
-      store_url: window.location.host,
-      // TODO: Add product details, but will wait for new React version of button
-    },
+    variant,
   });
 };
 
@@ -20,9 +19,6 @@ window.hideBirlWelcome = function () {
   posthog.capture("modal_closed", {
     app_name: "birl_shopify",
     step_name: "pdp",
-    meta_data: {
-      store_url: window.location.host,
-    },
   });
 };
 
@@ -209,7 +205,9 @@ async function initializeBirl() {
       buttonStyles[style].logo
     }
             </div>
-          <div class=${buttonStyles[style].ctaText}>
+          <div id="birl-cta-button" data-variant="${style}" class=${
+      buttonStyles[style].ctaText
+    }>
               <p>
               ${
                 style === "cart_1"
@@ -602,9 +600,6 @@ function initiateBirl(portalUrl) {
     posthog.capture("get_started_clicked", {
       app_name: "birl_shopify",
       step_name: "pdp",
-      meta_data: {
-        store_url: window.location.host,
-      },
     });
     document.getElementById("primaryGetStarted-button").innerHTML =
       "Get started";
