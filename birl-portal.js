@@ -31,6 +31,7 @@ async function initializeBirl() {
     autocapture: false, // We will be manually capturing events, we don't need to log every click
     capture_pageview: false, // This is on brand PDP's, we don't need pageview events
     disable_session_recording: true, // This is on brand PDP's, we don't need session recording
+    feature_flags: false, // We don't want to use flags on customer sites
   });
 
   const getURLParameter = (name) => {
