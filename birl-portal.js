@@ -4,40 +4,62 @@ console.log("Birl Portal script loaded");
 window.showBirlWelcome = function () {
   var birlModal = document.getElementById("birlWelcome");
   birlModal.style.display = "grid";
+  const birlButton = document.getElementById("birl-cta-button");
+  const variant = birlButton.getAttribute("data-variant");
+  posthog.capture("cta_clicked", {
+    app_name: "birl_shopify",
+    step_name: "pdp",
+    variant,
+  });
 };
 
 window.hideBirlWelcome = function () {
   var birlModal = document.getElementById("birlWelcome");
   birlModal.style.display = "none";
+  posthog.capture("modal_closed", {
+    app_name: "birl_shopify",
+    step_name: "pdp",
+  });
 };
 
 async function initializeBirl() {
+  // prettier-ignore
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init Te Ds js Re Os As capture Ke calculateEventProperties zs register register_once register_for_session unregister unregister_for_session Hs getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty qs Ns createPersonProfile Bs Cs Ws opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing Ls debug L Us getPageViewId captureTraceFeedback captureTraceMetric".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  posthog.init("phc_xEKuDeWb4e2l0ADkReFvD2Rp9rHofkI6kgF2RBmxAaX", {
+    api_host: "https://eu.i.posthog.com",
+    person_profiles: "always", // We want to track anonymous users as well, not just the logged in ones
+    autocapture: false, // We will be manually capturing events, we don't need to log every click
+    capture_pageview: false, // This is on brand PDP's, we don't need pageview events
+    disable_session_recording: true, // This is on brand PDP's, we don't need session recording
+    feature_flags: false, // We don't want to use flags on customer sites
+  });
+
   const getURLParameter = (name) => {
     return new URLSearchParams(window.location.search).get(name);
   };
 
-  function getButtonTitle(storeName, variant){
-    if(storeName === "West Ham United FC"){
-      return "Get up to £20 off this item today"
+  function getButtonTitle(storeName, variant) {
+    if (storeName === "Oxford United") {
+      return "Get up to £15 off this item today";
     }
-      if(storeName === "Oxford United"){
-          return "Get up to £15 off this item today"
+      if (storeName === "West Ham United FC") {
+          return "Get up to £20 off this item today";
       }
-    if(variant === "product") {
-      return "Get money off this item today"
+    if (variant === "product") {
+      return "Get money off this item today";
     }
-    if(variant.includes("account")){
-      return "Get money off your next purchase"
+    if (variant.includes("account")) {
+      return "Get money off your next purchase";
     }
   }
 
   function getButtonText(storeName, storeTheme, style) {
-    if(storeName === "West Ham United FC"){
-      return 'Trade-in your old West Ham United Shirt '
+    if (storeName === "West Ham United FC") {
+      return "Trade-in your old West Ham United Shirt ";
     }
 
-    if(storeName === "Oxford United"){
-      return 'Trade-in your old Oxford United Shirt '
+    if (storeName === "Oxford United") {
+      return "Trade-in your old Oxford United Shirt ";
     }
 
     if (style === "minimal") {
@@ -187,7 +209,9 @@ async function initializeBirl() {
       buttonStyles[style].logo
     }
             </div>
-          <div class=${buttonStyles[style].ctaText}>
+          <div id="birl-cta-button" data-variant="${style}" class=${
+      buttonStyles[style].ctaText
+    }>
               <p>
               ${
                 style === "cart_1"
@@ -213,11 +237,7 @@ async function initializeBirl() {
                         </b><br>
                   </span>
                   <u><span style="color: #808080;">
-                    ${getButtonText(
-                    shortName || storeName,
-                    storeTheme,
-                    style
-                  )}
+                    ${getButtonText(shortName || storeName, storeTheme, style)}
                     </span></u>`
               }
                   
@@ -238,17 +258,11 @@ async function initializeBirl() {
     portalUrl
   ) {
     const modalHTML = `
-      <div id="birlWelcome" class="${
-        modalStyles[style].container
-      }" style="display: none;">
+      <div id="birlWelcome" class="${modalStyles[style].container}" style="display: none;">
         <div class="${modalStyles[style].content}">
           <div class="${modalStyles[style].header}">
-            <img class="${
-              modalStyles[style].logo
-            }" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" />
-            <span onclick="hideBirlWelcome()" class="${
-              modalStyles[style].close
-            }">&times;</span>
+            <img class="${modalStyles[style].logo}" src="https://wearebirl.github.io/wearebirl/assets/birl-logo-black.svg" />
+            <span onclick="hideBirlWelcome()" class="${modalStyles[style].close}">&times;</span>
           </div>
           <div class="${modalStyles[style].left}">
             <h1 class="${modalStyles[style].heading}">
@@ -259,9 +273,7 @@ async function initializeBirl() {
                 ${bodyText}              
               </p>
             </div>
-            <button id="primaryGetStarted-button" class="${
-              modalStyles[style].button
-            }" onClick="event.preventDefault(); initiateBirl('${portalUrl}');">
+            <button id="primaryGetStarted-button" class="${modalStyles[style].button}" onClick="event.preventDefault(); initiateBirl('${portalUrl}');">
               Get Started
             </button>
           </div>
@@ -277,28 +289,29 @@ async function initializeBirl() {
 
   async function fetchData(storeId) {
     try {
-      const response = await fetch(`https://api.wearebirl.com/portal/v1/public/${storeId}`);
+      const response = await fetch(
+        `https://api.wearebirl.com/portal/v1/public/${storeId}`
+      );
 
       if (response.ok) {
         const data = await response.json();
 
-          return {
-            heading: data?.modal_heading,
-            bodyText: data?.modal_body,
-            storeName: data?.name,
-            shortName: data?.short_name,
-            storeTheme: data?.theme,
-            storeStatus: data?.status,
-            img1: data?.cover_image,
-            img2: data?.cover_image_2,
-            location: data?.button_location,
-            style: data?.button_style,
-            cartLocation: data?.cart_location,
-            modalStyle: data?.modal_style,
-            instore_enabled: data?.instore_enabled,
-            portalUrl: data?.portal_url,
-          };
-
+        return {
+          heading: data?.modal_heading,
+          bodyText: data?.modal_body,
+          storeName: data?.name,
+          shortName: data?.short_name,
+          storeTheme: data?.theme,
+          storeStatus: data?.status,
+          img1: data?.cover_image,
+          img2: data?.cover_image_2,
+          location: data?.button_location,
+          style: data?.button_style,
+          cartLocation: data?.cart_location,
+          modalStyle: data?.modal_style,
+          instore_enabled: data?.instore_enabled,
+          portalUrl: data?.portal_url,
+        };
       } else {
         console.error("Error fetching store data:", response.statusText);
       }
@@ -463,7 +476,7 @@ async function initializeBirl() {
     style,
   };
 
-  if(isHidden){
+  if (isHidden) {
     return;
   }
 
@@ -588,6 +601,10 @@ function initiateBirl(portalUrl) {
   const encodedUserData = btoa(JSON.stringify(userData));
 
   try {
+    posthog.capture("get_started_clicked", {
+      app_name: "birl_shopify",
+      step_name: "pdp",
+    });
     document.getElementById("primaryGetStarted-button").innerHTML =
       "Get started";
     const openedWindow = window.open(
@@ -599,6 +616,13 @@ function initiateBirl(portalUrl) {
       alert("Failed to open popup window, please try again.");
     }
   } catch (error) {
+    posthog.captureException(error, {
+      message: "Error initiating Birl session from PDP",
+      store_name: document
+        ?.querySelector('meta[name="birl-id"]')
+        ?.getAttribute("content")
+        .split(" ")[0],
+    });
     console.error("Error initiating session:", error);
     alert("An error occurred. Please try again.");
   }
