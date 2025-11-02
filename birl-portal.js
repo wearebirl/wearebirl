@@ -17,9 +17,12 @@ async function initializeBirl() {
   };
 
   function getButtonTitle(storeName, variant){
-    if(storeName === "West Ham United FC" || storeName === "Oxford United"){
-      return "Get up to £15 off this item today"
+    if(storeName === "West Ham United FC"){
+      return "Get up to £20 off this item today"
     }
+      if(storeName === "Oxford United"){
+          return "Get up to £15 off this item today"
+      }
     if(variant === "product") {
       return "Get money off this item today"
     }
